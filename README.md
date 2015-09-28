@@ -1,2 +1,2 @@
 # Restaurant
-Restaurant Order System for 2509ICT
+Restaurant Order System for 2509ICT Software Engineering
