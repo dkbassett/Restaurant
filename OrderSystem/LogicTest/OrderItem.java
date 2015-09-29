@@ -9,8 +9,8 @@ public class OrderItem {
 		quantity=newQuantity;
 	}
 	
-	public void updateQuantity(int updateQuantity){
-	quantity=newQuantity;
+	public void updateQuantity(int updatedQuantity){
+	quantity=updatedQuantity;
 	}
 	
 	public void confirmItem() {
