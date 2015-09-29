@@ -1,6 +1,6 @@
 public class OperatorHandler {
 	
-	private StaffMember currentOperator
+	private StaffMember currentOperator;
 	
 	public  OperatorHandler (StaffMember newStaffMember) { //initialises operation handler with given StaffMember instance
 		currentOperator=newStaffMember;	
