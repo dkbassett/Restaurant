@@ -7,10 +7,10 @@ public class OperatorHandler {
 	}
 	
 	public int getOperator(){ // returns currentOperator ID
-		return (int) (currentOperator.staffID);
+		return (int) (currentOperator.getStaffId());
 	}
 	
-	public StaffMember updateCurrentOperator(StaffMember newStaffMember) { //updates currentOperator to given StaffMember
+	public void updateCurrentOperator(StaffMember newStaffMember) { //updates currentOperator to given StaffMember
 		currentOperator=newStaffMember;
 	}
 }
