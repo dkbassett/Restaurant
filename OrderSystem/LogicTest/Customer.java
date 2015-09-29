@@ -22,4 +22,7 @@ public class Customer{
 	public void updateCreditCard(CreditCard updatedCreditCard){
 		creditCard=updatedCreditCard;
 	}
+	public int getPhoneNumber(){
+		return (int) (phoneNumber);
+	}
 	}
