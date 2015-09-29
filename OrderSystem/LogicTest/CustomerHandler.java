@@ -7,7 +7,7 @@ public class CustomerHandler {
 	}
 	
 	public Customer getCustByPhone (){
-		return (int) (currentCustomer.phoneNumber)
+		return (int) (currentCustomer.phoneNumber);
 	}
 	public void addNewCustomer(Customer newCustomer){
 		currentCustomer=newCustomer; // Verify this is what UML intended
