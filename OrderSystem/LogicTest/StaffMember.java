@@ -9,4 +9,7 @@ public class StaffMember {
 		name=newName;
 		password=newPassword;
 	}		
+	public int getStaffId(){
+		return (int) (staffID);
+	}
 }
