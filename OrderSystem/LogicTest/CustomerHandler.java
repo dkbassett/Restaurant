@@ -9,8 +9,9 @@ public class CustomerHandler {
 	public int getCustByPhone (){
 		return (int) (currentCustomer.getPhoneNumber());
 	}
-	public void addNewCustomer(Customer newCustomer){
-		currentCustomer=newCustomer; // Verify this is what UML intended
+	public void addNewCustomer(int Id,String name, String Address, int phoneNumber, CreditCard creditCard){
+		Customer newCustomer = new Customer(Id,name,Address,phoneNumber,creditCard);
+		currentCustomer=newCustomer;
 	}
 	
 }
