@@ -1,12 +1,11 @@
 public class CreditCard {
 	private String cardHolder;
-//	private CreditCardProvider type;	Need clarification on how to implement 
+	private String type;	// credit provider
 	private int number;
 	
-	public CreditCard(String newCardHolder, /* newCreditCardProvider newType,*/ int newNumber){
+	public CreditCard(String newCardHolder,String newtype, int newNumber){
 		cardHolder=newCardHolder;
-//		type=newType; 	Needs Clarification
+		type=newType; 	
 		number=newNumber;
 	}
-	
 }
