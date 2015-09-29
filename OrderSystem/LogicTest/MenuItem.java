@@ -10,7 +10,7 @@ public class MenuItem {
 		price=newPrice;
 	}
 	
-	public updatePrice(float updatedPrice){
+	public void updatePrice(float updatedPrice){
 		price=updatedPrice;
 	}
 }
