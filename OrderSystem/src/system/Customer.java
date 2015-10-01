@@ -1,3 +1,5 @@
+package system;
+
 public class Customer{
 	
 	private int id;
@@ -8,7 +10,7 @@ public class Customer{
 	
 	
 	public Customer(int newId, String newName, String newAddress, int newPhoneNumber, CreditCard newCreditCard){
-		id=newId;
+		setId(newId);
 		name=newName;
 		address=newAddress;
 		phoneNumber=newPhoneNumber;
@@ -25,4 +27,14 @@ public class Customer{
 	public int getPhoneNumber(){
 		return (int) (phoneNumber);
 	}
+
+	public int getId() {
+		return id;
 	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
+}

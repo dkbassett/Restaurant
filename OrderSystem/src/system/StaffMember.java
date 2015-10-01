@@ -1,3 +1,5 @@
+package system;
+
 public class StaffMember {
 	
 	private int staffID;

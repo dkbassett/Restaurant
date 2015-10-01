@@ -1,3 +1,5 @@
+package system;
+
 public class OperatorHandler {
 	
 	private StaffMember currentOperator;
