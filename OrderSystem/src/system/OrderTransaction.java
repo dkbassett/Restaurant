@@ -1,3 +1,5 @@
+package system;
+
 public class OrderTransaction {
 	
 	private int id;
