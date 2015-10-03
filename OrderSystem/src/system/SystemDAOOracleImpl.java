@@ -16,7 +16,7 @@ import javax.sql.rowset.CachedRowSet; // for making a dataset, need to implement
 public class SystemDAOOracleImpl {
 	
 	// url use in place of standard portnumber, networkprotocol and database name
-	private static final String DB_URL = "jdbc:oracle:thin:DEV/group2@//localhost:1521/:XE"; //need to find out how to get db url
+	private static final String DB_URL = "jdbc:oracle:thin:DEV/group2@//localhost:1521/XE"; //need to find out how to get db url
 	
 	private static final String USER = ""; //need to set up user
 	private static final String PASS = ""; //need to set password
