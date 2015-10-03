@@ -15,27 +15,33 @@ import javax.sql.rowset.CachedRowSet; // for making a dataset, need to implement
 
 public class SystemDAOOracleImpl {
 	
-	private static final String DB_URL = ""; //need to find out how to get db url
+	// url use in place of standard portnumber, networkprotocol and database name
+	private static final String DB_URL = "jdbc:oracle:thin:DEV/group2@//localhost:1521/:XE"; //need to find out how to get db url
+	
 	private static final String USER = ""; //need to set up user
 	private static final String PASS = ""; //need to set password
+	private static final String DB_NAME = "ORCL";
+	private static final String DS_NAME = "";
+	private static final String DS_DESC = "";
+	private static final String N_PRTCL = "tcp";
+	private static final int PORT_NO = 0;
+	private static final String SRVR_NAME = "";
+	private static final String DRVR_TYPE = "thin"; //or oci
+	
 	
 	// Problems with naming, need to research more.
 	public static Connection getConnection() {
 		Connection conn = null;	
 		try {
-			OracleDataSource ods = new OracleDataSource();
-			ods.setDatabaseName("ORDER_SYSTEM");
-			Context ctx = new InitialContext();
-			ctx.bind("jdbc/RestaurantDB", ods);
+			OracleDataSource ds = new OracleDataSource();			
+			ds.setURL(DB_URL);
 			
-			OracleDataSource ds = (OracleDataSource)ctx.lookup("jdbc/RestaurantDB");
+			conn = ds.getConnection();
 			
-			conn = ds.getConnection(USER, PASS);
 			System.out.println("Database connected");
-		} catch (NamingException e) {
-			System.err.println("Naming Exception: " + e.getMessage());
 		} catch (SQLException e) {
 			System.err.println("SQLException: " + e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
         return conn;
