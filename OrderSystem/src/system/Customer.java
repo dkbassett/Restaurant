@@ -5,13 +5,22 @@ public class Customer{
 	private int id;
 	private String name;
 	private String address;
-	private int phoneNumber;
+	private String phoneNumber;
 	private CreditCard creditCard;
 	
+	public Customer() {
+	}
 	
-	public Customer(int newId, String newName, String newAddress, int newPhoneNumber, CreditCard newCreditCard){
+	public Customer(int newId, String newName, String newAddress, String newPhoneNumber){
 		setId(newId);
-		name=newName;
+		setName(newName);
+		address=newAddress;
+		phoneNumber=newPhoneNumber;
+	}
+	
+	public Customer(int newId, String newName, String newAddress, String newPhoneNumber, CreditCard newCreditCard){
+		setId(newId);
+		setName(newName);
 		address=newAddress;
 		phoneNumber=newPhoneNumber;
 		creditCard=newCreditCard;
@@ -24,8 +33,8 @@ public class Customer{
 	public void updateCreditCard(CreditCard updatedCreditCard){
 		creditCard=updatedCreditCard;
 	}
-	public int getPhoneNumber(){
-		return (int) (phoneNumber);
+	public String getPhoneNumber(){
+		return (String) (phoneNumber);
 	}
 
 	public int getId() {
@@ -34,6 +43,14 @@ public class Customer{
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

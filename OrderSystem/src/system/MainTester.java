@@ -4,7 +4,14 @@ public class MainTester {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		SystemDAOOracleImpl.writeToTable("INSERT INTO CUSTOMER VALUES(2, 'Gary', 'New York', 5566)");
+//		SystemDAOOracleImpl.printFromTable(SystemDAOOracleImpl.selectAllCustomers());
+		
+		Customer cust = new Customer();
+		
+		cust = CustomerHandler.getCustByPhone("5566");
+		System.out.println("Customer id is: " + cust.getId());
+		System.out.println("Customer name is: " + cust.getName());
+		
 	}
 
 }

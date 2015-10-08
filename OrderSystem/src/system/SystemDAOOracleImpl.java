@@ -110,7 +110,7 @@ public class SystemDAOOracleImpl {
 	
 	// Find a customer by phone. This should return a customer object
 	// when extracted from data set.
-	public static String findCustomerByPhone(int phone) {		
+	public static String findCustomerByPhone(String phone) {		
 		return 	"SELECT C.id, C.name, C.address, C.phone_no " +
 				"FROM customer C " +
 				"WHERE C.phone_no = " + phone;	
