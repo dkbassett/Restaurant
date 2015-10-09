@@ -1,5 +1,11 @@
 package system;
 
+import java.sql.SQLException;
+
+import javax.sql.rowset.CachedRowSet;
+
+import com.sun.rowset.CachedRowSetImpl;
+
 public class Customer{
 	
 	private int id;
@@ -59,6 +65,30 @@ public class Customer{
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	public static Customer getCustByPhoneFromDB (String phone){
+		Customer cust = new Customer();
+		try {
+			CachedRowSet crs = new CachedRowSetImpl();
+			crs = SystemDAOOracleImpl.readFromTable(SystemDAOOracleImpl.findCustomerByPhone(phone));
+			while (crs.next()) {
+				int id = crs.getInt("id");
+				String name = crs.getString("name");
+				String address = crs.getString("address");
+				String phoneNo = crs.getString("phone_no");
+				cust = new Customer(id, name, address, phoneNo);
+			}
+		} catch (SQLException e) {
+			System.err.println("Error: " + e.getMessage());
+		} 
+		return cust;
+	}
+	
+	public static Customer addNewCustomerToDB(int Id,String name, String Address, String phoneNumber){
+		Customer newCustomer = new Customer(Id,name,Address,phoneNumber);
+		SystemDAOOracleImpl.writeToTable(SystemDAOOracleImpl.createNewCustomer(newCustomer));
+		return newCustomer;
 	}
 	
 	
