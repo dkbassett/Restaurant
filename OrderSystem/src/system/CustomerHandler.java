@@ -26,14 +26,15 @@ public abstract class CustomerHandler {
 			}
 		} catch (SQLException e) {
 			System.err.println("Error: " + e.getMessage());
-		}
+		} 
 		currentCustomer = cust;
 		return cust;
 	}
 	
 	public void addNewCustomer(int Id,String name, String Address, String phoneNumber, CreditCard creditCard){
 		Customer newCustomer = new Customer(Id,name,Address,phoneNumber,creditCard);
-		currentCustomer=newCustomer;
+		SystemDAOOracleImpl.writeToTable(SystemDAOOracleImpl.createNewCustomer(newCustomer));
+		currentCustomer = newCustomer;
 	}
 	
 }

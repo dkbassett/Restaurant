@@ -108,6 +108,17 @@ public class SystemDAOOracleImpl {
 				"FROM customer";
 	}
 	
+	// Inserts a new customer in database by a customer object
+	public static String createNewCustomer(Customer newCustomer) {
+		int id = newCustomer.getId();
+		String name = newCustomer.getName();
+		String address = newCustomer.getAddress();
+		String phone = newCustomer.getPhoneNumber();
+		return 	"INSERT INTO Customer C " +
+				"VALUES ( " + id + "," + name + "," 
+							+ address + "," + phone + ")";
+	}
+	
 	// Find a customer by phone. This should return a customer object
 	// when extracted from data set.
 	public static String findCustomerByPhone(String phone) {		

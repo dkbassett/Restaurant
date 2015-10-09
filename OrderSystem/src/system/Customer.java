@@ -14,20 +14,20 @@ public class Customer{
 	public Customer(int newId, String newName, String newAddress, String newPhoneNumber){
 		setId(newId);
 		setName(newName);
-		address=newAddress;
+		setAddress(newAddress);
 		phoneNumber=newPhoneNumber;
 	}
 	
 	public Customer(int newId, String newName, String newAddress, String newPhoneNumber, CreditCard newCreditCard){
 		setId(newId);
 		setName(newName);
-		address=newAddress;
+		setAddress(newAddress);
 		phoneNumber=newPhoneNumber;
 		creditCard=newCreditCard;
 	}
 	
 	public void updateAddress(String updatedAddress){
-			address=updatedAddress;
+			setAddress(updatedAddress);
 	}
 	
 	public void updateCreditCard(CreditCard updatedCreditCard){
@@ -51,6 +51,14 @@ public class Customer{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 	
