@@ -1,3 +1,8 @@
+
+
+
+
+
 package gui;
 
 import java.awt.event.ActionEvent;
@@ -48,7 +53,7 @@ public class MenuItem extends JFrame implements ActionListener{
         btncreate.addActionListener(this);
         
         setVisible(true);
-        setTitle("Customer list");
+        setTitle("MenuItem");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1000,1000);
         getTableData();
@@ -77,6 +82,7 @@ public class MenuItem extends JFrame implements ActionListener{
        
        
        }
+       
         
     }
     
@@ -93,7 +99,11 @@ public class MenuItem extends JFrame implements ActionListener{
        JScrollPane js = new JScrollPane(tbl);
        add(js).setBounds(20,100,900,500);
        
-          
+        
+        
+        
+        
+        
     }
    
 }

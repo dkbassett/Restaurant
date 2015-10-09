@@ -1,11 +1,14 @@
+
 package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -18,7 +21,7 @@ public class Mainwindow extends JFrame implements ActionListener  {
     JMenuBar menu; // Declearing Jmenubar
     JMenu Staffmember,Customerhandler,Rmenu, AddCustomer;  // Declearing Jmenu for Jmenubar
     JMenuItem Menuitem,Orderitem,Customer,Customer_Details, Customerlist, Ordertransaction,Stafflist ; //Declearing Jmenuitem for Jmenu
-    
+    JButton btnorder;
     JLabel label; // Declearing Jlabel
      
     
@@ -68,7 +71,14 @@ public class Mainwindow extends JFrame implements ActionListener  {
         Rmenu.add(Ordertransaction).setBounds(70,40,40,40);
         Ordertransaction.addActionListener(this);
         
-           
+        btnorder = new JButton("Click to make Order");
+        add(btnorder).setBounds(500,300,300,100);
+        btnorder.addActionListener(this);
+        
+        
+       
+        
+        
 try{
           setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Images\\LOGO.jpg"))))); //setting background screen
        }
@@ -91,6 +101,8 @@ try{
     new Mainwindow();
     }
 
+  
+       
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -113,13 +125,20 @@ try{
         	   new MenuItem();
            }
            if(e.getSource()==Ordertransaction){
-        	   new OrderTransaction();
+        	   new Orderhistory();
            }
            if(e.getSource()==Stafflist){
-        	   new Staff_Details();
+        	   new Login();
+           }
+           if(e.getSource()==btnorder){
+        	   new OrderItem();
            }
               
     }
       
+     
+        
+    
+    
     
 }

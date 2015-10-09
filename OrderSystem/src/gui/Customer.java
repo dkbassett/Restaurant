@@ -1,3 +1,8 @@
+
+
+
+
+
 package gui;
 
 import java.awt.event.ActionEvent;
@@ -18,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.Document;
 
 
-public class StaffList extends JFrame implements ActionListener{
+public class Customer extends JFrame implements ActionListener{
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
@@ -29,7 +34,7 @@ public class StaffList extends JFrame implements ActionListener{
     JButton   btnview;
    
 
-    public StaffList(){
+    public Customer(){
         setLayout(null);
         
         Item = new JLabel("Item:");
@@ -38,11 +43,17 @@ public class StaffList extends JFrame implements ActionListener{
         find = new JTextField();
         add(find).setBounds(140,20,100,20);
         
+        
+        
+
+       
+        
         setVisible(true);
-        setTitle("Order Transaction");
+        setTitle("StaffList");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1000,1000);
         getTableData();
+    
     
     }
 
@@ -52,6 +63,11 @@ public class StaffList extends JFrame implements ActionListener{
            
         }
        
+           
+       
+       
+       
+        
     }
     
 
@@ -61,10 +77,18 @@ public class StaffList extends JFrame implements ActionListener{
         dtm.addColumn("Sale Date");
         dtm.addColumn("Payment method");
         
-
+        
+        
+        
+       
        JScrollPane js = new JScrollPane(tbl);
        add(js).setBounds(20,100,900,500);
-         
+       
+        
+        
+        
+        
+        
     }
    
 }

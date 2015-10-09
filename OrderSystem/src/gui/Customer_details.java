@@ -1,3 +1,5 @@
+
+
 package gui;
 
 import java.awt.event.ActionEvent;
@@ -5,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 
-public class Customer_details extends JFrame{
+public class Customer_details extends JFrame implements ActionListener{
     
 	JLabel First_Name,Last_Name,Address, Phone, Credit_Card, CVV; //Declearing JLabels
 	JTextField txtFirst_Name,  txtLast_Name,txtAddress,txtPhone, txtCreditcard, txtCVV; //Declearing JTextfields
@@ -47,7 +48,9 @@ public class Customer_details extends JFrame{
         add(CVV).setBounds(20,145,120,20);
         
         
-   
+        
+       
+        
         
        txtFirst_Name = new JTextField();
        add(txtFirst_Name).setBounds(160,20,100,20);
@@ -79,12 +82,14 @@ public class Customer_details extends JFrame{
        
        btnExit = new JButton("Exit");
        add(btnExit).setBounds(260,170,100,20);
-       //btnExit.addActionListener(this);
+       btnExit.addActionListener(this);
        
        btnDel = new JButton("Delete");
        add(btnDel).setBounds(140,170,100,20);
        //btnDel.addActionListener(this);
-
+       
+      
+       
        
        setTitle("Customer Details");
        setSize(400,500);
@@ -99,6 +104,14 @@ public void transferData(String a, String b, String c, String d, String ee,
 		String f) {
 	
 	
+	
+}
+
+@Override
+public void actionPerformed(ActionEvent e) {
+	if(e.getSource().equals(btnExit)){
+		System.exit(0);
+	}
 	
 }
 

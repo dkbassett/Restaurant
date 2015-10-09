@@ -1,3 +1,5 @@
+
+
 package gui;
 
 import java.awt.event.ActionEvent;
@@ -74,7 +76,8 @@ public class Customer_list extends JFrame implements ActionListener{
        if(e.getSource()==btncreate){
            new Customer_details().show();
            
-
+       
+       
        }
         
     }
@@ -88,13 +91,19 @@ public class Customer_list extends JFrame implements ActionListener{
         dtm.addColumn("Credit Card");
         dtm.addColumn("CVV");
         dtm.addColumn("Expiry Date");
-
+        dtm.addColumn("Home Delivery/Take away");
+        
+        
+        
         
        
        JScrollPane js = new JScrollPane(tbl);
        add(js).setBounds(20,100,900,500);
        
-  
+        
+        
+        
+        
         
     }
     

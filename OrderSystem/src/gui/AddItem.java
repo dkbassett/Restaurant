@@ -1,3 +1,5 @@
+
+
 package gui;
 
 import java.awt.event.ActionEvent;
@@ -15,58 +17,62 @@ import javax.swing.JTextField;
 
 public class AddItem extends JFrame{
     
-	JLabel Itemid,Price,ItemName; //Declearing JLabels
-	JTextField txtItemid,txtPrice,txtItemName; //Declearing JTextfields
-	JButton btnSave,btnCreate,btnExit,btnDel; //Declearing JButtons
+	JLabel ItemID,Itemname,Itemprice; //Declearing JLabels
+	JTextField txtId,txtname,txtprice; //Declearing JTextfields
+	JButton btnCreate,btnExit; //Declearing JButtons
   
   
    
    public AddItem(){//Creating constructor
        setLayout(null);
         
-       Itemid = new JLabel("Item ID:");
-        add(Itemid).setBounds(20,20,120,20);
+       ItemID = new JLabel("Item ID");
+        add(ItemID).setBounds(20,20,120,20);
        
-        Price = new JLabel("Item Name:");
-        add(Price).setBounds(20,45,120,20);
+        Itemname = new JLabel("Staff Name");
+        add(Itemname).setBounds(20,45,120,20);
         
-        ItemName = new JLabel("Item Price:");
-        add(ItemName).setBounds(20,70,120,20);
+        Itemprice = new JLabel("Itemprice:");
+        add(Itemprice).setBounds(20,70,120,20);
         
-        
-        txtItemid = new JTextField();
-       add(txtItemid).setBounds(160,20,100,20);
+       txtId = new JTextField();
+       add(txtId).setBounds(160,20,100,20);
         
        
-       txtItemName = new JTextField();
-       add(txtItemName).setBounds(160,45,100,20);
+       txtname = new JTextField();
+       add(txtname).setBounds(160,45,100,20);
        
-       txtPrice = new JTextField();
-       add(txtPrice).setBounds(160,70,100,20);
+       txtprice = new JTextField();
+       add(txtprice).setBounds(160,65,100,20);
+       
+       
       
-
-       btnSave = new JButton("Save");
-       add(btnSave).setBounds(20,170,100,20);
-       //btnSave.addActionListener(this);
+        
        
-       btnCreate = new JButton("Create");
-       add(btnCreate).setBounds(140,170,100,20);
-       //btnCreate.addActionListener(this);
+       
+       
+       btnCreate = new JButton("Save");
+       add(btnCreate).setBounds(20,170,100,20);
+       
+       
+       
        
        btnExit = new JButton("Exit");
        add(btnExit).setBounds(260,170,100,20);
        //btnExit.addActionListener(this);
        
-       btnDel = new JButton("Delete");
-       add(btnDel).setBounds(140,170,100,20);
-       //btnDel.addActionListener(this);
-            
-       setTitle("Item Add");
+       
+       
+      
+       
+       
+       setTitle(" Add Item");
        setSize(400,500);
        setVisible(true);
        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
        
-    
+       
+      
     }
 
 public void transferData(String a, String b, String c, String d, String ee,
