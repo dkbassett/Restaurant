@@ -94,8 +94,8 @@ public class Customer{
 		return cust;
 	}
 	
-	public static Customer addNewCustomerToDB(int Id,String name, String Address, String phoneNumber){
-		Customer newCustomer = new Customer(Id,name,Address,phoneNumber);
+	public static Customer addNewCustomerToDB(String name, String address, String phoneNumber){
+		Customer newCustomer = new Customer(name, address, phoneNumber);
 		SystemDAOOracleImpl.writeToTable(SystemDAOOracleImpl.createNewCustomer(newCustomer));
 		return newCustomer;
 	}

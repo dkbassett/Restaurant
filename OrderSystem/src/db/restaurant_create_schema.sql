@@ -5,6 +5,18 @@ CREATE TABLE menu_item (
 	PRIMARY KEY (id)
 );
 
+CREATE SEQUENCE mitem_id_seq;
+
+CREATE TRIGGER trg_mitem_id
+	BEFORE INSERT ON menu_item
+	FOR EACH ROW
+BEGIN
+	SELECT mitem_id_seq.NEXTVAL
+	INTO :new.id
+	FROM dual;
+END;
+/
+
 CREATE TABLE customer (
 	id		varchar(7)	not null,	/* primary key */
 	name		varchar(100)	not null,
@@ -12,6 +24,18 @@ CREATE TABLE customer (
 	phone_no	number(12)	not null,
 	PRIMARY KEY (id)	
 );
+
+CREATE SEQUENCE cust_id_seq;
+
+CREATE TRIGGER trg_cust_id
+	BEFORE INSERT ON customer
+	FOR EACH ROW
+BEGIN
+	SELECT cust_id_seq.NEXTVAL
+	INTO :new.id
+	FROM dual;
+END;
+/
 
 CREATE TABLE credit_card (
 	cr_number	varchar(19)	not null,	/* primary key */

@@ -1,9 +1,11 @@
+/* Customer id is null because the schema contains an auto-increment sequence and trigger */
+
 INSERT INTO customer VALUES
-	(1, 'John Smith', '44 Longview Drive, Mt Gravatt, QLD', '555444333');
+	(NULL, 'John Smith', '44 Longview Drive, Mt Gravatt, QLD', '555444333');
 INSERT INTO Customer VALUES
-	(2, 'Jane Doe', '33 Riverside Avenue, Sunnybank, QLD', '111222333');
+	(NULL, 'Jane Doe', '33 Riverside Avenue, Sunnybank, QLD', '111222333');
 INSERT INTO Customer VALUES
-	(3, 'Joe Bloggs', '22 Northwood Road, Annerley, QLD', '777888999');
+	(NULL, 'Joe Bloggs', '22 Northwood Road, Annerley, QLD', '777888999');
 
 
 INSERT INTO credit_card VALUES
@@ -21,13 +23,15 @@ INSERT INTO uses_card VALUES
 INSERT INTO uses_card VALUES
 	(2, '457923492092', TO_DATE('05/17', 'mm/yy'));
 
+/* menu_item id is null because the schema contains an auto-increment sequence and trigger */
+
 INSERT INTO menu_item VALUES
-	(1, 'Combination Chow Mein', 12.50);
+	(NULL, 'Combination Chow Mein', 12.50);
 INSERT INTO menu_item VALUES
-	(2, 'Sweet and Sour Pork', 11.00);
+	(NULL, 'Sweet and Sour Pork', 11.00);
 INSERT INTO menu_item VALUES
-	(3, 'Seafood Ho Fun', 14.50);
+	(NULL, 'Seafood Ho Fun', 14.50);
 INSERT INTO menu_item VALUES
-	(4, 'Shredded Duck and Preserved Veg', 12.50);
+	(NULL, 'Shredded Duck and Preserved Veg', 12.50);
 INSERT INTO menu_item VALUES
-	(4, 'Hokkien Noodle', 12.50);
+	(NULL, 'Hokkien Noodle', 12.50);

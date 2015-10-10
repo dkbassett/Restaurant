@@ -110,13 +110,12 @@ public class SystemDAOOracleImpl {
 	
 	// Inserts a new customer in database by a customer object
 	public static String createNewCustomer(Customer newCustomer) {
-		int id = newCustomer.getId();
 		String name = newCustomer.getName();
 		String address = newCustomer.getAddress();
 		String phone = newCustomer.getPhoneNumber();
 		return 	"INSERT INTO Customer C " +
-				"VALUES ( " + id + "," + name + "," 
-							+ address + "," + phone + ")";
+				"VALUES (NULL, '" + name + ", '" 
+						+ address + "' ,'" + phone + "')";
 	}
 	
 	// Find a customer by phone. This should return a customer object

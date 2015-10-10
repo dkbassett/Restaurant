@@ -14,8 +14,8 @@ public abstract class CustomerHandler {
 		return cust;
 	}
 	
-	public static void addNewCustomer(int Id,String name, String Address, String phoneNumber){
-		Customer cust = Customer.addNewCustomerToDB(Id, name, Address, phoneNumber);
+	public static void addNewCustomer(String name, String address, String phoneNumber){
+		Customer cust = Customer.addNewCustomerToDB(name, address, phoneNumber);
 		currentCustomer = cust;
 	}
 	

@@ -120,14 +120,17 @@ public void actionPerformed(ActionEvent e) {
 		dispose();
 	}
 	else if(e.getSource().equals(btnConfirm)){
-		String cust = txt_Name.getText();
-		System.out.println("Ui Level: " + cust);
+		String name = txt_Name.getText();
+		System.out.println("Ui Level: " + name);
 		String address = txtAddress.getText();
 		System.out.println("Ui Level: " + address);
 		String pNumber = txtPhone.getText();
 		System.out.println("Ui Level: " + pNumber);
 		//new Customer();
-		new Customer(cust,address,pNumber);
+		new Customer(name,address,pNumber);
+		
+		CustomerHandler.addNewCustomer(name, address, pNumber);
+		
 		dispose();
 		//Customer_details.Close();
 		//new Customer(Cust,)

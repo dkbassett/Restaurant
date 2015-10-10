@@ -11,3 +11,6 @@ DROP TABLE staff;
 DROP TABLE credit_card;
 DROP TABLE customer;
 DROP TABLE menu_item;
+
+DROP SEQUENCE cust_id_seq;
+DROP TRIGGER trg_cust_id;
