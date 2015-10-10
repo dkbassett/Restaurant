@@ -76,11 +76,13 @@ public void actionPerformed(ActionEvent e) {
 			String expiryYear = txtYearExpiry.getText();
 			String cardHold = txtCardHolder.getText();
 			String cardProv = txtCardProvider.getText();
+			String expiryFull = (expiryMon + "/" + expiryYear);
 			
 			System.out.println("Ui Level: " + cardHold);
 			System.out.println("Ui Level: " + cardProv);
 			System.out.println("Ui Level: " + expiryYear);
 			System.out.println("Ui Level: " + expiryMon);
+			System.out.println("Ui Level: " + expiryFull);
 			System.out.println("Ui Level: " + number);
 			
 			
