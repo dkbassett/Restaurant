@@ -59,7 +59,7 @@ public class CurrentOrderView extends JFrame implements ActionListener{
            
         }
        if(e.getSource()==btncreate){
-           new Customer_detailsView().show();
+           new NewCustomerView().show();
            
        
        

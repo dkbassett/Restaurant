@@ -107,13 +107,13 @@ try{
         @Override
         public void actionPerformed(ActionEvent e) {
            if(e.getSource()==Customerlist){
-             new Customer_listView();
+             new CustomerListView();
            }
            if (e.getSource()==Customer_Details){
-             new Customer_detailsView();
+             new NewCustomerView();
            }
            if(e.getSource()==Customer){
-              new Staff_DetailsView();
+              new StaffListView();
            
            }
            if(e.getSource()== Orderitem){
@@ -125,7 +125,7 @@ try{
         	   new MenuItemView();
            }
            if(e.getSource()==Ordertransaction){
-        	   new OrderhistoryView();
+        	   new OrderHistoryView();
            }
            if(e.getSource()==Stafflist){
         	   new LoginView();

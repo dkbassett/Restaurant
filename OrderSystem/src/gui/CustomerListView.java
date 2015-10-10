@@ -1,3 +1,5 @@
+
+
 package gui;
 
 import java.awt.event.ActionEvent;
@@ -18,8 +20,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.Document;
 
 
-public class Staff_DetailsView extends JFrame implements ActionListener{
-    
+public class CustomerListView extends JFrame implements ActionListener{
+    Connection con;
+    PreparedStatement ps;
+    ResultSet rs;
     DefaultTableModel dtm = new DefaultTableModel();
     JTable tbl = new JTable(dtm);
     JTextField find;
@@ -27,7 +31,7 @@ public class Staff_DetailsView extends JFrame implements ActionListener{
     JButton  btncreate, btnview;
    
 
-    public Staff_DetailsView(){
+    public CustomerListView(){
         setLayout(null);
         
         Name = new JLabel("Name:");
@@ -46,21 +50,31 @@ public class Staff_DetailsView extends JFrame implements ActionListener{
         btncreate.addActionListener(this);
         
         setVisible(true);
-        setTitle("Staff List");
+        setTitle("Customer list");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1000,1000);
         getTableData();
-    
+        System.out.println("Customer_listView");
     
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()== btnview){
+            String a = tbl.getValueAt(tbl.getSelectedRow(),0).toString();
+            String b = tbl.getValueAt(tbl.getSelectedRow(),1).toString();
+            String c = tbl.getValueAt(tbl.getSelectedRow(),2).toString();
+            String d = tbl.getValueAt(tbl.getSelectedRow(),3).toString();
+            String ee = tbl.getValueAt(tbl.getSelectedRow(),4).toString();
+            String f = tbl.getValueAt(tbl.getSelectedRow(),5).toString();
             
+            
+            NewCustomerView cd = new NewCustomerView();
+            cd.transferData(a,b,c,d,ee,f);
+            cd.show();
         }
        if(e.getSource()==btncreate){
-           new AddStaffView().show();
+           new NewCustomerView().show();
            
        
        
@@ -70,8 +84,15 @@ public class Staff_DetailsView extends JFrame implements ActionListener{
     
 
     private void getTableData() {
-        dtm.addColumn("Staff ID");
-        dtm.addColumn("Staff Name");
+        dtm.addColumn("First Nme");
+        dtm.addColumn("Last Name");
+        dtm.addColumn("Address");
+        dtm.addColumn("Phone");
+        dtm.addColumn("Credit Card");
+        dtm.addColumn("CVV");
+        dtm.addColumn("Expiry Date");
+        dtm.addColumn("Home Delivery/Take away");
+        
         
         
         

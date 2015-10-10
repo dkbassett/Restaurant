@@ -1,8 +1,3 @@
-
-
-
-
-
 package gui;
 
 import java.awt.event.ActionEvent;
@@ -23,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.Document;
 
 
-public class OrderhistoryView extends JFrame implements ActionListener{
+public class OrderHistoryView extends JFrame implements ActionListener{
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
@@ -34,7 +29,7 @@ public class OrderhistoryView extends JFrame implements ActionListener{
     JButton   btnview;
    
 
-    public OrderhistoryView(){
+    public OrderHistoryView(){
         setLayout(null);
         
         ID = new JLabel("ID:");

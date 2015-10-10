@@ -72,7 +72,7 @@ public class MenuItemView extends JFrame implements ActionListener{
             String f = tbl.getValueAt(tbl.getSelectedRow(),5).toString();
             
             
-            Customer_detailsView cd = new Customer_detailsView();
+            NewCustomerView cd = new NewCustomerView();
             cd.transferData(a,b,c,d,ee,f);
             cd.show();
         }

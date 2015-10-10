@@ -7,14 +7,16 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
 import system.*;
 
-public class Customer_detailsView extends JFrame implements ActionListener{
+public class NewCustomerView extends JFrame implements ActionListener{
     
 	JLabel Title,Name/*,Last_Name*/,Address, Phone, Credit_Card, CVV; //Declearing JLabels
 	JTextField  txt_Name /*,  txtLast_Name*/,txtAddress,txtPhone, txtCreditcard, txtCVV; //Declearing JTextfields
@@ -25,7 +27,7 @@ public class Customer_detailsView extends JFrame implements ActionListener{
    //ResultSet rs;// Declearing Resultset
    
    
-   public Customer_detailsView(){//Creating constructor
+   public NewCustomerView(){//Creating constructor
        setLayout(null);
         
        
@@ -101,7 +103,7 @@ public class Customer_detailsView extends JFrame implements ActionListener{
        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
        
        
-      
+       System.out.println("Customer_detailsView");
     }
 
 public void transferData(String a, String b, String c, String d, String ee,

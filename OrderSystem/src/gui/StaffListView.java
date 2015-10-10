@@ -1,5 +1,3 @@
-
-
 package gui;
 
 import java.awt.event.ActionEvent;
@@ -20,10 +18,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.Document;
 
 
-public class Customer_listView extends JFrame implements ActionListener{
-    Connection con;
-    PreparedStatement ps;
-    ResultSet rs;
+public class StaffListView extends JFrame implements ActionListener{
+    
     DefaultTableModel dtm = new DefaultTableModel();
     JTable tbl = new JTable(dtm);
     JTextField find;
@@ -31,7 +27,7 @@ public class Customer_listView extends JFrame implements ActionListener{
     JButton  btncreate, btnview;
    
 
-    public Customer_listView(){
+    public StaffListView(){
         setLayout(null);
         
         Name = new JLabel("Name:");
@@ -50,7 +46,7 @@ public class Customer_listView extends JFrame implements ActionListener{
         btncreate.addActionListener(this);
         
         setVisible(true);
-        setTitle("Customer list");
+        setTitle("Staff List");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1000,1000);
         getTableData();
@@ -61,20 +57,10 @@ public class Customer_listView extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()== btnview){
-            String a = tbl.getValueAt(tbl.getSelectedRow(),0).toString();
-            String b = tbl.getValueAt(tbl.getSelectedRow(),1).toString();
-            String c = tbl.getValueAt(tbl.getSelectedRow(),2).toString();
-            String d = tbl.getValueAt(tbl.getSelectedRow(),3).toString();
-            String ee = tbl.getValueAt(tbl.getSelectedRow(),4).toString();
-            String f = tbl.getValueAt(tbl.getSelectedRow(),5).toString();
             
-            
-            Customer_detailsView cd = new Customer_detailsView();
-            cd.transferData(a,b,c,d,ee,f);
-            cd.show();
         }
        if(e.getSource()==btncreate){
-           new Customer_detailsView().show();
+           new AddStaffView().show();
            
        
        
@@ -84,15 +70,8 @@ public class Customer_listView extends JFrame implements ActionListener{
     
 
     private void getTableData() {
-        dtm.addColumn("First Nme");
-        dtm.addColumn("Last Name");
-        dtm.addColumn("Address");
-        dtm.addColumn("Phone");
-        dtm.addColumn("Credit Card");
-        dtm.addColumn("CVV");
-        dtm.addColumn("Expiry Date");
-        dtm.addColumn("Home Delivery/Take away");
-        
+        dtm.addColumn("Staff ID");
+        dtm.addColumn("Staff Name");
         
         
         
