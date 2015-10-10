@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import system.*;
 
-
 public class CreditCardView extends JFrame implements ActionListener{
 	
 	JLabel Title, Number, Expiry, CardHolder,CardProvider;
@@ -64,11 +63,7 @@ public class CreditCardView extends JFrame implements ActionListener{
 	     setSize(400,300);
 	     setVisible(true);
 	     setDefaultCloseOperation(DISPOSE_ON_CLOSE);	      
-	     
 	}
-	
-
-	
 @Override
 public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(btnCancel)){
