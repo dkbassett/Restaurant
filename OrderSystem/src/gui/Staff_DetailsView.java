@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.Document;
 
 
-public class Staff_Details extends JFrame implements ActionListener{
+public class Staff_DetailsView extends JFrame implements ActionListener{
     
     DefaultTableModel dtm = new DefaultTableModel();
     JTable tbl = new JTable(dtm);
@@ -27,7 +27,7 @@ public class Staff_Details extends JFrame implements ActionListener{
     JButton  btncreate, btnview;
    
 
-    public Staff_Details(){
+    public Staff_DetailsView(){
         setLayout(null);
         
         Name = new JLabel("Name:");

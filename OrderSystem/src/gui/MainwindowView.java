@@ -113,7 +113,7 @@ try{
              new Customer_detailsView();
            }
            if(e.getSource()==Customer){
-              new Staff_Details();
+              new Staff_DetailsView();
            
            }
            if(e.getSource()== Orderitem){
