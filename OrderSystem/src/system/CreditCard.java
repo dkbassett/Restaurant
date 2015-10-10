@@ -6,10 +6,10 @@ public class CreditCard {
 	private String cardHolder;
 	private String type;	// credit provider
 	private int number;
-	private DateFormat expiry;
+	private String expiry;
 	
 	public CreditCard(String newCardHolder,String newType, 
-			int newNumber, DateFormat newExpiry){
+			int newNumber, String newExpiry){
 		setCardHolder(newCardHolder);
 		setType(newType); 	
 		setNumber(newNumber);
@@ -40,11 +40,11 @@ public class CreditCard {
 		this.number = number;
 	}
 
-	public DateFormat getExpiry() {
+	public String getExpiry() {
 		return expiry;
 	}
 
-	public void setExpiry(DateFormat expiry) {
+	public void setExpiry(String expiry) {
 		this.expiry = expiry;
 	}
 
