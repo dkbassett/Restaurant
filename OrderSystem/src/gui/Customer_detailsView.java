@@ -12,9 +12,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import system.*;
 
-
-public class Customer_details extends JFrame implements ActionListener{
+public class Customer_detailsView extends JFrame implements ActionListener{
     
 	JLabel Title,Name/*,Last_Name*/,Address, Phone, Credit_Card, CVV; //Declearing JLabels
 	JTextField  txt_Name /*,  txtLast_Name*/,txtAddress,txtPhone, txtCreditcard, txtCVV; //Declearing JTextfields
@@ -25,7 +25,7 @@ public class Customer_details extends JFrame implements ActionListener{
    //ResultSet rs;// Declearing Resultset
    
    
-   public Customer_details(){//Creating constructor
+   public Customer_detailsView(){//Creating constructor
        setLayout(null);
         
        
@@ -124,6 +124,8 @@ public void actionPerformed(ActionEvent e) {
 		System.out.println("Ui Level: " + address);
 		String pNumber = txtPhone.getText();
 		System.out.println("Ui Level: " + pNumber);
+		//new Customer();
+		new Customer(cust,address,pNumber);
 		dispose();
 		//Customer_details.Close();
 		//new Customer(Cust,)

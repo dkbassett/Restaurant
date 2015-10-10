@@ -16,7 +16,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 
-public class Mainwindow extends JFrame implements ActionListener  {
+public class MainwindowView extends JFrame implements ActionListener  {
 
     JMenuBar menu; // Declearing Jmenubar
     JMenu Staffmember,Customerhandler,Rmenu, AddCustomer;  // Declearing Jmenu for Jmenubar
@@ -25,7 +25,7 @@ public class Mainwindow extends JFrame implements ActionListener  {
     JLabel label; // Declearing Jlabel
      
     
-    public Mainwindow(){
+    public MainwindowView(){
         setLayout(null);
         menu = new JMenuBar();
         add(menu);
@@ -44,7 +44,7 @@ public class Mainwindow extends JFrame implements ActionListener  {
         Customer = new JMenuItem(" Add Staff");
         Customerhandler.add(Customer).setBounds(20,20,40,40);
         
-        Customer_Details = new JMenuItem("Add customer");
+        Customer_Details = new JMenuItem("New customer");
         Customerhandler.add(Customer_Details).setBounds(20,30,40,40);
         
         Customerlist = new JMenuItem("Customer list");
@@ -98,7 +98,7 @@ try{
     
     }
     public static void main(String args[]){
-    new Mainwindow();
+    new MainwindowView();
     }
 
   
@@ -107,31 +107,31 @@ try{
         @Override
         public void actionPerformed(ActionEvent e) {
            if(e.getSource()==Customerlist){
-             new Customer_list();
+             new Customer_listView();
            }
            if (e.getSource()==Customer_Details){
-             new Customer_details();
+             new Customer_detailsView();
            }
            if(e.getSource()==Customer){
               new Staff_Details();
            
            }
            if(e.getSource()== Orderitem){
-               new Order();
+               new OrderView();
               
             
             }
            if(e.getSource()==Menuitem){
-        	   new MenuItem();
+        	   new MenuItemView();
            }
            if(e.getSource()==Ordertransaction){
-        	   new Orderhistory();
+        	   new OrderhistoryView();
            }
            if(e.getSource()==Stafflist){
-        	   new Login();
+        	   new LoginView();
            }
            if(e.getSource()==btnorder){
-        	   new OrderItem();
+        	   new OrderItemView();
            }
               
     }

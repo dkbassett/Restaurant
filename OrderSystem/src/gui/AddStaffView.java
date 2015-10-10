@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 
-public class AddStaff extends JFrame{
+public class AddStaffView extends JFrame{
     
 	JLabel StaffID,Staffname,Startedfrom, Phone; //Declearing JLabels
 	JTextField txtStaffId,txtStaffname,txtStartedfrom, txtPhone; //Declearing JTextfields
@@ -23,7 +23,7 @@ public class AddStaff extends JFrame{
   
   
    
-   public AddStaff(){//Creating constructor
+   public AddStaffView(){//Creating constructor
        setLayout(null);
         
        StaffID = new JLabel("Staff ID");

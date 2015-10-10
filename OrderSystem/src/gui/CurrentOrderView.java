@@ -1,8 +1,5 @@
 
 
-
-
-
 package gui;
 
 import java.awt.event.ActionEvent;
@@ -10,9 +7,11 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -23,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.Document;
 
 
-public class Customer extends JFrame implements ActionListener{
+public class CurrentOrderView extends JFrame implements ActionListener{
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
@@ -31,25 +30,18 @@ public class Customer extends JFrame implements ActionListener{
     JTable tbl = new JTable(dtm);
     JTextField find;
     JLabel Item;
-    JButton   btnview;
+    JButton btnview,btncreate;
+    
+    
    
 
-    public Customer(){
+    public CurrentOrderView(){
         setLayout(null);
         
-        Item = new JLabel("Item:");
-        add(Item).setBounds(20,20,100,20);
         
-        find = new JTextField();
-        add(find).setBounds(140,20,100,20);
-        
-        
-        
-
-       
         
         setVisible(true);
-        setTitle("StaffList");
+        setTitle("Current Order");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1000,1000);
         getTableData();
@@ -60,22 +52,33 @@ public class Customer extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()== btnview){
+            
+            
+            
+           new OrderView();
            
         }
-       
+       if(e.getSource()==btncreate){
+           new Customer_detailsView().show();
            
        
        
+       }
        
+       if(e.getSource()==btnview){
+           new OrderView().show();
+           
+       
+       
+       }
         
     }
     
 
     private void getTableData() {
-        dtm.addColumn(" ID");
-        dtm.addColumn("Order");
-        dtm.addColumn("Sale Date");
-        dtm.addColumn("Payment method");
+        dtm.addColumn("Menu Item");
+        dtm.addColumn("Quantity");
+        dtm.addColumn("Conformation Status");
         
         
         
@@ -92,6 +95,3 @@ public class Customer extends JFrame implements ActionListener{
     }
    
 }
-
-
-

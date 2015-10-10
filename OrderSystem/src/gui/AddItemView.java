@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 
-public class AddItem extends JFrame{
+public class AddItemView extends JFrame{
     
 	JLabel ItemID,Itemname,Itemprice; //Declearing JLabels
 	JTextField txtId,txtname,txtprice; //Declearing JTextfields
@@ -23,7 +23,7 @@ public class AddItem extends JFrame{
   
   
    
-   public AddItem(){//Creating constructor
+   public AddItemView(){//Creating constructor
        setLayout(null);
         
        ItemID = new JLabel("Item ID");

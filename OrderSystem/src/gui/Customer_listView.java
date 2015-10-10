@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.Document;
 
 
-public class Customer_list extends JFrame implements ActionListener{
+public class Customer_listView extends JFrame implements ActionListener{
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
@@ -31,7 +31,7 @@ public class Customer_list extends JFrame implements ActionListener{
     JButton  btncreate, btnview;
    
 
-    public Customer_list(){
+    public Customer_listView(){
         setLayout(null);
         
         Name = new JLabel("Name:");
@@ -69,12 +69,12 @@ public class Customer_list extends JFrame implements ActionListener{
             String f = tbl.getValueAt(tbl.getSelectedRow(),5).toString();
             
             
-            Customer_details cd = new Customer_details();
+            Customer_detailsView cd = new Customer_detailsView();
             cd.transferData(a,b,c,d,ee,f);
             cd.show();
         }
        if(e.getSource()==btncreate){
-           new Customer_details().show();
+           new Customer_detailsView().show();
            
        
        

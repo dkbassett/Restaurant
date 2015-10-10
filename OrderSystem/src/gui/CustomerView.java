@@ -1,5 +1,8 @@
 
 
+
+
+
 package gui;
 
 import java.awt.event.ActionEvent;
@@ -20,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.Document;
 
 
-public class Order extends JFrame implements ActionListener{
+public class CustomerView extends JFrame implements ActionListener{
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
@@ -28,10 +31,10 @@ public class Order extends JFrame implements ActionListener{
     JTable tbl = new JTable(dtm);
     JTextField find;
     JLabel Item;
-    JButton  btncreate, btnadd, btnview;
+    JButton   btnview;
    
 
-    public Order(){
+    public CustomerView(){
         setLayout(null);
         
         Item = new JLabel("Item:");
@@ -41,18 +44,12 @@ public class Order extends JFrame implements ActionListener{
         add(find).setBounds(140,20,100,20);
         
         
-        btnview = new JButton("Current Order");
-        add(btnview).setBounds(600, 45, 150, 20);
-        btnview.addActionListener(this);
+        
 
-        btncreate = new JButton("Create new");
-        add(btncreate).setBounds(100, 45, 150, 20);
-        btncreate.addActionListener(this);
-        
-        
+       
         
         setVisible(true);
-        setTitle("Order");
+        setTitle("StaffList");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1000,1000);
         getTableData();
@@ -62,24 +59,23 @@ public class Order extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-       if(e.getSource()==btnview){
-           new CurrentOrder();
+        if(e.getSource()== btnview){
+           
+        }
+       
            
        
        
-       }
+       
         
     }
     
 
     private void getTableData() {
-        dtm.addColumn("ID");
-        dtm.addColumn("Customer ID");
-        dtm.addColumn("Item list");
-        dtm.addColumn("Conformation Status");
-        dtm.addColumn("Delivery");
-        dtm.addColumn("Grand Total");
+        dtm.addColumn(" ID");
+        dtm.addColumn("Order");
+        dtm.addColumn("Sale Date");
+        dtm.addColumn("Payment method");
         
         
         
@@ -96,3 +92,6 @@ public class Order extends JFrame implements ActionListener{
     }
    
 }
+
+
+

@@ -7,13 +7,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-public class Login extends JFrame implements ActionListener {
+public class LoginView extends JFrame implements ActionListener {
    JLabel lblUserName, lblPassword;
    JTextField txtUserName;
    JPasswordField Password;
    JButton btnLogin, btnExit;
    
-   public Login(){
+   public LoginView(){
        setLayout(null);
        setSize(400,200);
        setVisible(true);

@@ -17,7 +17,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 
-public class OrderItem extends JFrame implements ActionListener{
+public class OrderItemView extends JFrame implements ActionListener{
     
 	JLabel CustomerName,CustomerPhone,Price,ItemName, Date; //Declearing JLabels
 	JTextField txtCustomerName,txtCustomerPhone,txtPrice,txtItemName,txtDate; //Declearing JTextfields
@@ -27,7 +27,7 @@ public class OrderItem extends JFrame implements ActionListener{
   
   
    
-   public OrderItem(){//Creating constructor
+   public OrderItemView(){//Creating constructor
        setLayout(null);
         
        CustomerName = new JLabel("Customer Name:");
@@ -125,10 +125,10 @@ public void actionPerformed(ActionEvent e) {
 	if(e.getSource().equals(btnExit)){
 		System.exit(0);
 	}
-	
+
 }
 public static void main(String[]args){
-	new OrderItem();
+	new OrderItemView();
 	
 }
 

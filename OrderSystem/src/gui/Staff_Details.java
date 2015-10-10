@@ -60,7 +60,7 @@ public class Staff_Details extends JFrame implements ActionListener{
             
         }
        if(e.getSource()==btncreate){
-           new AddStaff().show();
+           new AddStaffView().show();
            
        
        
