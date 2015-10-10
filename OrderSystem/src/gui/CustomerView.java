@@ -52,7 +52,7 @@ public class CustomerView extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()== btnExistingCustomer){
-           new CustomerListView();
+           new SearchCustomerView();
         }
         if(e.getSource()== btnNewCustomer){
         	new NewCustomerView();

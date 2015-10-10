@@ -68,7 +68,7 @@ public class MainwindowView extends JFrame implements ActionListener  {
         Ordertransaction.addActionListener(this);
         
         btnorder = new JButton("Click to make Order");
-        add(btnorder).setBounds(500,300,300,100);
+        add(btnorder).setBounds(150,100,300,100);
         btnorder.addActionListener(this);
 
         
