@@ -21,6 +21,9 @@ public class Customer{
 		setName(newName);
 		setAddress(newAddress);
 		phoneNumber=newPhoneNumber;		
+		System.out.println("Logic Level: " + name);
+		System.out.println("Logic Level: " + address);
+		System.out.println("Logic Level: " + phoneNumber);
 	}
 	
 	public Customer(int newId, String newName, String newAddress, String newPhoneNumber){
