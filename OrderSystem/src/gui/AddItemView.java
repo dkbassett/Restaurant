@@ -32,7 +32,7 @@ public class AddItemView extends JFrame implements ActionListener{
        ItemID = new JLabel("Item ID");
         add(ItemID).setBounds(20,65,120,20);
        
-        Itemname = new JLabel("Staff Name");
+        Itemname = new JLabel("Item Name");
         add(Itemname).setBounds(20,90,120,20);
         
         Itemprice = new JLabel("Itemprice:");
