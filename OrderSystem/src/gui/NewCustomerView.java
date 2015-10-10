@@ -103,7 +103,7 @@ public class NewCustomerView extends JFrame implements ActionListener{
        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
        
        
-       System.out.println("Customer_detailsView");
+       System.out.println("NewCustomerView");
     }
 
 public void transferData(String a, String b, String c, String d, String ee,

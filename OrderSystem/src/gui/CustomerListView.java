@@ -54,7 +54,7 @@ public class CustomerListView extends JFrame implements ActionListener{
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1000,1000);
         getTableData();
-        System.out.println("Customer_listView");
+        System.out.println("CustomerListView");
     
     }
 

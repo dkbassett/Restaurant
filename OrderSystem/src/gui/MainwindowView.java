@@ -131,7 +131,8 @@ try{
         	   new LoginView();
            }
            if(e.getSource()==btnorder){
-        	   new OrderItemView();
+//        	   new OrderItemView();
+        	   new CustomerView();
            }
               
     }

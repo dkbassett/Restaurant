@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,70 +25,45 @@ import javax.swing.text.Document;
 
 
 public class CustomerView extends JFrame implements ActionListener{
-    Connection con;
-    PreparedStatement ps;
-    ResultSet rs;
-    DefaultTableModel dtm = new DefaultTableModel();
-    JTable tbl = new JTable(dtm);
-    JTextField find;
-    JLabel Item;
-    JButton   btnview;
-   
+
+    JButton btnExistingCustomer;
+    JButton btnNewCustomer; 
 
     public CustomerView(){
         setLayout(null);
+               
+        btnExistingCustomer = new JButton("Existing Customer");
+        add(btnExistingCustomer).setBounds(50,60,150,30);
+        btnExistingCustomer.addActionListener(this);
         
-        Item = new JLabel("Item:");
-        add(Item).setBounds(20,20,100,20);
-        
-        find = new JTextField();
-        add(find).setBounds(140,20,100,20);
-        
-        
-        
+        btnNewCustomer = new JButton("New Customer");
+        add(btnNewCustomer).setBounds(50,120,150,30);
+        btnNewCustomer.addActionListener(this);
 
        
         
         setVisible(true);
-        setTitle("StaffList");
+        setTitle("Customer");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(1000,1000);
-        getTableData();
-    
+        setSize(280,280);
+        
+        System.out.println("CustomerView");
     
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()== btnview){
-           
+        if(e.getSource()== btnExistingCustomer){
+           new CustomerListView();
+        }
+        if(e.getSource()== btnNewCustomer){
+        	new NewCustomerView();
         }
        
            
        
        
        
-        
-    }
-    
-
-    private void getTableData() {
-        dtm.addColumn(" ID");
-        dtm.addColumn("Order");
-        dtm.addColumn("Sale Date");
-        dtm.addColumn("Payment method");
-        
-        
-        
-        
-       
-       JScrollPane js = new JScrollPane(tbl);
-       add(js).setBounds(20,100,900,500);
-       
-        
-        
-        
-        
         
     }
    

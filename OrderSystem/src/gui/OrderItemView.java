@@ -3,7 +3,6 @@
 package gui;
 
 import java.awt.event.ActionEvent;
-
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
@@ -58,10 +57,7 @@ public class OrderItemView extends JFrame implements ActionListener{
         ButtonGroup bgrp = new ButtonGroup();
         bgrp.add(delivery);
         bgrp.add(takeaway);
-        
-        
-        
-        
+
         
         txtCustomerName = new JTextField();
         add(txtCustomerName).setBounds(160,20,100,20);
@@ -79,13 +75,7 @@ public class OrderItemView extends JFrame implements ActionListener{
        txtDate = new JTextField();
        add(txtDate).setBounds(160,120,100,20);
        
-      
-       
-      
-      
-        
-       
-       
+
        
        btnSave = new JButton("Save");
        add(btnSave).setBounds(20,190,100,20);
@@ -97,18 +87,14 @@ public class OrderItemView extends JFrame implements ActionListener{
        add(btnExit).setBounds(260,190,100,20);
        btnExit.addActionListener(this);
        
-      
-       
-      
-       
-       
+
        setTitle("Order Item");
        setSize(400,500);
        setVisible(true);
        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
        
        
-      
+       System.out.println("OrderItemView");
     }
 
 

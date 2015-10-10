@@ -46,7 +46,7 @@ public class CurrentOrderView extends JFrame implements ActionListener{
         setSize(1000,1000);
         getTableData();
     
-    
+        System.out.println("CurrentOrderView");
     }
 
     @Override

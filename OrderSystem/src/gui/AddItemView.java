@@ -46,32 +46,19 @@ public class AddItemView extends JFrame{
        add(txtprice).setBounds(160,65,100,20);
        
        
-      
-        
-       
-       
-       
        btnCreate = new JButton("Save");
        add(btnCreate).setBounds(20,170,100,20);
-       
-       
-       
        
        btnExit = new JButton("Exit");
        add(btnExit).setBounds(260,170,100,20);
        //btnExit.addActionListener(this);
-       
-       
-       
-      
-       
        
        setTitle(" Add Item");
        setSize(400,500);
        setVisible(true);
        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
        
-       
+       System.out.println("AddItemView");
       
     }
 

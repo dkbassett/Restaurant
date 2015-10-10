@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -57,7 +58,7 @@ public class OrderView extends JFrame implements ActionListener{
         setSize(1000,1000);
         getTableData();
     
-    
+        System.out.println("OrderView");
     }
 
     @Override
