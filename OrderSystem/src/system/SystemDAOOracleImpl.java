@@ -113,9 +113,9 @@ public class SystemDAOOracleImpl {
 		String name = newCustomer.getName();
 		String address = newCustomer.getAddress();
 		String phone = newCustomer.getPhoneNumber();
-		return 	"INSERT INTO Customer C " +
-				"VALUES (NULL, '" + name + ", '" 
-						+ address + "' ,'" + phone + "')";
+		return 	"INSERT INTO Customer " +
+				"VALUES(NULL,'" + name + "','" 
+						+ address + "','" + phone + "')";
 	}
 	
 	// Find a customer by phone. This should return a customer object
