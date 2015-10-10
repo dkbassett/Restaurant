@@ -32,8 +32,8 @@ public class NewOrderView extends JFrame implements ActionListener{
     PreparedStatement ps;
     ResultSet rs;
     JPanel pnlDelivery, pnlMenu, pnlOrder;
-//    DefaultTableModel dtm = new DefaultTableModel();
-//    JTable tblMenu = new JTable(dtm);
+    DefaultTableModel dtm = new DefaultTableModel();
+    JTable tblMenu = new JTable(dtm);
     
     JTextField txtItemNumber;
     JLabel lblItemNumber;
@@ -44,14 +44,16 @@ public class NewOrderView extends JFrame implements ActionListener{
 
     public NewOrderView(){
         
-    	 setLayout(null);
-    	
-       
-        
+    	setLayout(null);
+
+    	/** 
+    	 * Delivery Panel
+    	 */
         pnlDelivery = new JPanel();
         pnlDelivery.setBorder(BorderFactory.createTitledBorder("Delivery Type"));
-        add(pnlDelivery).setBounds(20, 100, 500, 100);
+        add(pnlDelivery).setBounds(20, 50, 300, 70);
         
+        // Radio button group within panel
         deliveryOptions = new ButtonGroup(); 
         rdoTakeAway = new JRadioButton("Take Away");
         rdoHomeDelivery = new JRadioButton("Home Delivery");
@@ -59,22 +61,40 @@ public class NewOrderView extends JFrame implements ActionListener{
         deliveryOptions.add(rdoTakeAway);
         deliveryOptions.add(rdoHomeDelivery);
         
+        // Add radio buttons to panel
         pnlDelivery.add(rdoTakeAway); 
         pnlDelivery.add(rdoHomeDelivery);
         
+        
+        /** 
+         * Menu Panel
+         */
         pnlMenu = new JPanel();
         pnlMenu.setBorder(BorderFactory.createTitledBorder("Menu"));
-        add(pnlMenu).setBounds(20, 300, 500, 500);
+        add(pnlMenu).setBounds(20, 100, 800, 500);
         
+        // Item number label and text field
         lblItemNumber = new JLabel("Item Number:");
-        pnlMenu.add(lblItemNumber).setBounds(20,20,100,20);
-        
+        pnlMenu.add(lblItemNumber).setBounds(20,20,100,20);       
         txtItemNumber = new JTextField();
         pnlMenu.add(txtItemNumber).setBounds(140,20,100,20);
         
+        // Menu item table
+        JScrollPane js = new JScrollPane(tblMenu);
+        pnlMenu.add(js).setBounds(20,200,600,200);
+        
+        // Add to order button
         btnAddToOrder = new JButton("Add to order");
         pnlMenu.add(btnAddToOrder).setBounds(20,500,120,20);
-        btnAddToOrder.addActionListener(this);
+        btnAddToOrder.addActionListener(this);    
+        
+        /**
+         * Order Panel
+         */
+        pnlOrder = new JPanel();
+        pnlOrder.setBorder(BorderFactory.createTitledBorder("Order"));
+        add(pnlOrder).setBounds(20, 300, 800, 500);
+        
         
         
         btnConfirm = new JButton("Confirm");
@@ -82,7 +102,6 @@ public class NewOrderView extends JFrame implements ActionListener{
         btnConfirm.addActionListener(this);
         
         btnCancel = new JButton("Cancel");
-//        btnCancel.setPreferredSize(new Dimension(80,20));
         add(btnCancel).setBounds(120,800,80,20);
         add(btnCancel);
         btnCancel.addActionListener(this);
@@ -107,18 +126,17 @@ public class NewOrderView extends JFrame implements ActionListener{
     }
     
 
-//    private void getTableData() {
-//        dtm.addColumn("ID");
-//        dtm.addColumn("Customer ID");
-//        dtm.addColumn("Item list");
-//        dtm.addColumn("Confirmation Status");
-//        dtm.addColumn("Delivery");
-//        dtm.addColumn("Grand Total");
-//        
-//
-//       JScrollPane js = new JScrollPane(tblMenu);
-//       add(js).setBounds(20,100,900,500);
-//
-//    }
+    private void getTableData() {
+        dtm.addColumn("ID");
+        dtm.addColumn("Customer ID");
+        dtm.addColumn("Item list");
+        dtm.addColumn("Confirmation Status");
+        dtm.addColumn("Delivery");
+        dtm.addColumn("Grand Total");
+        
+
+       
+
+    }
    
 }
