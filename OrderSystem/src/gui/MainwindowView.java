@@ -22,7 +22,6 @@ public class MainwindowView extends JFrame implements ActionListener  {
     JMenu Staffmember,Customerhandler,Rmenu, AddCustomer;  // Declaring Jmenu for Jmenubar
     JMenuItem Menuitem,Orderitem,Customer,Customer_Details, Customerlist, Ordertransaction,Stafflist ; //Declaring Jmenuitem for Jmenu
     JButton btnorder;
-    JLabel label; // Declaring Jlabel
      
     public MainwindowView(){
         setLayout(null);
@@ -53,12 +52,10 @@ public class MainwindowView extends JFrame implements ActionListener  {
         Rmenu = new JMenu("Menu");
         menu.add(Rmenu).setBounds(80,20,40,40);
         
-        
         Menuitem = new JMenuItem("Menuitem");
         Rmenu.add(Menuitem).setBounds(70,30,40,40);
         Menuitem.addActionListener(this);
        
-        
         Orderitem = new  JMenuItem("Order Item");
         Rmenu.add(Orderitem).setBounds(70,30,40,40);
         Orderitem.addActionListener(this);
@@ -70,26 +67,19 @@ public class MainwindowView extends JFrame implements ActionListener  {
         btnorder = new JButton("Click to make Order");
         add(btnorder).setBounds(150,100,300,100);
         btnorder.addActionListener(this);
-
-        
         try {
           setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Images\\LOGO.jpg"))))); //setting background screen
         }
         catch(IOException e){
             System.out.println("Image not found");
         }
-       
-
         setSize(600,400);
         setVisible(true);
         setJMenuBar(menu);
-        
     }
-    
     public static void main(String args[]){
     	new MainwindowView();
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
        if(e.getSource()==Customerlist){
@@ -100,12 +90,9 @@ public class MainwindowView extends JFrame implements ActionListener  {
        }
        if(e.getSource()==Customer){
           new StaffListView();
-       
        }
        if(e.getSource()== Orderitem){
            new OrderView();
-          
-        
         }
        if(e.getSource()==Menuitem){
     	   new MenuItemView();
@@ -122,6 +109,4 @@ public class MainwindowView extends JFrame implements ActionListener  {
        }
           
     }
-  
-    
 }
