@@ -1,8 +1,3 @@
-
-
-
-
-
 package gui;
 
 import java.awt.event.ActionEvent;
@@ -33,7 +28,6 @@ public class MenuItemView extends JFrame implements ActionListener{
     JLabel Item;
     JButton  btncreate, btnadd, btnview;
    
-
     public MenuItemView(){
         setLayout(null);
         
@@ -57,13 +51,12 @@ public class MenuItemView extends JFrame implements ActionListener{
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1000,1000);
         getTableData();
-    
-    
+       
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()== btnview){
+        if(e.getSource()== btnview) {
             String a = tbl.getValueAt(tbl.getSelectedRow(),0).toString();
             String b = tbl.getValueAt(tbl.getSelectedRow(),1).toString();
             String c = tbl.getValueAt(tbl.getSelectedRow(),2).toString();
@@ -75,15 +68,11 @@ public class MenuItemView extends JFrame implements ActionListener{
             NewCustomerView cd = new NewCustomerView();
             cd.transferData(a,b,c,d,ee,f);
             cd.show();
-        }
-       if(e.getSource()==btncreate){
-           new AddItemView().show();
-           
-       
-       
        }
-       
-        
+       if(e.getSource()==btncreate) {
+           new AddItemView().show();
+       }
+              
     }
     
 
@@ -92,18 +81,10 @@ public class MenuItemView extends JFrame implements ActionListener{
         dtm.addColumn("Item Name");
         dtm.addColumn("Item Price");
         
-        
-        
-        
-       
        JScrollPane js = new JScrollPane(tbl);
        add(js).setBounds(20,100,900,500);
        
-        
-        
-        
-        
-        
+
     }
    
 }

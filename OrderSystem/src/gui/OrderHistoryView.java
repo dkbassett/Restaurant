@@ -37,19 +37,13 @@ public class OrderHistoryView extends JFrame implements ActionListener{
         
         find = new JTextField();
         add(find).setBounds(140,20,100,20);
-        
-        
-        
 
-       
-        
         setVisible(true);
         setTitle("Order Transaction");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1000,1000);
         getTableData();
-    
-    
+
     }
 
     @Override
@@ -57,12 +51,7 @@ public class OrderHistoryView extends JFrame implements ActionListener{
         if(e.getSource()== btnview){
            
         }
-       
-           
-       
-       
-       
-        
+
     }
     
 
@@ -71,19 +60,10 @@ public class OrderHistoryView extends JFrame implements ActionListener{
         dtm.addColumn("Order");
         dtm.addColumn("Sale Date");
         dtm.addColumn("Payment method");
-        
-        
-        
-        
-       
+
        JScrollPane js = new JScrollPane(tbl);
        add(js).setBounds(20,100,900,500);
-       
-        
-        
-        
-        
-        
+  
     }
    
 }

@@ -93,18 +93,11 @@ public class CustomerListView extends JFrame implements ActionListener{
         dtm.addColumn("Expiry Date");
         dtm.addColumn("Home Delivery/Take away");
         
-        
-        
-        
-       
+
        JScrollPane js = new JScrollPane(tbl);
        add(js).setBounds(20,100,900,500);
        
-        
-        
-        
-        
-        
+ 
     }
     
 }

@@ -17,9 +17,9 @@ import javax.swing.JTextField;
 
 public class AddItemView extends JFrame{
     
-	JLabel ItemID,Itemname,Itemprice; //Declearing JLabels
-	JTextField txtId,txtname,txtprice; //Declearing JTextfields
-	JButton btnCreate,btnExit; //Declearing JButtons
+	JLabel ItemID,Itemname,Itemprice; //Declaring JLabels
+	JTextField txtId,txtname,txtprice; //Declaring JTextfields
+	JButton btnCreate,btnExit; //Declaring JButtons
   
   
    

@@ -18,13 +18,13 @@ import system.*;
 
 public class NewCustomerView extends JFrame implements ActionListener{
     
-	JLabel Title,Name/*,Last_Name*/,Address, Phone, Credit_Card, CVV; //Declearing JLabels
-	JTextField  txt_Name /*,  txtLast_Name*/,txtAddress,txtPhone, txtCreditcard, txtCVV; //Declearing JTextfields
-	JButton btnConfirm,btnCancel,btnExit,btnDel; //Declearing JButtons
+	JLabel Title,Name/*,Last_Name*/,Address, Phone, Credit_Card, CVV; //Declaring JLabels
+	JTextField  txt_Name /*,  txtLast_Name*/,txtAddress,txtPhone, txtCreditcard, txtCVV; //Declaring JTextfields
+	JButton btnConfirm,btnCancel,btnExit,btnDel; //Declaring JButtons
   
-   //Connection con; // Declearing Connection
-   //PreparedStatement ps;// Declearing PreparedStatement
-   //ResultSet rs;// Declearing Resultset
+   //Connection con; // Declaring Connection
+   //PreparedStatement ps;// Declaring PreparedStatement
+   //ResultSet rs;// Declaring Resultset
    
    
    public NewCustomerView(){//Creating constructor
@@ -53,11 +53,6 @@ public class NewCustomerView extends JFrame implements ActionListener{
       //  CVV = new JLabel("CVV:");
      //   add(CVV).setBounds(20,145,120,20);
         
-        
-        
-       
-        
-        
        txt_Name = new JTextField();
        add(txt_Name).setBounds(90,65,200,20);
         
@@ -75,9 +70,7 @@ public class NewCustomerView extends JFrame implements ActionListener{
        
      //  txtCVV = new JTextField();
      //  add(txtCVV).setBounds(160,145,100,20);
-       
-       
-       
+
        btnConfirm = new JButton("Confirm");
        add(btnConfirm).setBounds(20,400,80,20);
        btnConfirm.addActionListener(this);
@@ -94,9 +87,7 @@ public class NewCustomerView extends JFrame implements ActionListener{
        add(btnDel).setBounds(140,170,100,20);
      */ //btnDel.addActionListener(this);
        
-      
-       
-       
+
        setTitle("New Customer");
        setSize(400,500);
        setVisible(true);
@@ -106,38 +97,36 @@ public class NewCustomerView extends JFrame implements ActionListener{
        System.out.println("NewCustomerView");
     }
 
-public void transferData(String a, String b, String c, String d, String ee,
+   public void transferData(String a, String b, String c, String d, String ee,
 		String f) {
-	
-	
-	
-}
 
-@Override
-public void actionPerformed(ActionEvent e) {
-	if(e.getSource().equals(btnCancel)){
-		//System.exit(0);
-		dispose();
-	}
-	else if(e.getSource().equals(btnConfirm)){
-		String name = txt_Name.getText();
-		System.out.println("Ui Level: " + name);
-		String address = txtAddress.getText();
-		System.out.println("Ui Level: " + address);
-		String pNumber = txtPhone.getText();
-		System.out.println("Ui Level: " + pNumber);
-		//new Customer();
-		new Customer(name,address,pNumber);
-		
-		CustomerHandler.addNewCustomer(name, address, pNumber);
-		
-		dispose();
-		//Customer_details.Close();
-		//new Customer(Cust,)
-	}
-	
-}
+   }
 
-    }
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource().equals(btnCancel)){
+			//System.exit(0);
+			dispose();
+		}
+		else if(e.getSource().equals(btnConfirm)){
+			String name = txt_Name.getText();
+			System.out.println("Ui Level: " + name);
+			String address = txtAddress.getText();
+			System.out.println("Ui Level: " + address);
+			String pNumber = txtPhone.getText();
+			System.out.println("Ui Level: " + pNumber);
+			//new Customer();
+			new Customer(name,address,pNumber);
+			
+			CustomerHandler.addNewCustomer(name, address, pNumber);
+			
+			dispose();
+			//Customer_details.Close();
+			//new Customer(Cust,)
+		}
+		
+	}
+
+}
     
 

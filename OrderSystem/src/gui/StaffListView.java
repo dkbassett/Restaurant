@@ -61,9 +61,7 @@ public class StaffListView extends JFrame implements ActionListener{
         }
        if(e.getSource()==btncreate){
            new AddStaffView().show();
-           
-       
-       
+
        }
         
     }
@@ -72,18 +70,9 @@ public class StaffListView extends JFrame implements ActionListener{
     private void getTableData() {
         dtm.addColumn("Staff ID");
         dtm.addColumn("Staff Name");
-        
-        
-        
-       
+
        JScrollPane js = new JScrollPane(tbl);
        add(js).setBounds(20,100,900,500);
-       
-        
-        
-        
-        
-        
     }
     
 }

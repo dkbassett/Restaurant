@@ -18,13 +18,12 @@ import javax.swing.JMenuItem;
 
 public class MainwindowView extends JFrame implements ActionListener  {
 
-    JMenuBar menu; // Declearing Jmenubar
-    JMenu Staffmember,Customerhandler,Rmenu, AddCustomer;  // Declearing Jmenu for Jmenubar
-    JMenuItem Menuitem,Orderitem,Customer,Customer_Details, Customerlist, Ordertransaction,Stafflist ; //Declearing Jmenuitem for Jmenu
+    JMenuBar menu; // Declaring Jmenubar
+    JMenu Staffmember,Customerhandler,Rmenu, AddCustomer;  // Declaring Jmenu for Jmenubar
+    JMenuItem Menuitem,Orderitem,Customer,Customer_Details, Customerlist, Ordertransaction,Stafflist ; //Declaring Jmenuitem for Jmenu
     JButton btnorder;
-    JLabel label; // Declearing Jlabel
+    JLabel label; // Declaring Jlabel
      
-    
     public MainwindowView(){
         setLayout(null);
         menu = new JMenuBar();
@@ -35,10 +34,7 @@ public class MainwindowView extends JFrame implements ActionListener  {
         Stafflist = new JMenuItem("Staff Lists");
         Staffmember.add(Stafflist).setBounds(20,30,40,40);
         Stafflist.addActionListener(this);
-        
-        
-        
-        
+
         Customerhandler = new JMenu("CustomerHandler");
         menu.add(Customerhandler).setBounds(70,20,40,40);
         Customer = new JMenuItem(" Add Staff");
@@ -74,72 +70,58 @@ public class MainwindowView extends JFrame implements ActionListener  {
         btnorder = new JButton("Click to make Order");
         add(btnorder).setBounds(500,300,300,100);
         btnorder.addActionListener(this);
+
         
-        
-       
-        
-        
-try{
+        try {
           setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Images\\LOGO.jpg"))))); //setting background screen
-       }
-       catch(IOException e){
-            System.out.println("Image not found " );
-        
-       }
+        }
+        catch(IOException e){
+            System.out.println("Image not found");
+        }
        
-       
-        
+
         setSize(600,400);
         setVisible(true);
         setJMenuBar(menu);
         
-        
-    
-    
     }
+    
     public static void main(String args[]){
-    new MainwindowView();
+    	new MainwindowView();
     }
 
-  
+    @Override
+    public void actionPerformed(ActionEvent e) {
+       if(e.getSource()==Customerlist){
+         new CustomerListView();
+       }
+       if (e.getSource()==Customer_Details){
+         new NewCustomerView();
+       }
+       if(e.getSource()==Customer){
+          new StaffListView();
        
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-           if(e.getSource()==Customerlist){
-             new CustomerListView();
-           }
-           if (e.getSource()==Customer_Details){
-             new NewCustomerView();
-           }
-           if(e.getSource()==Customer){
-              new StaffListView();
-           
-           }
-           if(e.getSource()== Orderitem){
-               new OrderView();
-              
-            
-            }
-           if(e.getSource()==Menuitem){
-        	   new MenuItemView();
-           }
-           if(e.getSource()==Ordertransaction){
-        	   new OrderHistoryView();
-           }
-           if(e.getSource()==Stafflist){
-        	   new LoginView();
-           }
-           if(e.getSource()==btnorder){
-//        	   new OrderItemView();
-        	   new CustomerView();
-           }
-              
-    }
-      
-     
+       }
+       if(e.getSource()== Orderitem){
+           new OrderView();
+          
         
-    
-    
+        }
+       if(e.getSource()==Menuitem){
+    	   new MenuItemView();
+       }
+       if(e.getSource()==Ordertransaction){
+    	   new OrderHistoryView();
+       }
+       if(e.getSource()==Stafflist){
+    	   new LoginView();
+       }
+       if(e.getSource()==btnorder){
+//        	   new OrderItemView();
+    	   new CustomerView();
+       }
+          
+    }
+  
     
 }

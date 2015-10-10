@@ -17,9 +17,9 @@ import javax.swing.JTextField;
 
 public class AddStaffView extends JFrame{
     
-	JLabel StaffID,Staffname,Startedfrom, Phone; //Declearing JLabels
-	JTextField txtStaffId,txtStaffname,txtStartedfrom, txtPhone; //Declearing JTextfields
-	JButton btnSave,btnCreate,btnExit,btnDel; //Declearing JButtons
+	JLabel StaffID,Staffname,Startedfrom, Phone; //Declaring JLabels
+	JTextField txtStaffId,txtStaffname,txtStartedfrom, txtPhone; //Declaring JTextfields
+	JButton btnSave,btnCreate,btnExit,btnDel; //Declaring JButtons
   
   
    

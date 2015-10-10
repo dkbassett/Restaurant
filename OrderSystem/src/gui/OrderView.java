@@ -1,5 +1,3 @@
-
-
 package gui;
 
 import java.awt.event.ActionEvent;
@@ -49,8 +47,7 @@ public class OrderView extends JFrame implements ActionListener{
         btncreate = new JButton("Create new");
         add(btncreate).setBounds(100, 45, 150, 20);
         btncreate.addActionListener(this);
-        
-        
+           
         
         setVisible(true);
         setTitle("Order");
@@ -66,9 +63,7 @@ public class OrderView extends JFrame implements ActionListener{
         
        if(e.getSource()==btnview){
            new CurrentOrderView();
-           
-       
-       
+
        }
         
     }
@@ -82,18 +77,10 @@ public class OrderView extends JFrame implements ActionListener{
         dtm.addColumn("Delivery");
         dtm.addColumn("Grand Total");
         
-        
-        
-        
-       
+
        JScrollPane js = new JScrollPane(tbl);
        add(js).setBounds(20,100,900,500);
-       
-        
-        
-        
-        
-        
+
     }
    
 }

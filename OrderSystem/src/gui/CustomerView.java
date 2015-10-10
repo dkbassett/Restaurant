@@ -40,8 +40,6 @@ public class CustomerView extends JFrame implements ActionListener{
         add(btnNewCustomer).setBounds(50,120,150,30);
         btnNewCustomer.addActionListener(this);
 
-       
-        
         setVisible(true);
         setTitle("Customer");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -60,11 +58,7 @@ public class CustomerView extends JFrame implements ActionListener{
         	new NewCustomerView();
         }
        
-           
-       
-       
-       
-        
+
     }
    
 }

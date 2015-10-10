@@ -31,9 +31,6 @@ public class CurrentOrderView extends JFrame implements ActionListener{
     JTextField find;
     JLabel Item;
     JButton btnview,btncreate;
-    
-    
-   
 
     public CurrentOrderView(){
         setLayout(null);
@@ -80,17 +77,9 @@ public class CurrentOrderView extends JFrame implements ActionListener{
         dtm.addColumn("Quantity");
         dtm.addColumn("Conformation Status");
         
-        
-        
-        
-       
        JScrollPane js = new JScrollPane(tbl);
        add(js).setBounds(20,100,900,500);
        
-        
-        
-        
-        
         
     }
    

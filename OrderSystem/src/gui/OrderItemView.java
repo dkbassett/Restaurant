@@ -1,5 +1,3 @@
-
-
 package gui;
 
 import java.awt.event.ActionEvent;
@@ -18,45 +16,41 @@ import javax.swing.JTextField;
 
 public class OrderItemView extends JFrame implements ActionListener{
     
-	JLabel CustomerName,CustomerPhone,Price,ItemName, Date; //Declearing JLabels
-	JTextField txtCustomerName,txtCustomerPhone,txtPrice,txtItemName,txtDate; //Declearing JTextfields
-	JButton btnSave,btnCreate,btnExit,btnDel; //Declearing JButtons
+	JLabel CustomerName,CustomerPhone,Price,ItemName, Date; //Declaring JLabels
+	JTextField txtCustomerName,txtCustomerPhone,txtPrice,txtItemName,txtDate; //Declaring JTextfields
+	JButton btnSave,btnCreate,btnExit,btnDel; //Declaring JButtons
 	JRadioButton delivery, takeaway;
 	JPanel p;
   
-  
-   
+
    public OrderItemView(){//Creating constructor
-       setLayout(null);
+	   	setLayout(null);
         
-       CustomerName = new JLabel("Customer Name:");
-       add(CustomerName).setBounds(20,20,120,30);
+	   	CustomerName = new JLabel("Customer Name:");
+	   	add(CustomerName).setBounds(20,20,120,30);
        
-        CustomerPhone = new JLabel("Customer Phone:");
-        add(CustomerPhone).setBounds(20,45,120,20);
-        
-        ItemName = new JLabel("Item Name:");
-        add(ItemName).setBounds(20,70,120,20);
-        
-        Price = new JLabel("Price:");
-        add(Price).setBounds(20,95,120,20);
-        
-        Date = new JLabel("Date:");
-        add(Date).setBounds(20,120,120,20);
-        
-        delivery = new JRadioButton("Home Delivery",true);
-        add(delivery).setBounds(20,145,150,20);
-        
-        
-        
-        
-        takeaway = new JRadioButton("Takeaway");
-        add(takeaway).setBounds(20,170,120,20);
-        takeaway.addActionListener(this);
-        
-        ButtonGroup bgrp = new ButtonGroup();
-        bgrp.add(delivery);
-        bgrp.add(takeaway);
+		CustomerPhone = new JLabel("Customer Phone:");
+		add(CustomerPhone).setBounds(20,45,120,20);
+		
+		ItemName = new JLabel("Item Name:");
+		add(ItemName).setBounds(20,70,120,20);
+		
+		Price = new JLabel("Price:");
+		add(Price).setBounds(20,95,120,20);
+		
+		Date = new JLabel("Date:");
+		add(Date).setBounds(20,120,120,20);
+		
+		delivery = new JRadioButton("Home Delivery",true);
+		add(delivery).setBounds(20,145,150,20);
+		
+		takeaway = new JRadioButton("Takeaway");
+		add(takeaway).setBounds(20,170,120,20);
+		takeaway.addActionListener(this);
+		
+		ButtonGroup bgrp = new ButtonGroup();
+		bgrp.add(delivery);
+		bgrp.add(takeaway);
 
         
         txtCustomerName = new JTextField();
@@ -75,13 +69,9 @@ public class OrderItemView extends JFrame implements ActionListener{
        txtDate = new JTextField();
        add(txtDate).setBounds(160,120,100,20);
        
-
-       
        btnSave = new JButton("Save");
        add(btnSave).setBounds(20,190,100,20);
        //btnSave.addActionListener(this);
-       
-      
        
        btnExit = new JButton("Exit");
        add(btnExit).setBounds(260,190,100,20);
@@ -97,28 +87,20 @@ public class OrderItemView extends JFrame implements ActionListener{
        System.out.println("OrderItemView");
     }
 
-
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource().equals(btnExit)){
+			System.exit(0);
+		}
 	
+	}
 	
-	
-
-
-	
-
-
-@Override
-public void actionPerformed(ActionEvent e) {
-	if(e.getSource().equals(btnExit)){
-		System.exit(0);
+	public static void main(String[]args){
+		new OrderItemView();
+		
 	}
 
-}
-public static void main(String[]args){
-	new OrderItemView();
-	
-}
 
-
-    }
+}
     
 
