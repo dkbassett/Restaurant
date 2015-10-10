@@ -17,6 +17,12 @@ public class Customer{
 	public Customer() {
 	}
 	
+	public Customer(String newName, String newAddress, String newPhoneNumber){ // non ID Instantiated version
+		setName(newName);
+		setAddress(newAddress);
+		phoneNumber=newPhoneNumber;		
+	}
+	
 	public Customer(int newId, String newName, String newAddress, String newPhoneNumber){
 		setId(newId);
 		setName(newName);
