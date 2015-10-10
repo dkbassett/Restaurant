@@ -130,7 +130,7 @@ public class SystemDAOOracleImpl {
 	public String addCreditCard(CreditCard card, Customer cust) {
 		int custId = cust.getId();
 		int number = card.getNumber();
-		DateFormat expiry = card.getExpiry();
+		String expiry = card.getExpiry();
 		String holder = card.getCardHolder();
 		String provider = card.getType();
 		return	"BEGIN TRANSACTION " +
