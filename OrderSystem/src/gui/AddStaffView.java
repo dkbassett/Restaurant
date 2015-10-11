@@ -1,5 +1,3 @@
-
-
 package gui;
 
 import java.awt.event.ActionEvent;
@@ -13,86 +11,83 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import system.*;
 
-
-public class AddStaffView extends JFrame{
+public class AddStaffView extends JFrame implements ActionListener{
     
-	JLabel StaffID,Staffname,Startedfrom, Phone; //Declaring JLabels
+	JLabel Title,StaffID,Staffname,Startedfrom, Phone; //Declaring JLabels
 	JTextField txtStaffId,txtStaffname,txtStartedfrom, txtPhone; //Declaring JTextfields
-	JButton btnSave,btnCreate,btnExit,btnDel; //Declaring JButtons
-  
-  
-   
+	JButton btnConfirm,btnCancel;
+     
    public AddStaffView(){//Creating constructor
        setLayout(null);
+       
+	    Title = new JLabel("Add Staff Member");
+	    add(Title).setBounds(20,20,120,20);
         
        StaffID = new JLabel("Staff ID");
-        add(StaffID).setBounds(20,20,120,20);
+        add(StaffID).setBounds(20,65,120,20);
        
         Staffname = new JLabel("Staff Name");
-        add(Staffname).setBounds(20,45,120,20);
+        add(Staffname).setBounds(20,90,120,20);
         
         Startedfrom = new JLabel("Startedfrom:");
-        add(Startedfrom).setBounds(20,70,120,20);
+        add(Startedfrom).setBounds(20,115,120,20);
         
         Phone = new JLabel("Phone:");
-        add(Phone).setBounds(20,95,120,20);
-        
-        
+        add(Phone).setBounds(20,140,120,20);
         
         txtStaffId = new JTextField();
-       add(txtStaffId).setBounds(160,20,100,20);
+       add(txtStaffId).setBounds(120,65,100,20);
         
-       
        txtStaffname = new JTextField();
-       add(txtStaffname).setBounds(160,45,100,20);
+       add(txtStaffname).setBounds(120,90,100,20);
        
        txtStartedfrom = new JTextField();
-       add(txtStartedfrom).setBounds(160,70,100,20);
+       add(txtStartedfrom).setBounds(120,115,100,20);
        
        txtPhone= new JTextField();
-       add(txtPhone).setBounds(160,95,100,20);
+       add(txtPhone).setBounds(120,140,100,20);
        
+	   btnConfirm = new JButton("Confirm");
+	   add(btnConfirm).setBounds(20,175,80,20);
+	   btnConfirm.addActionListener(this);
        
-      
-        
-       
-       
-       
-       btnSave = new JButton("Save");
-       add(btnSave).setBounds(20,170,100,20);
-       //btnSave.addActionListener(this);
-       
-       
-       
-       btnExit = new JButton("Exit");
-       add(btnExit).setBounds(260,170,100,20);
-       //btnExit.addActionListener(this);
-       
-       btnDel = new JButton("Delete");
-       add(btnDel).setBounds(140,170,100,20);
-       //btnDel.addActionListener(this);
-       
-      
-       
-       
+	   btnCancel = new JButton("Cancel");
+	   add(btnCancel).setBounds(120,175,80,20);
+	   btnCancel.addActionListener(this);	 
+  
        setTitle(" Add Staff");
-       setSize(400,500);
+       setSize(300,250);
        setVisible(true);
        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-       
-       
+
       
     }
 
-public void transferData(String a, String b, String c, String d, String ee,
-		String f) {
-	
-	
-	
+   @Override
+   public void actionPerformed(ActionEvent e) {
+   		if(e.getSource().equals(btnCancel)){
+   			//System.exit(0);
+   			dispose();
+   		}
+   		else if(e.getSource().equals(btnConfirm)){
+   			String id = txtStaffId.getText();
+   			String name = txtStaffname.getText();
+   			String startDate = txtStartedfrom.getText();
+   			String phone = txtPhone.getText();
+
+   			
+   			System.out.println("Ui Level: " + id);
+   			System.out.println("Ui Level: " + name);
+   			System.out.println("Ui Level: " + startDate);
+   			System.out.println("Ui Level: " + phone);  					
+
+   			dispose();
+   			
+   		}
+   		
+   	}
+   	
 }
-
-
-    }
-    
 
