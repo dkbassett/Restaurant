@@ -83,13 +83,15 @@ public class AddStaffView extends JFrame implements ActionListener{
    			String startDate = txtStartedfrom.getText();
    			String phone = txtPhone.getText();
    			String password = txtPassword.getText();
-
+   			
    			System.out.println("Ui Level: " + id);
    			System.out.println("Ui Level: " + name);
    			System.out.println("Ui Level: " + startDate);
    			System.out.println("Ui Level: " + phone);  		
    			System.out.println("Ui Level: " + password);  	
-
+   			
+   			new StaffMember(id,name,password);
+   			
    			dispose();
    			
    		}
