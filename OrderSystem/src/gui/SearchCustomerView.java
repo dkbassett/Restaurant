@@ -69,7 +69,7 @@ public class SearchCustomerView extends JFrame implements ActionListener{
             String d = tbl.getValueAt(tbl.getSelectedRow(),3).toString();
         }
         if(e.getSource()== btnConfirm) {
-        	new NewOrderView();
+        	NewOrderView.createAndShowGUI();
         	dispose();
         }
         if(e.getSource()== btnCancel) {
