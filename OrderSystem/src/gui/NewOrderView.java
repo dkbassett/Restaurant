@@ -6,7 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -22,32 +22,40 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import system.CustomerHandler;
 import system.MenuItem;
+import system.Order;
+import system.OrderHandler;
+import system.OrderItem;
 
 
 public class NewOrderView extends JFrame implements ActionListener{
-    JPanel pnlCustomerDetails, pnlDelivery, pnlMenu, pnlOrder, pnlConfirmation;
-    DefaultTableModel dtm = new DefaultTableModel();
-    JTable tblMenu;
-    JTable tblOrder = new JTable(dtm);
-    JTextField txtItemNumber;
-    JLabel lblItemNumber;
-    JButton btnAddToOrder, btnview, btnConfirm, btnCancel;
-    JRadioButton rdoTakeAway, rdoHomeDelivery;
-    ButtonGroup deliveryOptions;
-    JScrollPane js, jsOrder;
+    private JPanel pnlCustomerDetails, pnlDelivery, pnlMenu, pnlOrder, pnlConfirmation;
+    private DefaultTableModel dtm = new DefaultTableModel();
+    private JTable tblMenu;
+    private JTable tblOrder = new JTable(dtm);
+    private JTextField txtItemNumber;
+    private JLabel lblItemNumber;
+    private JButton btnAddToOrder, btnview, btnConfirm, btnCancel;
+    private JRadioButton rdoTakeAway, rdoHomeDelivery;
+    private ButtonGroup deliveryOptions;
+    private JScrollPane js, jsOrder;
     
-    FlowLayout experimentLayout = new FlowLayout();
-   
+    private FlowLayout experimentLayout = new FlowLayout();
+    private ArrayList<OrderItem> orderItems = new ArrayList<OrderItem>();
+    private float total = 0.00F;    	
+    private Order currentOrder = new Order(CustomerHandler.getCurrentCustomer().getId(), orderItems, "Take away", total);
+
+	public boolean RIGHT_TO_LEFT = false;
+	
     public NewOrderView(){
+    	
+    	OrderHandler.setCurrentOrder(currentOrder);
+    	
     	createAndShowGUI();
         System.out.println("NewOrderView");
     }
     
-    public boolean RIGHT_TO_LEFT = false;
-    
-    
-
     public void addComponents(Container contentPane) {
         if (RIGHT_TO_LEFT) {
             contentPane.setComponentOrientation(
@@ -168,9 +176,10 @@ public class NewOrderView extends JFrame implements ActionListener{
         
        if(e.getSource()==btnview){
            new CurrentOrderView();
-       }else if(e.getSource()==btnConfirm){
-               new PaymentMethodView();
-
+       } else if (e.getSource()==btnConfirm) {
+          new PaymentMethodView();
+       } else if (e.getSource().equals(btnCancel)) {
+    	   dispose();
        }
         
     }

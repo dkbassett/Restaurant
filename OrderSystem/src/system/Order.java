@@ -12,15 +12,28 @@ public class Order {
 	private float grandTotal;
 	private int cnt=0; // counter for current itemlist element
 	
-	public Order(int newId,int newCustomerID , String newDelivery){ 
+	// constructor without Id
+	public Order(int newCustomerID, ArrayList<OrderItem> orderItems, 
+			String newDelivery, float total){ 
+		setCustomerID(newCustomerID);
+		setItemList(orderItems);
+		setDelivery(newDelivery);
+		setGrandTotal(total);
+	}	
+	
+	// constructor with Id
+	public Order(int newId, int newCustomerID, ArrayList<OrderItem> orderItems, 
+			String newDelivery, float total) { 
 		setId(newId);
 		setCustomerID(newCustomerID);
-		setDelivery(newDelivery); 
+		setItemList(orderItems);
+		setDelivery(newDelivery);
+		setGrandTotal(total);
 	}
 	
 	public void addItemToOrder(MenuItem newMenuItem, int newQuantity){
 		OrderItem currentItem = new OrderItem(newMenuItem,newQuantity);
-		itemList.add(currentItem);
+		getItemList().add(currentItem);
 	}
 	
 	public void confirmOrder(){
@@ -57,5 +70,13 @@ public class Order {
 
 	public void setGrandTotal(float grandTotal) {
 		this.grandTotal = grandTotal;
+	}
+
+	public ArrayList<OrderItem> getItemList() {
+		return itemList;
+	}
+
+	public void setItemList(ArrayList<OrderItem> itemList) {
+		this.itemList = itemList;
 	}
 }

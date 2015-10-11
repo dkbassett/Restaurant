@@ -18,6 +18,9 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.Document;
 
+import system.Customer;
+import system.CustomerHandler;
+
 
 public class SearchCustomerView extends JFrame implements ActionListener{
     Connection con;
@@ -28,10 +31,12 @@ public class SearchCustomerView extends JFrame implements ActionListener{
     JTextField txtSearch;
     JLabel lblPhone;
     JButton btnSearch, btnCancel, btnConfirm;
-   
+    Customer selectedCustomer = new Customer();
 
     public SearchCustomerView(){
         setLayout(null);
+        
+        
         
         lblPhone = new JLabel("Phone Number:");
         add(lblPhone).setBounds(20,20,100,20);
@@ -69,6 +74,7 @@ public class SearchCustomerView extends JFrame implements ActionListener{
             String d = tbl.getValueAt(tbl.getSelectedRow(),3).toString();
         }
         if(e.getSource()== btnConfirm) {
+        	CustomerHandler.setCurrentCustomer(selectedCustomer);
         	new NewOrderView();
         	dispose();
         }
