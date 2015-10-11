@@ -1,6 +1,9 @@
 package system;
 
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.rowset.CachedRowSet;
 
@@ -51,6 +54,10 @@ public class Customer{
 	public String getPhoneNumber(){
 		return (String) (phoneNumber);
 	}
+	
+	public void setPhoneNumber(String phoneNumber){
+		this.phoneNumber = phoneNumber;
+	}
 
 	public int getId() {
 		return id;
@@ -90,8 +97,37 @@ public class Customer{
 			}
 		} catch (SQLException e) {
 			System.err.println("Error: " + e.getMessage());
+			e.printStackTrace();
 		} 
 		return cust;
+	}
+	
+	public static List<Customer> getCustomersFromDB() {
+		
+		List<Customer> customerList = new ArrayList<Customer>();
+		
+		try {
+			CachedRowSet crs = new CachedRowSetImpl();
+			crs = SystemDAOOracleImpl.readFromTable(SystemDAOOracleImpl.selectAllCustomers());		
+			ResultSetMetaData rsmd = crs.getMetaData();
+            int columnsNum = rsmd.getColumnCount();
+
+			while(crs.next()) {				
+				Customer customer = new Customer();
+				customer.setId(crs.getInt("ID"));
+				customer.setName(crs.getString("Name"));
+				customer.setAddress(crs.getString("Address"));
+				customer.setPhoneNumber(crs.getString("Phone_No"));
+				
+				customerList.add(customer);			
+				System.out.println("Customer Name: " + customer.getName());
+			}
+			
+		} catch (SQLException e) {
+			System.err.println("Error: " + e.getMessage());
+		}
+		
+		return customerList;
 	}
 	
 	public static Customer addNewCustomerToDB(String name, String address, String phoneNumber){

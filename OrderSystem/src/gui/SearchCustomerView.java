@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ import javax.swing.text.Document;
 
 import system.Customer;
 import system.CustomerHandler;
+import system.MenuItem;
 
 
 public class SearchCustomerView extends JFrame implements ActionListener{
@@ -27,16 +29,21 @@ public class SearchCustomerView extends JFrame implements ActionListener{
     PreparedStatement ps;
     ResultSet rs;
     DefaultTableModel dtm = new DefaultTableModel();
-    JTable tbl = new JTable(dtm);
+//    JTable tbl = new JTable(dtm);
+    JTable tblCustomers;
     JTextField txtSearch;
     JLabel lblPhone;
     JButton btnSearch, btnCancel, btnConfirm;
     Customer selectedCustomer = new Customer();
+    JScrollPane js;
 
     public SearchCustomerView(){
         setLayout(null);
         
-        
+        List<Customer> customerList = Customer.getCustomersFromDB();
+        tblCustomers = new JTable(new CustomerTableModel(customerList));
+        js = new JScrollPane(tblCustomers);
+      	add(js).setBounds(20,100,900,500);
         
         lblPhone = new JLabel("Phone Number:");
         add(lblPhone).setBounds(20,20,100,20);
@@ -60,7 +67,7 @@ public class SearchCustomerView extends JFrame implements ActionListener{
         setTitle("Search Customer");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1000,1000);
-        getTableData();
+//        getTableData();
         System.out.println("SearchCustomerView");
     
     }
@@ -68,10 +75,10 @@ public class SearchCustomerView extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()== btnSearch){
-            String a = tbl.getValueAt(tbl.getSelectedRow(),0).toString();
-            String b = tbl.getValueAt(tbl.getSelectedRow(),1).toString();
-            String c = tbl.getValueAt(tbl.getSelectedRow(),2).toString();
-            String d = tbl.getValueAt(tbl.getSelectedRow(),3).toString();
+//            String a = tbl.getValueAt(tbl.getSelectedRow(),0).toString();
+//            String b = tbl.getValueAt(tbl.getSelectedRow(),1).toString();
+//            String c = tbl.getValueAt(tbl.getSelectedRow(),2).toString();
+//            String d = tbl.getValueAt(tbl.getSelectedRow(),3).toString();
         }
         if(e.getSource()== btnConfirm) {
         	CustomerHandler.setCurrentCustomer(selectedCustomer);
@@ -85,16 +92,19 @@ public class SearchCustomerView extends JFrame implements ActionListener{
     }
     
 
-    private void getTableData() {
-    	dtm.addColumn("Id");
-    	dtm.addColumn("Name");
-        dtm.addColumn("Address");
-        dtm.addColumn("Phone");
-
-       JScrollPane js = new JScrollPane(tbl);
-       add(js).setBounds(20,100,900,500);
-       
- 
-    }
+//    private void getTableData() {
+//    	dtm.addColumn("Id");
+//    	dtm.addColumn("Name");
+//        dtm.addColumn("Address");
+//        dtm.addColumn("Phone");
+//        
+//        
+//        
+//        
+//       JScrollPane js = new JScrollPane(tbl);
+//       add(js).setBounds(20,100,900,500);
+//       
+// 
+//    }
     
 }

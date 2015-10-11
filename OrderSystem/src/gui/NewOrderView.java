@@ -71,7 +71,7 @@ public class NewOrderView extends JFrame implements ActionListener{
         };
 
         /** 
-    	 * Delivery Panel
+    	 * Delivery Panel and components
     	 */
         pnlDelivery = new JPanel();
         pnlDelivery.setLayout(new FlowLayout());
@@ -92,7 +92,7 @@ public class NewOrderView extends JFrame implements ActionListener{
         contentPane.add(pnlDelivery);
         
 	    /** 
-	     * Menu Panel
+	     * Menu Panel and components
 	     */
         pnlMenu = new JPanel();
         pnlMenu.setLayout(null);
@@ -119,8 +119,8 @@ public class NewOrderView extends JFrame implements ActionListener{
       	contentPane.add(pnlMenu);
             
 	    /**
-	    * Order Panel
-	    */
+	     * Order Panel and components
+	     */
 	  	pnlOrder = new JPanel();
 	  	pnlOrder.setLayout(new FlowLayout());
 	  	pnlOrder.setBorder(BorderFactory.createTitledBorder("Order"));
@@ -135,7 +135,7 @@ public class NewOrderView extends JFrame implements ActionListener{
 	  	contentPane.add(pnlOrder);
    	  	
 	   /**
-	    * Confirmation Panel
+	    * Confirmation Panel and components
 	    */
 	  	pnlConfirmation = new JPanel();
 	  	pnlConfirmation.setPreferredSize(new Dimension(300, 70));
@@ -182,15 +182,6 @@ public class NewOrderView extends JFrame implements ActionListener{
     	   dispose();
        }
         
-    }
-    
-    private void getTableData() {
-        dtm.addColumn("ID");
-        dtm.addColumn("Customer ID");
-        dtm.addColumn("Item list");
-        dtm.addColumn("Confirmation Status");
-        dtm.addColumn("Delivery");
-        dtm.addColumn("Grand Total");
     }
    
 }
