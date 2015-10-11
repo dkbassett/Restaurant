@@ -33,29 +33,27 @@ import javax.swing.text.Document;
 
 
 public class NewOrderView extends JFrame implements ActionListener{
-    Connection con;
-    PreparedStatement ps;
-    ResultSet rs;
-    static JPanel pnlCustomerDetails, pnlDelivery, pnlMenu, pnlOrder, pnlConfirmation;
-    static DefaultTableModel dtm = new DefaultTableModel();
-    static JTable tblMenu;
-    static JTable tblOrder = new JTable(dtm);
-    static JTextField txtItemNumber;
-    static JLabel lblItemNumber;
-    static JButton btnAddToOrder, btnview, btnConfirm, btnCancel;
-    static JRadioButton rdoTakeAway, rdoHomeDelivery;
-    static ButtonGroup deliveryOptions;
-    static JScrollPane js, jsOrder;
+    JPanel pnlCustomerDetails, pnlDelivery, pnlMenu, pnlOrder, pnlConfirmation;
+    DefaultTableModel dtm = new DefaultTableModel();
+    JTable tblMenu;
+    JTable tblOrder = new JTable(dtm);
+    JTextField txtItemNumber;
+    JLabel lblItemNumber;
+    JButton btnAddToOrder, btnview, btnConfirm, btnCancel;
+    JRadioButton rdoTakeAway, rdoHomeDelivery;
+    ButtonGroup deliveryOptions;
+    JScrollPane js, jsOrder;
     
     FlowLayout experimentLayout = new FlowLayout();
 
     public NewOrderView(){
+    	createAndShowGUI();
         System.out.println("NewOrderView");
     }
     
-    public static boolean RIGHT_TO_LEFT = false;
+    public boolean RIGHT_TO_LEFT = false;
 
-    public static void addComponents(Container contentPane) {
+    public void addComponents(Container contentPane) {
         if (RIGHT_TO_LEFT) {
             contentPane.setComponentOrientation(
                 ComponentOrientation.RIGHT_TO_LEFT);
@@ -178,7 +176,7 @@ public class NewOrderView extends JFrame implements ActionListener{
 	   
     }
 
-    public static void createAndShowGUI() {
+    public void createAndShowGUI() {
         JFrame frame = new JFrame("New Order") {
             public Dimension getMinimumSize() {
                 Dimension prefSize = getPreferredSize();
