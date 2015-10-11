@@ -7,9 +7,14 @@ public class MenuItem {
 	private float price;
 	
 	public MenuItem(String newId, String newName, String newPrice){
+		System.out.println("MenuItem-Logic");
 		id = Integer.parseInt(newId);
 		setName(newName);
 		price = Float.parseFloat(newPrice);
+		System.out.println("Logic Level: " + id);
+		System.out.println("Logic Level: " + name);
+		System.out.println("Logic Level: " + price);
+		
 	}
 	
 	public void updatePrice(float updatedPrice){
