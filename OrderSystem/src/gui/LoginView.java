@@ -8,16 +8,18 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 public class LoginView extends JFrame implements ActionListener {
-   JLabel lblUserName, lblPassword;
+   JLabel Title,lblUserName, lblPassword;
    JTextField txtUserName;
    JPasswordField Password;
-   JButton btnLogin, btnExit;
+   JButton btnLogin, btnCancel;
    
    public LoginView(){
        setLayout(null);
-       setSize(400,200);
+       setSize(300,200);
        setVisible(true);
+       setDefaultCloseOperation(DISPOSE_ON_CLOSE);
        fieldinitializer();
+       
    }
 
     @Override
@@ -25,29 +27,37 @@ public class LoginView extends JFrame implements ActionListener {
       if(e.getSource()==btnLogin){
           if(txtUserName.getText().toString().equals("Daniel")&& Password.getText().toString().equals("Daniel")|| txtUserName.getText().toString().equals("Uttam")&& Password.getText().toString().equals("Uttam")) {
              new StaffListView().show();
-          }
-          else{
+          }else{
           JOptionPane.showMessageDialog(null,"Input correct userName and password");
           }
+      }else if(e.getSource().equals(btnCancel)){
+    	  dispose();
       }
     }
 
     private void fieldinitializer() {
+    	
+	   Title = new JLabel("Staff Login");
+	   add(Title).setBounds(20,20,120,20);
+	     
        lblUserName = new JLabel("UserName:");
-       add(lblUserName).setBounds(10,20,100,20);
+       add(lblUserName).setBounds(20,65,100,20);
        txtUserName = new JTextField();
-       add(txtUserName).setBounds(130,20,100,20);
+       add(txtUserName).setBounds(100,65,100,20);
        
        lblPassword = new JLabel("Password:");
-       add(lblPassword).setBounds(10,50,100,30);
+       add(lblPassword).setBounds(20,90,100,30);
        Password = new JPasswordField();
-       add(Password).setBounds(130,50,100,20);
+       add(Password).setBounds(100,90,100,20);
        
        btnLogin = new JButton("Login");
-       add(btnLogin).setBounds(20,80,100,20);
+       add(btnLogin).setBounds(20,130,80,20);
        btnLogin.addActionListener(this);
        
-       
+	   btnCancel = new JButton("Cancel");
+	   add(btnCancel).setBounds(120,130,80,20);
+	   btnCancel.addActionListener(this);	     
+        
     }
 
 }
