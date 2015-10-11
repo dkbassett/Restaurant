@@ -6,10 +6,10 @@ public class MenuItem {
 	private String name;
 	private float price;
 	
-	public MenuItem(int newId, String newName, float newPrice){
-		setId(newId);
+	public MenuItem(String newId, String newName, String newPrice){
+		id = Integer.parseInt(newId);
 		setName(newName);
-		setPrice(newPrice);
+		price = Float.parseFloat(newPrice);
 	}
 	
 	public void updatePrice(float updatedPrice){
