@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
+import system.*;
 
 public class AddItemView extends JFrame implements ActionListener{
     
@@ -81,6 +81,8 @@ public class AddItemView extends JFrame implements ActionListener{
 			System.out.println("Ui Level: " + id);
 			System.out.println("Ui Level: " + name);
 			System.out.println("Ui Level: " + price);
+			
+			new MenuItem(id,name,price);
 			
 			dispose();
 	
