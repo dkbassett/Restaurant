@@ -164,7 +164,7 @@ public class NewOrderView extends JFrame implements ActionListener{
 //	   add(btnConfirm).setBounds(20,800,80,20);
 	   btnConfirm.setPreferredSize(new Dimension(80, 20));
 	   pnlConfirmation.add(btnConfirm);
-//	   btnConfirm.addActionListener(this);
+	   btnConfirm.addActionListener(this);
 
 	   btnCancel = new JButton("Cancel");
 //	   add(btnCancel).setBounds(120,800,80,20);
@@ -205,6 +205,8 @@ public class NewOrderView extends JFrame implements ActionListener{
         
        if(e.getSource()==btnview){
            new CurrentOrderView();
+       }else if(e.getSource()==btnConfirm){
+               new PaymentMethodView();
 
        }
         
