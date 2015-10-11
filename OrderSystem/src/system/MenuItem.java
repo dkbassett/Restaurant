@@ -1,6 +1,9 @@
 package system;
 
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.rowset.CachedRowSet;
 
@@ -31,22 +34,31 @@ public class MenuItem {
 	}
 	
 	
-	public MenuItem getMenuItemsFromDB() {
+	public static List<MenuItem> getMenuItemsFromDB() {
 		
-		MenuItem menuItem = new MenuItem();
+		List<MenuItem> menuItemList = new ArrayList<MenuItem>();
+		
 		try {
 			CachedRowSet crs = new CachedRowSetImpl();
-			crs = SystemDAOOracleImpl.readFromTable(SystemDAOOracleImpl.selectAllMenuItems());
-			crs.next();
-			menuItem.setId(crs.getInt("ID"));
-			menuItem.setId(crs.getInt("ID"));
+			crs = SystemDAOOracleImpl.readFromTable(SystemDAOOracleImpl.selectAllMenuItems());		
+			ResultSetMetaData rsmd = crs.getMetaData();
+            int columnsNum = rsmd.getColumnCount();
+
+			while(crs.next()) {				
+				MenuItem menuItem = new MenuItem();
+				menuItem.setId(crs.getInt("ID"));
+				menuItem.setName(crs.getString("Name"));
+				menuItem.setPrice(crs.getFloat("Price"));
+				
+				menuItemList.add(menuItem);			
+				System.out.println("Menu Item ID: " + menuItem.getId());
+			}
 			
-			System.out.println("Menu Item ID: " + menuItem.getId());
 		} catch (SQLException e) {
 			System.err.println("Error: " + e.getMessage());
 		}
 		
-		return menuItem;
+		return menuItemList;
 	}
 	
 	
