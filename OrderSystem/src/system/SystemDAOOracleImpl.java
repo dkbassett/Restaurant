@@ -15,7 +15,7 @@ import javax.naming.NamingException;
 import com.sun.rowset.*;
 import javax.sql.rowset.CachedRowSet; 
 
-public class SystemDAOOracleImpl {
+public abstract class SystemDAOOracleImpl {
 	
 	private static final String DB_URL = "jdbc:oracle:thin:DEV/group2@//localhost:1521/XE";
 	private static final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
@@ -127,7 +127,7 @@ public class SystemDAOOracleImpl {
 	}
 	
 	// Add a credit card to database. Two tables need to be inserted into.
-	public String addCreditCard(CreditCard card, Customer cust) {
+	public static String addCreditCard(CreditCard card, Customer cust) {
 		int custId = cust.getId();
 		int number = card.getNumber();
 		String expiry = card.getExpiry();
@@ -145,7 +145,7 @@ public class SystemDAOOracleImpl {
 	
 	// Find a menu item by number. This should return a menu item
 	// when extracted from data set.
-	public String findMenuItemByNumber(int number) {
+	public static String findMenuItemByNumber(int number) {
 		return	"SELECT M.id, M.name, M.price " +
 				"FROM menu_item M " +
 				"WHERE M.id = " + number;
@@ -153,13 +153,13 @@ public class SystemDAOOracleImpl {
 	
 	// Select all menu items. This should return menu items in an
 	// array or list when extracted from data set.
-	public String selectAllMenuItems() {
+	public static String selectAllMenuItems() {
 		return	"SELECT * " +
 				"FROM menu_item";
 	}
 	
 	// Updates menu item in database.
-	public String updateMenuItem(MenuItem item) {
+	public static String updateMenuItem(MenuItem item) {
 		int id = item.getId();
 		String name = item.getName();
 		float price = item.getPrice();
@@ -169,7 +169,7 @@ public class SystemDAOOracleImpl {
 	}
 	
 	// Inserts order into database.
-	public String saveOrder(Order order) {
+	public static String saveOrder(Order order) {
 		int ordId = order.getId();
 		int custId = order.getCustomerID();
 		String delivery = order.getDelivery();

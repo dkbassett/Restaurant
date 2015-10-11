@@ -1,10 +1,19 @@
 package system;
 
+import java.sql.SQLException;
+
+import javax.sql.rowset.CachedRowSet;
+
+import com.sun.rowset.CachedRowSetImpl;
+
 public class MenuItem {
 	
 	private int id;
 	private String name;
 	private float price;
+	
+	public MenuItem() { 		
+	}
 	
 	public MenuItem(String newId, String newName, String newPrice){
 		System.out.println("MenuItem-Logic");
@@ -20,7 +29,27 @@ public class MenuItem {
 	public void updatePrice(float updatedPrice){
 		setPrice(updatedPrice);
 	}
-
+	
+	
+	public MenuItem getMenuItemsFromDB() {
+		
+		MenuItem menuItem = new MenuItem();
+		try {
+			CachedRowSet crs = new CachedRowSetImpl();
+			crs = SystemDAOOracleImpl.readFromTable(SystemDAOOracleImpl.selectAllMenuItems());
+			crs.next();
+			menuItem.setId(crs.getInt("ID"));
+			menuItem.setId(crs.getInt("ID"));
+			
+			System.out.println("Menu Item ID: " + menuItem.getId());
+		} catch (SQLException e) {
+			System.err.println("Error: " + e.getMessage());
+		}
+		
+		return menuItem;
+	}
+	
+	
 	public int getId() {
 		return id;
 	}
