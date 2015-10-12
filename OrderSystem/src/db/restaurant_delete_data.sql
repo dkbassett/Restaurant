@@ -13,6 +13,9 @@ DELETE FROM order_transaction;
 DELETE FROM order_item;
 DELETE FROM uses_card;
 
+DELETE FROM mitem_id_seq;
+DELETE FROM cust_id_seq;
+
 ALTER TABLE order_transaction ADD CONSTRAINT order_customer
 	FOREIGN KEY (customer_id) REFERENCES customer(id);
 
