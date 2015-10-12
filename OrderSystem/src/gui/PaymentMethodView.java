@@ -61,7 +61,8 @@ public class PaymentMethodView extends JFrame implements ActionListener{
            dispose();
         }else if(e.getSource()== btnAddCard){
         	new CreditCardView();
-       
+        }else if (e.getSource()== btnSelect){
+        	new PaymentView();
         }
 
     }	
