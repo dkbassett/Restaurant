@@ -74,9 +74,9 @@ public class AddItemView extends JFrame implements ActionListener{
 		}
 		else if(e.getSource().equals(btnConfirm)){	 
 			
-			String id = txtId.getText();
+			int id = Integer.parseInt(txtId.getText());
 			String name = txtName.getText();
-			String price = txtPrice.getText();
+			float price = Float.parseFloat(txtPrice.getText());
 			
 			System.out.println("Ui Level: " + id);
 			System.out.println("Ui Level: " + name);

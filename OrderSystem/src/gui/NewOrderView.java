@@ -29,7 +29,7 @@ import system.OrderHandler;
 import system.OrderItem;
 
 
-public class NewOrderView extends JFrame implements ActionListener{
+public class NewOrderView extends JFrame implements ActionListener {
     private JPanel pnlCustomerDetails, pnlDelivery, pnlMenu, pnlOrder, pnlConfirmation;
     private DefaultTableModel dtm = new DefaultTableModel();
     private JTable tblMenu;
@@ -42,6 +42,7 @@ public class NewOrderView extends JFrame implements ActionListener{
     private JScrollPane js, jsOrder;
     
     private FlowLayout experimentLayout = new FlowLayout();
+    private ArrayList<MenuItem> menuItemList;
     private ArrayList<OrderItem> orderItems = new ArrayList<OrderItem>();
     private float total = 0.00F;    	
     private Order currentOrder = new Order(CustomerHandler.getCurrentCustomer().getId(), orderItems, "Take away", total);
@@ -63,7 +64,7 @@ public class NewOrderView extends JFrame implements ActionListener{
         }
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));
         
-        List<MenuItem> menuItemList = MenuItem.getMenuItemsFromDB();
+        menuItemList = MenuItem.getMenuItemsFromDB();
         
         String[] orderColumnNames = {"Name", "Price", "Quantity"};
         Object[][] orderData = {
@@ -180,8 +181,17 @@ public class NewOrderView extends JFrame implements ActionListener{
           new PaymentMethodView();
        } else if (e.getSource().equals(btnCancel)) {
     	   dispose();
+       } else if (e.getSource().equals(btnAddToOrder)) {
+    	   int[] selectedRowIndices = tblMenu.getSelectedRows();
+    	   
+    	   for (int i = 0; i < selectedRowIndices.length; i++) {   		   
+    		   OrderItem orderItem = new OrderItem(menuItemList.get(i), 1, false);
+    		   orderItems.add(orderItem);
+    	   }
+    	   System.out.println("First Order Item: " + orderItems.get(0).getMenuItem().getName());
        }
         
     }
+    
    
 }

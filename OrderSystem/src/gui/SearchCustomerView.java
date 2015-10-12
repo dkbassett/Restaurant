@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -42,6 +43,7 @@ public class SearchCustomerView extends JFrame implements ActionListener{
         
         List<Customer> customerList = Customer.getCustomersFromDB();
         tblCustomers = new JTable(new CustomerTableModel(customerList));
+        tblCustomers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         js = new JScrollPane(tblCustomers);
       	add(js).setBounds(20,100,900,500);
         

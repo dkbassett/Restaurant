@@ -31,9 +31,8 @@ public class Order {
 		setGrandTotal(total);
 	}
 	
-	public void addItemToOrder(MenuItem newMenuItem, int newQuantity){
-		OrderItem currentItem = new OrderItem(newMenuItem,newQuantity);
-		getItemList().add(currentItem);
+	public void addItemToOrder(OrderItem orderItem){
+		getItemList().add(orderItem);
 	}
 	
 	public void confirmOrder(){

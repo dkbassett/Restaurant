@@ -18,11 +18,11 @@ public class MenuItem {
 	public MenuItem() { 		
 	}
 	
-	public MenuItem(String newId, String newName, String newPrice){
+	public MenuItem(int newId, String newName, float newPrice){
 		System.out.println("MenuItem-Logic");
-		id = Integer.parseInt(newId);
+		id = newId;
 		setName(newName);
-		price = Float.parseFloat(newPrice);
+		price = newPrice;
 		System.out.println("Logic Level: " + id);
 		System.out.println("Logic Level: " + name);
 		System.out.println("Logic Level: " + price);
@@ -34,9 +34,9 @@ public class MenuItem {
 	}
 	
 	
-	public static List<MenuItem> getMenuItemsFromDB() {
+	public static ArrayList<MenuItem> getMenuItemsFromDB() {
 		
-		List<MenuItem> menuItemList = new ArrayList<MenuItem>();
+		ArrayList<MenuItem> menuItemList = new ArrayList<MenuItem>();
 		
 		try {
 			CachedRowSet crs = new CachedRowSetImpl();
