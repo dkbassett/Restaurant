@@ -20,6 +20,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import system.CustomerHandler;
@@ -40,6 +42,7 @@ public class NewOrderView extends JFrame implements ActionListener {
     private JRadioButton rdoTakeAway, rdoHomeDelivery;
     private ButtonGroup deliveryOptions;
     private JScrollPane js, jsOrder;
+    private ListSelectionModel listSelectionModel;
     
     private FlowLayout experimentLayout = new FlowLayout();
     private ArrayList<MenuItem> menuItemList;
@@ -109,6 +112,7 @@ public class NewOrderView extends JFrame implements ActionListener {
       	// Menu item table
       	tblMenu = new JTable(new MenuTableModel(menuItemList));
       	tblMenu.setFillsViewportHeight(true);
+      	
       	js = new JScrollPane(tblMenu);
       	pnlMenu.add(js).setBounds(20,60,600,200);
       
@@ -184,8 +188,9 @@ public class NewOrderView extends JFrame implements ActionListener {
        } else if (e.getSource().equals(btnAddToOrder)) {
     	   int[] selectedRowIndices = tblMenu.getSelectedRows();
     	   
-    	   for (int i = 0; i < selectedRowIndices.length; i++) {   		   
-    		   OrderItem orderItem = new OrderItem(menuItemList.get(i), 1, false);
+    	   for (int i = 0; i < selectedRowIndices.length; i++) {
+    		   System.out.println("Selected Row Index: " + selectedRowIndices[i]);
+    		   OrderItem orderItem = new OrderItem(menuItemList.get(selectedRowIndices[i]), 1, false);
     		   orderItems.add(orderItem);
     	   }
     	   System.out.println("First Order Item: " + orderItems.get(0).getMenuItem().getName());

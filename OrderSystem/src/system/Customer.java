@@ -111,7 +111,8 @@ public class Customer{
 			crs = SystemDAOOracleImpl.readFromTable(SystemDAOOracleImpl.selectAllCustomers());		
 			ResultSetMetaData rsmd = crs.getMetaData();
             int columnsNum = rsmd.getColumnCount();
-
+            
+            System.out.println("About to start while loop of customers");
 			while(crs.next()) {				
 				Customer customer = new Customer();
 				customer.setId(crs.getInt("ID"));
