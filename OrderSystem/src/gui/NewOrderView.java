@@ -34,8 +34,7 @@ import system.OrderItem;
 public class NewOrderView extends JFrame implements ActionListener {
     private JPanel pnlCustomerDetails, pnlDelivery, pnlMenu, pnlOrder, pnlConfirmation;
     private DefaultTableModel dtm = new DefaultTableModel();
-    private JTable tblMenu;
-    private JTable tblOrder = new JTable(dtm);
+    private JTable tblMenu, tblOrder;
     private JTextField txtItemNumber;
     private JLabel lblItemNumber;
     private JButton btnAddToOrder, btnview, btnConfirm, btnCancel;
@@ -43,12 +42,13 @@ public class NewOrderView extends JFrame implements ActionListener {
     private ButtonGroup deliveryOptions;
     private JScrollPane js, jsOrder;
     private ListSelectionModel listSelectionModel;
+    private OrderItemTableModel orderItemTableModel;
     
     private FlowLayout experimentLayout = new FlowLayout();
     private ArrayList<MenuItem> menuItemList;
-    private ArrayList<OrderItem> orderItems = new ArrayList<OrderItem>();
+    private ArrayList<OrderItem> orderItemList = new ArrayList<OrderItem>();
     private float total = 0.00F;    	
-    private Order currentOrder = new Order(CustomerHandler.getCurrentCustomer().getId(), orderItems, "Take away", total);
+    private Order currentOrder = new Order(CustomerHandler.getCurrentCustomer().getId(), orderItemList, "Take away", total);
 
 	public boolean RIGHT_TO_LEFT = false;
 	
@@ -127,15 +127,17 @@ public class NewOrderView extends JFrame implements ActionListener {
 	     * Order Panel and components
 	     */
 	  	pnlOrder = new JPanel();
-	  	pnlOrder.setLayout(new FlowLayout());
+	  	pnlOrder.setLayout(null);
 	  	pnlOrder.setBorder(BorderFactory.createTitledBorder("Order"));
 	  	pnlOrder.setPreferredSize(new Dimension(800, 350));
 	  	
 	  	// Order item table
-	  	tblOrder = new JTable(orderData, orderColumnNames);
+	  	orderItemTableModel = new OrderItemTableModel(orderItemList);
+	  	tblOrder = new JTable(orderItemTableModel);	  	
+//	  	tblOrder = new JTable(orderData, orderColumnNames);
 	  	tblOrder.setFillsViewportHeight(true);
 	  	jsOrder = new JScrollPane(tblOrder);
-	  	pnlMenu.add(jsOrder).setBounds(20,400,600,200);
+	  	pnlOrder.add(jsOrder).setBounds(20,40,600,200);
 	  	
 	  	contentPane.add(pnlOrder);
    	  	
@@ -191,9 +193,10 @@ public class NewOrderView extends JFrame implements ActionListener {
     	   for (int i = 0; i < selectedRowIndices.length; i++) {
     		   System.out.println("Selected Row Index: " + selectedRowIndices[i]);
     		   OrderItem orderItem = new OrderItem(menuItemList.get(selectedRowIndices[i]), 1, false);
-    		   orderItems.add(orderItem);
+    		   orderItemList.add(orderItem);
+    		   orderItemTableModel.addOrderItem(orderItem);
     	   }
-    	   System.out.println("First Order Item: " + orderItems.get(0).getMenuItem().getName());
+    	   System.out.println("First Order Item: " + orderItemList.get(0).getMenuItem().getName());
        }
         
     }

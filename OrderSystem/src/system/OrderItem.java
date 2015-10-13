@@ -12,16 +12,12 @@ public class OrderItem {
 	
 	public OrderItem(MenuItem newItem, int newQuantity, boolean confirmed) {
 		menuItem=newItem;
-		quantity=newQuantity;
+		setQuantity(newQuantity);
 		this.confirmed = confirmed;
 	}
 	
-	public void updateQuantity(int updatedQuantity){
-	quantity=updatedQuantity;
-	}
-	
 	public void confirmItem() {
-	confirmed = true;
+		confirmed = true;
 	}
 
 	public MenuItem getMenuItem() {
@@ -30,5 +26,13 @@ public class OrderItem {
 
 	public void setMenuItem(MenuItem menuItem) {
 		this.menuItem = menuItem;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}	
 }
