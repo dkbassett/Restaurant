@@ -32,7 +32,8 @@ import system.OrderItem;
 
 
 public class NewOrderView extends JFrame implements ActionListener {
-    private JPanel pnlCustomerDetails, pnlDelivery, pnlMenu, pnlOrder, pnlConfirmation;
+	private JFrame frame;
+	private JPanel pnlCustomerDetails, pnlDelivery, pnlMenu, pnlOrder, pnlConfirmation;
     private DefaultTableModel dtm = new DefaultTableModel();
     private JTable tblMenu, tblOrder;
     private JTextField txtItemNumber;
@@ -163,7 +164,7 @@ public class NewOrderView extends JFrame implements ActionListener {
     }
     
     public void createAndShowGUI() {
-        JFrame frame = new JFrame("New Order") {
+        frame = new JFrame("New Order") {
             public Dimension getMinimumSize() {
                 Dimension prefSize = getPreferredSize();
                 return new Dimension(100, prefSize.height);
@@ -184,16 +185,16 @@ public class NewOrderView extends JFrame implements ActionListener {
        if(e.getSource()==btnview){
            new CurrentOrderView();
        } else if (e.getSource()==btnConfirm) {
+    	  OrderHandler.updateCurrentOrderItemList((ArrayList<OrderItem>) orderItemTableModel.getOrderItems());
           new PaymentMethodView();
        } else if (e.getSource().equals(btnCancel)) {
-    	   dispose();
+    	   frame.dispose();
+    	   System.out.println("Cancel button fired");
        } else if (e.getSource().equals(btnAddToOrder)) {
-    	   int[] selectedRowIndices = tblMenu.getSelectedRows();
-    	   
+    	   int[] selectedRowIndices = tblMenu.getSelectedRows();  
     	   for (int i = 0; i < selectedRowIndices.length; i++) {
     		   System.out.println("Selected Row Index: " + selectedRowIndices[i]);
     		   OrderItem orderItem = new OrderItem(menuItemList.get(selectedRowIndices[i]), 1, false);
-    		   orderItemList.add(orderItem);
     		   orderItemTableModel.addOrderItem(orderItem);
     	   }
     	   System.out.println("First Order Item: " + orderItemList.get(0).getMenuItem().getName());
