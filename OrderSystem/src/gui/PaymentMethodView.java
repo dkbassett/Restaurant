@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,20 +15,38 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.Document;
 
+import system.CreditCard;
+import system.Customer;
+import system.CustomerHandler;
+import system.MenuItem;
+
 public class PaymentMethodView extends JFrame implements ActionListener{
 
 	DefaultTableModel dtm = new DefaultTableModel();
 	JTable tbl = new JTable(dtm);
+	JTable tblCreditCards;
 	JLabel Title,ID;
     JButton   btnCancel,btnSelect,btnAddCard;
+    JScrollPane js;
+    
+    private ListSelectionModel listSelectionModel;
+    private CreditCardTableModel creditCardTableModel;
+    private ArrayList<CreditCard> creditCardList;
 	
 	public PaymentMethodView(){
 		setLayout(null);
+		
+		Customer customer = new Customer(2, "Jane Doe", "33 Riverside Avenue, Sunnybank, QLD", "111222333");
+		
+		
+		// should take CustomerHandler.getCurrentCustomer() once implemented in select customer screens
+		creditCardList = CreditCard.getCreditCardsFromDB(customer);
 	
 	    Title = new JLabel("Payment Method");
 	    add(Title).setBounds(20,20,120,20);
@@ -45,14 +64,23 @@ public class PaymentMethodView extends JFrame implements ActionListener{
 	     
 	     btnCancel = new JButton("Cancel");
 	     add(btnCancel).setBounds(140,275,80,20);
-	     btnCancel.addActionListener(this);	   
+	     btnCancel.addActionListener(this);
+	     
+	     // Credit card table
+	     tblCreditCards = new JTable(new CreditCardTableModel(creditCardList));
+	     tblCreditCards.setFillsViewportHeight(true);
+
+	     js = new JScrollPane(tblCreditCards);
+	     add(js).setBounds(20,100,400,100);
 	    
 	    
         setVisible(true);
         setTitle("Order Transaction");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(450,350);
-        getTableData();
+//        getTableData();
+        
+        System.out.println("PaymentMethodView");
 	}
 	
     @Override
@@ -70,14 +98,14 @@ public class PaymentMethodView extends JFrame implements ActionListener{
 	
 	
 	
-    private void getTableData() {
-        dtm.addColumn("Number          ");
-        dtm.addColumn("Expiry");
-        dtm.addColumn("Card Holder");
-        dtm.addColumn("Card Provider");
-        
-        JScrollPane js = new JScrollPane(tbl);
-        add(js).setBounds(20,100,400,100);
-	
-    }
+//    private void getTableData() {
+//        dtm.addColumn("Number          ");
+//        dtm.addColumn("Expiry");
+//        dtm.addColumn("Card Holder");
+//        dtm.addColumn("Card Provider");
+//        
+//        JScrollPane js = new JScrollPane(tbl);
+//        add(js).setBounds(20,100,400,100);
+//	
+//    }
 }

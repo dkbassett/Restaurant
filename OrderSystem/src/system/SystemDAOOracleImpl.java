@@ -129,7 +129,7 @@ public abstract class SystemDAOOracleImpl {
 	// Add a credit card to database. Two tables need to be inserted into.
 	public static String addCreditCard(CreditCard card, Customer cust) {
 		int custId = cust.getId();
-		int number = card.getNumber();
+		String number = card.getNumber();
 		String expiry = card.getExpiry();
 		String holder = card.getCardHolder();
 		String provider = card.getType();
@@ -141,6 +141,17 @@ public abstract class SystemDAOOracleImpl {
 				"VALUES ( " + custId + "," + number + ","
 							+ expiry + ");" +
 				"COMMIT";
+	}
+	
+	// Finds credit cards associated with a customer
+	public static String findCreditCardsByCustomer(Customer cust) {
+		int custId = cust.getId();
+		return 	"SELECT * " +
+				"FROM credit_card CR " +
+				"WHERE (CR.cr_number, CR.exp) IN " +
+					"(SELECT U.cr_number, U.cr_exp " +
+					"FROM uses_card U " +
+					"WHERE U.cid=" + custId + ")";
 	}
 	
 	// Find a menu item by number. This should return a menu item

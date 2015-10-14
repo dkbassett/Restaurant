@@ -62,7 +62,9 @@ public class CreditCardView extends JFrame implements ActionListener{
 	     setTitle("New Credit Card");
 	     setSize(400,300);
 	     setVisible(true);
-	     setDefaultCloseOperation(DISPOSE_ON_CLOSE);	      
+	     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+	     
+	     System.out.println("CreditCardView");
 	}
 @Override
 public void actionPerformed(ActionEvent e) {

@@ -56,17 +56,14 @@ public class PaymentView extends JFrame implements ActionListener{
 	    CCNumber = new JLabel("CC Number:");
 	    add(CCNumber).setBounds(20,150,120,20);
 	    
-		
-		
-		
-	    
         setVisible(true);
-        setTitle("Order Transaction");
+        setTitle("Payment Method");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(500,800);
         getTableData();
-		
-		}
+        
+        System.out.println("PaymentView");
+	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
