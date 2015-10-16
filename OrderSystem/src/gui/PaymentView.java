@@ -33,7 +33,7 @@ public class PaymentView extends JFrame implements ActionListener{
 	JTable tbl = new JTable(dtm);
 	JTable tblOrder;
 	JLabel Title,Customer,Name,Address, DeliveryType, CCNumber, Order, OrderTotal,
-		lblCustomerName;
+		lblCustomerName, lblCustomerAddress, lblDeliveryType;
     JButton btnCancel,btnSubmit;
     JPanel pnlOrder;
     private OrderItemTableModel orderItemTableModel;
@@ -41,6 +41,7 @@ public class PaymentView extends JFrame implements ActionListener{
     private ArrayList<OrderItem> orderItemList;
     private Order currentOrder = OrderHandler.getCurrentOrder();
     private Customer customer = CustomerHandler.getCurrentCustomer();
+    Font font;
 	
 	public PaymentView(){
 		setLayout(null);
@@ -62,13 +63,20 @@ public class PaymentView extends JFrame implements ActionListener{
 	    Name = new JLabel("Name:");
 	    add(Name).setBounds(20,90,80,20);
 	    lblCustomerName = new JLabel(customer.getName());
-	    add(lblCustomerName).setBounds(60,90,120,20);
+	    lblCustomerName.setFont(lblCustomerName.getFont().deriveFont(Font.PLAIN));
+	    add(lblCustomerName).setBounds(110,90,120,20);
 	    
 	    Address = new JLabel("Address:");
 	    add(Address).setBounds(20,110,120,20);
+	    lblCustomerAddress = new JLabel(customer.getAddress());
+	    lblCustomerAddress.setFont(lblCustomerAddress.getFont().deriveFont(Font.PLAIN));
+	    add(lblCustomerAddress).setBounds(110,110,220,20);
 	    
 	    DeliveryType = new JLabel("Delivery Type:");
 	    add(DeliveryType).setBounds(20,130,120,20);
+	    lblDeliveryType = new JLabel(currentOrder.getDelivery());
+	    lblDeliveryType.setFont(lblDeliveryType.getFont().deriveFont(Font.PLAIN));
+	    add(lblDeliveryType).setBounds(110,130,120,20);
 	    
 	    CCNumber = new JLabel("CC Number:");
 	    add(CCNumber).setBounds(20,150,120,20);

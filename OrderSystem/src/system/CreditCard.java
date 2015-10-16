@@ -86,6 +86,10 @@ public class CreditCard {
 		
 		return creditCardList;
 	}
+	
+	public static void addNewCreditCardToDB(CreditCard card, Customer cust){
+		SystemDAOOracleImpl.writeToTable(SystemDAOOracleImpl.addCreditCard(card, cust));
+	}
 
 
 }

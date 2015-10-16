@@ -78,9 +78,11 @@ public class NewCustomerView extends JFrame implements ActionListener{
 			String pNumber = txtPhone.getText();
 			System.out.println("Ui Level: " + pNumber);
 			//new Customer();
-			new Customer(name,address,pNumber);
+			Customer customer = new Customer(name,address,pNumber);
 			
 			CustomerHandler.addNewCustomer(name, address, pNumber);
+			CustomerHandler.setCurrentCustomer(customer);
+			
 			
 			dispose();
 			//Customer_details.Close();
