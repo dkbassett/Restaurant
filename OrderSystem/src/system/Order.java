@@ -78,4 +78,14 @@ public class Order {
 	public void setItemList(ArrayList<OrderItem> itemList) {
 		this.itemList = itemList;
 	}
+	
+	public float calculateTotal() {
+		float total = 0.00F;
+		for (int i = 0; i < itemList.size(); i++) {
+			float menuItemPrice = itemList.get(i).getMenuItem().getPrice();			
+			float orderItemPrice = menuItemPrice * itemList.get(i).getQuantity();
+			total += orderItemPrice;
+		}
+		return total;
+	}
 }
