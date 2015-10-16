@@ -21,6 +21,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import system.CreditCard;
+import system.CreditCardHandler;
 import system.CustomerHandler;
 import system.Customer;
 import system.Order;
@@ -33,7 +35,7 @@ public class PaymentView extends JFrame implements ActionListener{
 	JTable tbl = new JTable(dtm);
 	JTable tblOrder;
 	JLabel Title,Customer,Name,Address, DeliveryType, CCNumber, Order, OrderTotal,
-		lblCustomerName, lblCustomerAddress, lblDeliveryType;
+		lblCustomerName, lblCustomerAddress, lblDeliveryType, lblCreditCardNumber;
     JButton btnCancel,btnSubmit;
     JPanel pnlOrder;
     private OrderItemTableModel orderItemTableModel;
@@ -41,7 +43,7 @@ public class PaymentView extends JFrame implements ActionListener{
     private ArrayList<OrderItem> orderItemList;
     private Order currentOrder = OrderHandler.getCurrentOrder();
     private Customer customer = CustomerHandler.getCurrentCustomer();
-    Font font;
+    private CreditCard creditCard = CreditCardHandler.getSelectedCreditCard();
 	
 	public PaymentView(){
 		setLayout(null);
@@ -80,6 +82,9 @@ public class PaymentView extends JFrame implements ActionListener{
 	    
 	    CCNumber = new JLabel("CC Number:");
 	    add(CCNumber).setBounds(20,150,120,20);
+	    lblCreditCardNumber = new JLabel(creditCard.getNumber());
+	    lblCreditCardNumber.setFont(lblCreditCardNumber.getFont().deriveFont(Font.PLAIN));
+	    add(lblCreditCardNumber).setBounds(110,150,220,20);
 	    
 	    /**
 	     * Order Panel and components

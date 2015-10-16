@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.Document;
 
 import system.CreditCard;
+import system.CreditCardHandler;
 import system.Customer;
 import system.CustomerHandler;
 import system.MenuItem;
@@ -39,6 +40,7 @@ public class PaymentMethodView extends JFrame implements ActionListener{
     private CreditCardTableModel creditCardTableModel;
     private ArrayList<CreditCard> creditCardList;
     private Customer currentCustomer;
+    private CreditCard selectedCreditCard;
 	
 	public PaymentMethodView(){
 		setLayout(null);
@@ -75,7 +77,7 @@ public class PaymentMethodView extends JFrame implements ActionListener{
 	    
 	    
         setVisible(true);
-        setTitle("Order Transaction");
+        setTitle("Payment Method");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(450,350);
 //        getTableData();
@@ -90,6 +92,11 @@ public class PaymentMethodView extends JFrame implements ActionListener{
         }else if(e.getSource()== btnAddCard){
         	new CreditCardView();
         }else if (e.getSource()== btnSelect){
+        	int selectedRowIndex = tblCreditCards.getSelectedRow();  
+        	System.out.println("Selected Row Index: " + selectedRowIndex);
+     		
+        	selectedCreditCard = creditCardList.get(selectedRowIndex);
+        	CreditCardHandler.setSelectedCreditCard(selectedCreditCard);
         	new PaymentView();
         }
 
