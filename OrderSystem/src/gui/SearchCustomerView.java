@@ -23,6 +23,7 @@ import javax.swing.text.Document;
 import system.Customer;
 import system.CustomerHandler;
 import system.MenuItem;
+import system.OrderItem;
 
 
 public class SearchCustomerView extends JFrame implements ActionListener{
@@ -37,11 +38,12 @@ public class SearchCustomerView extends JFrame implements ActionListener{
     JButton btnSearch, btnCancel, btnConfirm;
     Customer selectedCustomer = new Customer();
     JScrollPane js;
+    List<Customer> customerList;
 
     public SearchCustomerView(){
         setLayout(null);
         
-        List<Customer> customerList = Customer.getCustomersFromDB();
+        customerList = Customer.getCustomersFromDB();
         tblCustomers = new JTable(new CustomerTableModel(customerList));
         tblCustomers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         js = new JScrollPane(tblCustomers);
@@ -83,7 +85,14 @@ public class SearchCustomerView extends JFrame implements ActionListener{
 //            String d = tbl.getValueAt(tbl.getSelectedRow(),3).toString();
         }
         if(e.getSource()== btnConfirm) {
-        	CustomerHandler.setCurrentCustomer(selectedCustomer);
+        	int selectedRowIndex = tblCustomers.getSelectedRow();  
+        	System.out.println("Selected Row Index: " + selectedRowIndex);
+     		
+        	selectedCustomer = customerList.get(selectedRowIndex);
+        	
+     	   	System.out.println("Selected customer name: " + selectedCustomer.getName());
+        	CustomerHandler.setCurrentCustomer(selectedCustomer);	
+        	
         	new NewOrderView();
         	dispose();
         }

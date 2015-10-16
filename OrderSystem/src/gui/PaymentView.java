@@ -94,7 +94,7 @@ public class PaymentView extends JFrame implements ActionListener{
 	  	add(pnlOrder);
 	    
         setVisible(true);
-        setTitle("Payment Method");
+        setTitle("Payment");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(500,800);
         

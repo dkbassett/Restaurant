@@ -38,15 +38,15 @@ public class PaymentMethodView extends JFrame implements ActionListener{
     private ListSelectionModel listSelectionModel;
     private CreditCardTableModel creditCardTableModel;
     private ArrayList<CreditCard> creditCardList;
+    private Customer currentCustomer;
 	
 	public PaymentMethodView(){
 		setLayout(null);
 		
-		Customer customer = new Customer(2, "Jane Doe", "33 Riverside Avenue, Sunnybank, QLD", "111222333");
+		currentCustomer = CustomerHandler.getCurrentCustomer();
+//		Customer customer = new Customer(2, "Jane Doe", "33 Riverside Avenue, Sunnybank, QLD", "111222333");
 		
-		
-		// should take CustomerHandler.getCurrentCustomer() once implemented in select customer screens
-		creditCardList = CreditCard.getCreditCardsFromDB(customer);
+		creditCardList = CreditCard.getCreditCardsFromDB(currentCustomer);
 	
 	    Title = new JLabel("Payment Method");
 	    add(Title).setBounds(20,20,120,20);
