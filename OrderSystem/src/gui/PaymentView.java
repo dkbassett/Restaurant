@@ -1,7 +1,6 @@
 package gui;
 
-
-
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,30 +8,46 @@ import java.awt.font.TextAttribute;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Map;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.Document;
+
+import system.CustomerHandler;
+import system.Customer;
+import system.Order;
+import system.OrderHandler;
+import system.OrderItem;
 
 public class PaymentView extends JFrame implements ActionListener{
 
 	DefaultTableModel dtm = new DefaultTableModel();
 	JTable tbl = new JTable(dtm);
-	JLabel Title,Customer,Name,Address, DeliveryType, CCNumber, Order, OrderTotal;
-    JButton   btnCancel,btnSubmit;
+	JTable tblOrder;
+	JLabel Title,Customer,Name,Address, DeliveryType, CCNumber, Order, OrderTotal,
+		lblCustomerName;
+    JButton btnCancel,btnSubmit;
+    JPanel pnlOrder;
+    private OrderItemTableModel orderItemTableModel;
+    private JScrollPane jsOrder;
+    private ArrayList<OrderItem> orderItemList;
+    private Order currentOrder = OrderHandler.getCurrentOrder();
+    private Customer customer = CustomerHandler.getCurrentCustomer();
 	
 	public PaymentView(){
 		setLayout(null);
+		
+		System.out.println("Current customer name: " + customer.getName());
+		
+		orderItemList = currentOrder.getItemList();
 		
 	    Title = new JLabel("Payment");
 	    add(Title).setBounds(20,20,120,20);
@@ -45,7 +60,9 @@ public class PaymentView extends JFrame implements ActionListener{
 	    Customer.setFont(font.deriveFont(attributes)); 
 	    
 	    Name = new JLabel("Name:");
-	    add(Name).setBounds(20,90,120,20);
+	    add(Name).setBounds(20,90,80,20);
+	    lblCustomerName = new JLabel(customer.getName());
+	    add(lblCustomerName).setBounds(60,90,120,20);
 	    
 	    Address = new JLabel("Address:");
 	    add(Address).setBounds(20,110,120,20);
@@ -56,11 +73,30 @@ public class PaymentView extends JFrame implements ActionListener{
 	    CCNumber = new JLabel("CC Number:");
 	    add(CCNumber).setBounds(20,150,120,20);
 	    
+	    /**
+	     * Order Panel and components
+	     */
+	  	pnlOrder = new JPanel();
+	  	pnlOrder.setLayout(null);
+	  	pnlOrder.setBorder(BorderFactory.createTitledBorder("Order"));
+//	  	pnlOrder.setPreferredSize(new Dimension(400, 350));
+	  	pnlOrder.setBounds(20,200,450,400);
+	  	
+	  	// Order item table
+	  	orderItemTableModel = new OrderItemTableModel(orderItemList);
+	  	tblOrder = new JTable(orderItemTableModel);	  	
+	  	tblOrder.setFillsViewportHeight(true);
+	  	tblOrder.getColumnModel().getColumn(0).setPreferredWidth(280);
+	  	tblOrder.getColumnModel().getColumn(2).setPreferredWidth(80);
+	  	jsOrder = new JScrollPane(tblOrder);
+	  	pnlOrder.add(jsOrder).setBounds(20,20,400,180);
+	  	
+	  	add(pnlOrder);
+	    
         setVisible(true);
         setTitle("Payment Method");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(500,800);
-        getTableData();
         
         System.out.println("PaymentView");
 	}
@@ -75,15 +111,4 @@ public class PaymentView extends JFrame implements ActionListener{
     	}
 
 	}	
-
-	private void getTableData() {
-		dtm.addColumn("Number");
-		dtm.addColumn("Expiry");
-		dtm.addColumn("Card Holder");
-		dtm.addColumn("Card Provider");
-    
-		JScrollPane js = new JScrollPane(tbl);
-		add(js).setBounds(30,220,400,200);
-
-	}
 }
