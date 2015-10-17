@@ -205,7 +205,9 @@ public class NewOrderView extends JFrame implements ActionListener {
     		   System.out.println("Order item in current order orderItem list: " + currentOrder.getItemList().get(i));
     	   }
     	   total += currentOrder.calculateTotal();
-    	   lblTotalValue.setText(String.valueOf(total));
+    	   String totalValue = String.format("$%.2f", total);
+    	  // lblTotalValue.setText(String.valueOf(total));
+    	   lblTotalValue.setText(totalValue);
     	   System.out.println("First Order Item: " + orderItemList.get(0).getMenuItem().getName());
        }
         
