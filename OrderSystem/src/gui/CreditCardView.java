@@ -17,6 +17,7 @@ public class CreditCardView extends JFrame implements ActionListener{
 	JLabel Title, Number, Expiry, CardHolder,CardProvider;
 	JTextField txtNumber,txtMonthExpiry,txtYearExpiry,txtCardHolder,txtCardProvider;
 	JButton btnConfirm,btnCancel;
+	private Customer currentCustomer = CustomerHandler.getCurrentCustomer();
 	
 	public CreditCardView(){
 		setLayout(null);
@@ -78,7 +79,7 @@ public void actionPerformed(ActionEvent e) {
 			String expiryYear = txtYearExpiry.getText();
 			String cardHold = txtCardHolder.getText();
 			String cardProv = txtCardProvider.getText();
-			String expiryFull = (expiryMon + "/" + expiryYear);
+			String expiryFull = ("01/" + expiryMon + "/" + expiryYear);
 			
 			System.out.println("Ui Level: " + cardHold);
 			System.out.println("Ui Level: " + cardProv);
@@ -89,7 +90,8 @@ public void actionPerformed(ActionEvent e) {
 			
 			
 			//DateFormat Nexpiry= new DateFormat();
-			//new CreditCard(cardHold,cardProv,number,expiry);
+			CreditCard newCreditCard = new CreditCard(cardHold,cardProv,number,expiryFull);
+			CreditCardHandler.addNewCreditCard(newCreditCard, currentCustomer);
 			dispose();
 			
 			//Customer_details.Close();

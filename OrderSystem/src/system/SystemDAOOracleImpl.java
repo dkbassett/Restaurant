@@ -133,14 +133,19 @@ public abstract class SystemDAOOracleImpl {
 		String expiry = card.getExpiry();
 		String holder = card.getCardHolder();
 		String provider = card.getType();
-		return	"BEGIN TRANSACTION " +
-				"INSERT INTO credit_card " +
-				"VALUES ( " + number + "," + expiry + "," 
-							+ holder + "," + provider + ");" +
-				"INSERT INTO uses_card " +
-				"VALUES ( " + custId + "," + number + ","
-							+ expiry + ");" +
-				"COMMIT";
+		return	"BEGIN " +
+					"SAVEPOINT start_tran; " +
+					"INSERT INTO credit_card " +
+					"VALUES('" + number + "', TO_DATE('" + expiry + "', 'dd/mm/yy'), '" 
+							+ holder + "', '" + provider + "'); " +
+					"INSERT INTO uses_card " +
+					"VALUES('" + custId + "', '" + number + "', TO_DATE('"
+							+ expiry + "', 'dd/mm/yy')); " +
+				"EXCEPTION " +
+					"WHEN OTHERS THEN " +
+					"ROLLBACK TO start_tran; " +
+					"RAISE; " +
+				"END;";
 	}
 	
 	// Finds credit cards associated with a customer
