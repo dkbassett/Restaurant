@@ -26,13 +26,15 @@ import system.CreditCardHandler;
 import system.Customer;
 import system.CustomerHandler;
 import system.MenuItem;
+import system.Order;
+import system.OrderHandler;
 
 public class PaymentMethodView extends JFrame implements ActionListener{
 
 	DefaultTableModel dtm = new DefaultTableModel();
 	JTable tbl = new JTable(dtm);
 	JTable tblCreditCards;
-	JLabel Title,ID;
+	JLabel Title,ID,lblTotalTitle,lblTotalValue;
     JButton   btnCancel,btnSelect,btnAddCard;
     JScrollPane js;
     
@@ -41,6 +43,8 @@ public class PaymentMethodView extends JFrame implements ActionListener{
     private ArrayList<CreditCard> creditCardList;
     private Customer currentCustomer;
     private CreditCard selectedCreditCard;
+    private Order currentOrder = OrderHandler.getCurrentOrder();
+    private float total = 0.00f;   
 	
 	public PaymentMethodView(){
 		setLayout(null);
@@ -59,6 +63,15 @@ public class PaymentMethodView extends JFrame implements ActionListener{
 	     btnAddCard = new JButton("Add Card");
 	     add(btnAddCard).setBounds(20,210,90,20);
 	     btnAddCard.addActionListener(this);	  
+	     
+		 lblTotalTitle = new JLabel("Total:");
+		 add(lblTotalTitle).setBounds(330, 280, 80, 30);
+		 lblTotalValue = new JLabel(String.valueOf(total));
+		 add(lblTotalValue).setBounds(370, 280, 80, 30);
+		 
+	 	 total = currentOrder.calculateTotal();
+	  	 String totalValue = String.format("$%.2f", total);
+	  	 lblTotalValue.setText(totalValue);
 	     
 	     btnSelect = new JButton("Select Card");
 	     add(btnSelect).setBounds(20,275,110,20);
@@ -99,6 +112,7 @@ public class PaymentMethodView extends JFrame implements ActionListener{
         	CreditCardHandler.setSelectedCreditCard(selectedCreditCard);
         	new PaymentView();
         }
+
 
     }	
 	
