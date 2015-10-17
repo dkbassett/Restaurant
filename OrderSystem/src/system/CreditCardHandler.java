@@ -10,6 +10,7 @@ public abstract class CreditCardHandler {
 	
 	public static void addNewCreditCard(CreditCard card, Customer cust){
 		CreditCard.addNewCreditCardToDB(card, cust);
+		CustomerHandler.getCurrentCustomer().addCreditCard(card);
 		setSelectedCreditCard(card);
 	}
 

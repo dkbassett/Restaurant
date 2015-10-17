@@ -6,13 +6,14 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
 import system.CreditCard;
+import system.OrderItem;
 
 public class CreditCardTableModel extends AbstractTableModel {
 	
 	private List<CreditCard> creditCards;
 	
 	public CreditCardTableModel(List<CreditCard> creditCards) {
-		this.creditCards = creditCards;
+		this.setCreditCards(creditCards);
 	}
 
 	@Override
@@ -22,7 +23,7 @@ public class CreditCardTableModel extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		return creditCards.size();
+		return getCreditCards().size();
 	}
 	
 	@Override
@@ -39,7 +40,7 @@ public class CreditCardTableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		CreditCard creditCard = creditCards.get(rowIndex);
+		CreditCard creditCard = getCreditCards().get(rowIndex);
 		
 		switch (columnIndex) {
 		case 0: return creditCard.getType();
@@ -49,6 +50,20 @@ public class CreditCardTableModel extends AbstractTableModel {
 		}
 		
 		return creditCard;
+	}
+	
+	public void addCreditCard(CreditCard creditCard) {
+		int size = getRowCount();
+		getCreditCards().add(creditCard);
+		fireTableRowsInserted(size, size);
+	}
+
+	public List<CreditCard> getCreditCards() {
+		return creditCards;
+	}
+
+	public void setCreditCards(List<CreditCard> creditCards) {
+		this.creditCards = creditCards;
 	}
 	
 }

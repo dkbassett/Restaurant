@@ -15,7 +15,7 @@ public class Customer{
 	private String name;
 	private String address;
 	private String phoneNumber;
-	private CreditCard creditCard;
+	private ArrayList<CreditCard> creditCardList = new ArrayList<CreditCard>();
 	
 	public Customer() {
 	}
@@ -36,20 +36,12 @@ public class Customer{
 		phoneNumber=newPhoneNumber;
 	}
 	
-	public Customer(int newId, String newName, String newAddress, String newPhoneNumber, CreditCard newCreditCard){
-		setId(newId);
-		setName(newName);
-		setAddress(newAddress);
-		phoneNumber=newPhoneNumber;
-		creditCard=newCreditCard;
-	}
-	
 	public void updateAddress(String updatedAddress){
-			setAddress(updatedAddress);
+		setAddress(updatedAddress);
 	}
 	
-	public void updateCreditCard(CreditCard updatedCreditCard){
-		creditCard=updatedCreditCard;
+	public void addCreditCard(CreditCard newCreditCard){
+		creditCardList.add(newCreditCard);
 	}
 	public String getPhoneNumber(){
 		return (String) (phoneNumber);

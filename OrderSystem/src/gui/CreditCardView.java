@@ -92,6 +92,7 @@ public void actionPerformed(ActionEvent e) {
 			//DateFormat Nexpiry= new DateFormat();
 			CreditCard newCreditCard = new CreditCard(cardHold,cardProv,number,expiryFull);
 			CreditCardHandler.addNewCreditCard(newCreditCard, currentCustomer);
+			
 			dispose();
 			
 			//Customer_details.Close();
