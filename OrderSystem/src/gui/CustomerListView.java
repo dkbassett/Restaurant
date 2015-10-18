@@ -94,15 +94,6 @@ public class CustomerListView extends JFrame implements ActionListener{
 //            String d = tbl.getValueAt(tbl.getSelectedRow(),3).toString();
         }
         if(e.getSource()== btnConfirm) {
-        	int selectedRowIndex = tblCustomers.getSelectedRow();  
-        	System.out.println("Selected Row Index: " + selectedRowIndex);
-     		
-        	selectedCustomer = customerList.get(selectedRowIndex);
-        	
-     	   	System.out.println("Selected customer name: " + selectedCustomer.getName());
-        	CustomerHandler.setCurrentCustomer(selectedCustomer);	
-        	
-        	new NewOrderView();
         	dispose();
         }
         if(e.getSource()== btnAddCustomer) {
