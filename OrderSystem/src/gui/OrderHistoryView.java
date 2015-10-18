@@ -39,7 +39,7 @@ public class OrderHistoryView extends JFrame implements ActionListener{
         add(find).setBounds(140,20,100,20);
 
         setVisible(true);
-        setTitle("Order Transaction");
+        setTitle("Order History");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1000,1000);
         getTableData();

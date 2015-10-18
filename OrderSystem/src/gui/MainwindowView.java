@@ -22,9 +22,9 @@ import system.SystemDAOOracleImpl;
 public class MainwindowView extends JFrame implements ActionListener  {
 
     JMenuBar menu; // Declaring Jmenubar
-    JMenu Staffmember,Customerhandler,Rmenu, AddCustomer;  // Declaring Jmenu for Jmenubar
-    JMenuItem Menuitem,Orderitem,Customer,Customer_Details, Customerlist, Ordertransaction,Stafflist ; //Declaring Jmenuitem for Jmenu
-    JButton btnorder,btnUpdate;
+    JMenu staffMember,customers,Rmenu, addCustomer;  // Declaring Jmenu for Jmenubar
+    JMenuItem menuItems, orderItems, addStaff, Customer_Details, customerList, orderHistory, staffList ; //Declaring Jmenuitem for Jmenu
+    JButton btnOrder, btnUpdate;
     JLabel lblTotalTitle,lblTotalValue ;
     
     private String total = Float.toString(OrderHandler.getDaysTakingsFromDB());
@@ -33,50 +33,50 @@ public class MainwindowView extends JFrame implements ActionListener  {
         setLayout(null);
         menu = new JMenuBar();
         add(menu);
-        Staffmember = new JMenu("Staff Member");
-        menu.add(Staffmember).setBounds(20,20,40,40);
+        staffMember = new JMenu("Staff Member");
+        menu.add(staffMember).setBounds(20,20,40,40);
        
-        Stafflist = new JMenuItem("Staff Lists");
-        Staffmember.add(Stafflist).setBounds(20,30,40,40);
-        Stafflist.addActionListener(this);
+        staffList = new JMenuItem("Staff Lists");
+        staffMember.add(staffList).setBounds(20,30,40,40);
+        staffList.addActionListener(this);
 
-        Customerhandler = new JMenu("CustomerHandler");
-        menu.add(Customerhandler).setBounds(70,20,40,40);
-        Customer = new JMenuItem(" Add Staff");
-        Customerhandler.add(Customer).setBounds(20,20,40,40);
+        customers = new JMenu("Customers");
+        menu.add(customers).setBounds(70,20,40,40);
+        addStaff = new JMenuItem("Add Staff");
+        customers.add(addStaff).setBounds(20,20,40,40);
         
-        Customer_Details = new JMenuItem("New customer");
-        Customerhandler.add(Customer_Details).setBounds(20,30,40,40);
+        Customer_Details = new JMenuItem("New Customer");
+        customers.add(Customer_Details).setBounds(20,30,40,40);
         
-        Customerlist = new JMenuItem("Customer list");
-        Customerhandler.add(Customerlist).setBounds(20,40,40,40);
+        customerList = new JMenuItem("Customer List");
+        customers.add(customerList).setBounds(20,40,40,40);
         
 	    btnUpdate = new JButton("Update");
 	    add(btnUpdate).setBounds(200,285,80,20);
 	    btnUpdate.addActionListener(this);	   
         
-        Customer.addActionListener(this);
+        addStaff.addActionListener(this);
         Customer_Details.addActionListener(this);
-        Customerlist.addActionListener(this);
+        customerList.addActionListener(this);
         
         Rmenu = new JMenu("Menu");
         menu.add(Rmenu).setBounds(80,20,40,40);
         
-        Menuitem = new JMenuItem("Menuitem");
-        Rmenu.add(Menuitem).setBounds(70,30,40,40);
-        Menuitem.addActionListener(this);
+        menuItems = new JMenuItem("Menu Items ");
+        Rmenu.add(menuItems).setBounds(70,30,40,40);
+        menuItems.addActionListener(this);
        
-        Orderitem = new  JMenuItem("Order Item");
-        Rmenu.add(Orderitem).setBounds(70,30,40,40);
-        Orderitem.addActionListener(this);
+//        Orderitem = new  JMenuItem("Order Item");
+//        Rmenu.add(Orderitem).setBounds(70,30,40,40);
+//        Orderitem.addActionListener(this);
         
-        Ordertransaction = new  JMenuItem("Order Transacation");
-        Rmenu.add(Ordertransaction).setBounds(70,40,40,40);
-        Ordertransaction.addActionListener(this);
+        orderHistory = new  JMenuItem("Order History");
+        Rmenu.add(orderHistory).setBounds(70,40,40,40);
+        orderHistory.addActionListener(this);
         
-        btnorder = new JButton("Click to make Order");
-        add(btnorder).setBounds(150,100,300,100);
-        btnorder.addActionListener(this);
+        btnOrder = new JButton("Start New Order");
+        add(btnOrder).setBounds(150,100,300,100);
+        btnOrder.addActionListener(this);
         
 	  	lblTotalTitle = new JLabel("Day's Total Earnings:");
 	  	add(lblTotalTitle).setBounds(300, 280, 160, 30);
@@ -99,19 +99,19 @@ public class MainwindowView extends JFrame implements ActionListener  {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-       if(e.getSource()==Customerlist){
+       if(e.getSource()==customerList){
          new CustomerListView();
        }
        if (e.getSource()==Customer_Details){
          new NewCustomerView();
        }
-       if(e.getSource()==Customer){
+       if(e.getSource()==addStaff){
           new StaffListView();
        }
-       if(e.getSource()== Orderitem){
-           new OrderView();
-        }
-       if(e.getSource()==Menuitem){
+//       if(e.getSource()== Orderitem){
+//           new OrderView();
+//        }
+       if(e.getSource()==menuItems){
     	   new MenuItemView();
        }       
        if(e.getSource()==btnUpdate){
@@ -122,13 +122,13 @@ public class MainwindowView extends JFrame implements ActionListener  {
    	  		add(lblTotalValue).setBounds(430, 280, 80, 30);
     	   
        }
-       if(e.getSource()==Ordertransaction){
+       if(e.getSource()==orderHistory){
     	   new OrderHistoryView();
        }
-       if(e.getSource()==Stafflist){
+       if(e.getSource()==staffList){
     	   new LoginView();
        }
-       if(e.getSource()==btnorder){
+       if(e.getSource()==btnOrder){
 //        	   new OrderItemView();
     	   new CustomerView();
        }
