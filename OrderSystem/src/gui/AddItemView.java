@@ -74,15 +74,16 @@ public class AddItemView extends JFrame implements ActionListener{
 		}
 		else if(e.getSource().equals(btnConfirm)){	 
 			
-			int id = Integer.parseInt(txtId.getText());
+//			int id = Integer.parseInt(txtId.getText());
 			String name = txtName.getText();
 			float price = Float.parseFloat(txtPrice.getText());
 			
-			System.out.println("Ui Level: " + id);
+//			System.out.println("Ui Level: " + id);
 			System.out.println("Ui Level: " + name);
 			System.out.println("Ui Level: " + price);
 			
-			MenuItem item = new MenuItem(id,name,price);
+			MenuItem item = new MenuItem(name, price);
+			MenuItem.addNewMenuItemToDB(item);
 		//	SystemDAOOracleImpl.updateMenuItem(item);
 			
 			

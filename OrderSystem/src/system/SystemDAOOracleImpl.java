@@ -246,4 +246,18 @@ public abstract class SystemDAOOracleImpl {
 		
 		return statement;
 	}
+	
+	// Inserts a menu item into database
+	public static String addMenuItem(MenuItem menuItem) {
+		String name = menuItem.getName();
+		float price = menuItem.getPrice();
+		return 	"INSERT INTO menu_item " +
+				"VALUES(NULL, '" + name + "', '" + price + "')";			
+	}
+	
+	public static String getDaysTakings() {
+		return	"SELECT SUM(O.total) " +
+				"FROM order_transaction O " +
+				"WHERE O.date_ordered = ";
+	}
 }

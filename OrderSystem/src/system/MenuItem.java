@@ -18,6 +18,11 @@ public class MenuItem {
 	public MenuItem() { 		
 	}
 	
+	public MenuItem(String name, float price){
+		setName(name);
+		setPrice(price);
+	}
+	
 	public MenuItem(int newId, String newName, float newPrice){
 		System.out.println("MenuItem-Logic");
 		id = newId;
@@ -84,5 +89,9 @@ public class MenuItem {
 
 	public void setPrice(float price) {
 		this.price = price;
+	}
+	
+	public static void addNewMenuItemToDB(MenuItem newMenuItem){
+		SystemDAOOracleImpl.writeToTable(SystemDAOOracleImpl.addMenuItem(newMenuItem));
 	}
 }
