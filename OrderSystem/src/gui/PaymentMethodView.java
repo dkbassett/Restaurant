@@ -35,7 +35,7 @@ public class PaymentMethodView extends JFrame implements ActionListener{
 	JTable tbl = new JTable(dtm);
 	JTable tblCreditCards;
 	JLabel Title,ID,lblTotalTitle,lblTotalValue;
-    JButton   btnCancel,btnSelect,btnAddCard;
+    JButton   btnCancel,btnSelect,btnAddCard,btnUpdate;
     JScrollPane js;
     
     private ListSelectionModel listSelectionModel;
@@ -77,6 +77,10 @@ public class PaymentMethodView extends JFrame implements ActionListener{
 	     add(btnSelect).setBounds(20,275,110,20);
 	     btnSelect.addActionListener(this);	   
 	     
+	     btnUpdate = new JButton("Update");
+	     add(btnUpdate).setBounds(130,210,80,20);
+	     btnUpdate.addActionListener(this);	   
+	     
 	     btnCancel = new JButton("Cancel");
 	     add(btnCancel).setBounds(140,275,80,20);
 	     btnCancel.addActionListener(this);
@@ -111,6 +115,14 @@ public class PaymentMethodView extends JFrame implements ActionListener{
         	selectedCreditCard = creditCardList.get(selectedRowIndex);
         	CreditCardHandler.setSelectedCreditCard(selectedCreditCard);
         	new PaymentView();
+        }else if (e.getSource()== btnUpdate){
+        creditCardList = CreditCard.getCreditCardsFromDB(currentCustomer);
+   	     tblCreditCards = new JTable(new CreditCardTableModel(creditCardList));
+   	     tblCreditCards.setFillsViewportHeight(true);
+
+   	     js = new JScrollPane(tblCreditCards);
+   	     add(js).setBounds(20,100,400,100);
+        	
         }
 
 
