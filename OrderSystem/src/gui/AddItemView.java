@@ -82,7 +82,9 @@ public class AddItemView extends JFrame implements ActionListener{
 			System.out.println("Ui Level: " + name);
 			System.out.println("Ui Level: " + price);
 			
-			new MenuItem(id,name,price);
+			MenuItem item = new MenuItem(id,name,price);
+		//	SystemDAOOracleImpl.updateMenuItem(item);
+			
 			
 			dispose();
 	
@@ -91,8 +93,4 @@ public class AddItemView extends JFrame implements ActionListener{
 	
    }
 }
-
-
-    
-    
 
