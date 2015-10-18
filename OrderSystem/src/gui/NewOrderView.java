@@ -15,6 +15,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -52,6 +53,8 @@ public class NewOrderView extends JFrame implements ActionListener, TableModelLi
     private ArrayList<OrderItem> orderItemList = new ArrayList<OrderItem>();
     private float total = 0.00f;    	
     private Order currentOrder = new Order(CustomerHandler.getCurrentCustomer().getId(), orderItemList, "take-away", total);
+    private JOptionPane confirmation = new JOptionPane();
+    private int confirm;
 
 	public boolean RIGHT_TO_LEFT = false;
 	
@@ -193,18 +196,22 @@ public class NewOrderView extends JFrame implements ActionListener, TableModelLi
     	   frame.dispose();
     	   System.out.println("Cancel button fired");
        } else if (e.getSource().equals(btnAddToOrder)) {
-    	   int[] selectedRowIndices = tblMenu.getSelectedRows();  
-    	   for (int i = 0; i < selectedRowIndices.length; i++) {
-    		   System.out.println("Selected Row Index: " + selectedRowIndices[i]);
-    		   OrderItem orderItem = new OrderItem(menuItemList.get(selectedRowIndices[i]), 1, false);
-    		   orderItemTableModel.addOrderItem(orderItem);
+    	   confirm = JOptionPane.showConfirmDialog(null,"Are you sure you want to add this item?","Confirmation",JOptionPane.YES_NO_OPTION);
+    	   if (confirm==0){
+    		   int[] selectedRowIndices = tblMenu.getSelectedRows();  
+    		   for (int i = 0; i < selectedRowIndices.length; i++) {
+    			   System.out.println("Selected Row Index: " + selectedRowIndices[i]);
+    			   OrderItem orderItem = new OrderItem(menuItemList.get(selectedRowIndices[i]), 1, false);
+    			   orderItemTableModel.addOrderItem(orderItem);
 
-    		   System.out.println("Order item in current order orderItem list: " + currentOrder.getItemList().get(i));
-    	   }
+    			   System.out.println("Order item in current order orderItem list: " + currentOrder.getItemList().get(i));
+    		   }
+    	   
     	   total = currentOrder.calculateTotal();
     	   String totalValue = String.format("$%.2f", total);
     	   lblTotalValue.setText(totalValue);
     	   System.out.println("First Order Item: " + orderItemList.get(0).getMenuItem().getName());
+    	   }
        }
         
     }
