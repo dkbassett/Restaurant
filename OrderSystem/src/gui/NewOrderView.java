@@ -203,7 +203,6 @@ public class NewOrderView extends JFrame implements ActionListener, TableModelLi
     	   }
     	   total = currentOrder.calculateTotal();
     	   String totalValue = String.format("$%.2f", total);
-//    	   lblTotalValue.setText(String.valueOf(total));
     	   lblTotalValue.setText(totalValue);
     	   System.out.println("First Order Item: " + orderItemList.get(0).getMenuItem().getName());
        }
@@ -214,10 +213,17 @@ public class NewOrderView extends JFrame implements ActionListener, TableModelLi
 	public void tableChanged(TableModelEvent e) {
 		int row = e.getFirstRow();
         int column = e.getColumn();
-        OrderItemTableModel model = (OrderItemTableModel)e.getSource();
-        String columnName = model.getColumnName(column);
-        Object data = model.getValueAt(row, column);
-		
+        String columnName = orderItemTableModel.getColumnName(column);
+        
+        if (columnName == "Quantity") {     	
+        	Object data = orderItemTableModel.getValueAt(row, column);
+            int count = (Integer) data;
+     		currentOrder.getItemList().get(row).setQuantity(count);
+     		total = currentOrder.calculateTotal();
+     		String totalValue = String.format("$%.2f", total);
+     		lblTotalValue.setText(totalValue);
+        }
+       
 	} 
     
    
