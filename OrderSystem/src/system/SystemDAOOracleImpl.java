@@ -214,13 +214,18 @@ public abstract class SystemDAOOracleImpl {
 	public static String saveOrderTransaction(OrderTransaction orderTrans) {
 		int custId = orderTrans.getCustomerID();
 		String delivery = orderTrans.getDelivery();
-		DateFormat date = DateFormat.getDateInstance();
-		float total = orderTrans.getGrandTotal();	
+		long time = System.currentTimeMillis();
+		Date currentDate = new Date(time);
+		
+		System.out.println("current date: " + currentDate);
+		
+		float total = orderTrans.calculateTotal();	
+		System.out.println("Order Total is: " + total);
 
 		// replace date with current instance
 		return "INSERT INTO order_transaction " +
 				"VALUES(NULL, '" + custId + "', '" + delivery + "', " + 
-				"TO_DATE('" + "18/10/15" + "', 'dd/mm/yy'), " + total + ") " +
+				"TO_DATE('" + currentDate + "', 'yy/mm/dd'), " + total + ") " +
 				"RETURNING oid INTO :var1";
 	}
 	
@@ -256,8 +261,10 @@ public abstract class SystemDAOOracleImpl {
 	}
 	
 	public static String getDaysTakings() {
+		long time = System.currentTimeMillis();
+		Date currentDate = new Date(time);
 		return	"SELECT SUM(O.total) " +
 				"FROM order_transaction O " +
-				"WHERE O.date_ordered = ";
+				"WHERE TRUNC(O.date_ordered) = TO_DATE('" + currentDate + "', 'yy/mm/dd')";
 	}
 }

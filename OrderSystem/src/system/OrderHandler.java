@@ -1,6 +1,13 @@
 package system;
 
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.sql.rowset.CachedRowSet;
+
+import com.sun.rowset.CachedRowSetImpl;
 
 public abstract class OrderHandler {
 	
@@ -28,6 +35,27 @@ public abstract class OrderHandler {
 	
 	public static void storeOrderItems(int orderId, ArrayList<OrderItem> orderItems) {	
 		OrderTransaction.addOrderItemsToDB(orderId, orderItems);
+	}
+	
+	public static float getDaysTakingsFromDB() {
+		
+		float daysTakings = 0.00f;
+		
+		try {
+			CachedRowSet crs = new CachedRowSetImpl();
+			crs = SystemDAOOracleImpl.readFromTable(SystemDAOOracleImpl.getDaysTakings());		
+			ResultSetMetaData rsmd = crs.getMetaData();
+            int columnsNum = rsmd.getColumnCount();
+			while(crs.next()) {				
+				daysTakings = crs.getFloat(1);	
+				System.out.println("Days takings: " + daysTakings);
+			}
+			
+		} catch (SQLException e) {
+			System.err.println("Error: " + e.getMessage());
+		}
+		
+		return daysTakings;
 	}
 	
 }
