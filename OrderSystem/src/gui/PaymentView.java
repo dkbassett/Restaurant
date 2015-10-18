@@ -28,6 +28,8 @@ import system.Customer;
 import system.Order;
 import system.OrderHandler;
 import system.OrderItem;
+import system.OrderTransaction;
+import system.SystemDAOOracleImpl;
 
 public class PaymentView extends JFrame implements ActionListener{
 
@@ -37,7 +39,7 @@ public class PaymentView extends JFrame implements ActionListener{
 	JLabel Title,Customer,Name,Address, DeliveryType, CCNumber, Order, OrderTotal,
 		lblCustomerName, lblCustomerAddress, lblDeliveryType, lblCreditCardNumber;
     JButton btnCancel,btnSubmit;
-    JPanel pnlOrder;
+    JPanel pnlOrder, pnlConfirmation;
     private OrderItemTableModel orderItemTableModel;
     private JScrollPane jsOrder;
     private ArrayList<OrderItem> orderItemList;
@@ -92,8 +94,7 @@ public class PaymentView extends JFrame implements ActionListener{
 	  	pnlOrder = new JPanel();
 	  	pnlOrder.setLayout(null);
 	  	pnlOrder.setBorder(BorderFactory.createTitledBorder("Order"));
-//	  	pnlOrder.setPreferredSize(new Dimension(400, 350));
-	  	pnlOrder.setBounds(20,200,450,400);
+	  	pnlOrder.setBounds(20,200,450,240);
 	  	
 	  	// Order item table
 	  	orderItemTableModel = new OrderItemTableModel(orderItemList);
@@ -105,6 +106,27 @@ public class PaymentView extends JFrame implements ActionListener{
 	  	pnlOrder.add(jsOrder).setBounds(20,20,400,180);
 	  	
 	  	add(pnlOrder);
+	  	
+	  	/**
+	    * Confirmation Panel and components
+	    */
+	  	pnlConfirmation = new JPanel();
+//	  	pnlConfirmation.setLayout(null);
+	  	pnlConfirmation.setBounds(20,500,450,100);
+	  	
+	  	// Confirm button
+	  	btnSubmit = new JButton("Submit");
+	  	btnSubmit.setPreferredSize(new Dimension(80, 20));
+	  	pnlConfirmation.add(btnSubmit);
+	  	btnSubmit.addActionListener(this);
+	  	
+	  	// Cancel button
+	  	btnCancel = new JButton("Cancel");
+	  	btnCancel.setPreferredSize(new Dimension(80, 20));
+	  	pnlConfirmation.add(btnCancel);
+	  	btnCancel.addActionListener(this);
+	   
+	  	add(pnlConfirmation);
 	    
         setVisible(true);
         setTitle("Payment");
@@ -116,10 +138,17 @@ public class PaymentView extends JFrame implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-    if(e.getSource()== btnCancel){
-       dispose();
-    }else if(e.getSource()== btnSubmit){
-    	
+	    if(e.getSource()== btnCancel){
+	       dispose();
+	    } else if(e.getSource()== btnSubmit){
+	    	
+	    	// set order transaction from current order and store in database
+	    	OrderTransaction newOrderTransaction = new OrderTransaction(currentOrder);
+	    	int orderId = OrderHandler.storeOrderTransaction(newOrderTransaction);
+	    	
+	    	// get order items from current order and store items in database based on order Id
+	    	ArrayList<OrderItem> orderItems = currentOrder.getItemList();
+	    	OrderHandler.storeOrderItems(orderId, orderItems);
    
     	}
 

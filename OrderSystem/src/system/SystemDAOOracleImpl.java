@@ -2,17 +2,23 @@ package system;
 
 import java.sql.*;
 import java.text.DateFormat;
-
+import java.util.ArrayList;
 import java.sql.Connection;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
+
+import oracle.jdbc.OracleCallableStatement;
+import oracle.jdbc.OracleTypes;
 import oracle.jdbc.pool.OracleDataSource;
 import oracle.sql.*;
 
 import java.sql.SQLException;
+
 import javax.naming.NamingException;
 
 import com.sun.rowset.*;
+
 import javax.sql.rowset.CachedRowSet; 
 
 public abstract class SystemDAOOracleImpl {
@@ -89,7 +95,7 @@ public abstract class SystemDAOOracleImpl {
 	}
 	 
 	 public static void writeToTable(String sqlString) {
-        try {
+		 try {
             Connection conn = getConnection();
             Statement stmt = conn.createStatement();
             stmt.executeUpdate(sqlString);
@@ -100,8 +106,28 @@ public abstract class SystemDAOOracleImpl {
             System.err.println("Write SQLException: " + e.getMessage()
             + e.getErrorCode());
              e.printStackTrace();
-        } 
+        }
     }
+	 
+	 public static int writeTransactionToTable(String sqlString) {
+		 int primaryKey = -1;
+		 String query = "BEGIN " + sqlString + "; END;";
+		 try {
+            Connection conn = getConnection();
+            OracleCallableStatement cs = (OracleCallableStatement)conn.prepareCall(query);
+            cs.registerOutParameter(1, OracleTypes.VARCHAR);
+            cs.executeUpdate();
+            primaryKey = cs.getInt(1);
+            System.out.println("Statement written to database");
+            cs.close();
+            conn.close();
+        } catch(SQLException e) {
+            System.err.println("Write SQLException: " + e.getMessage()
+            + e.getErrorCode());
+             e.printStackTrace();
+        }
+        return primaryKey;
+    } 
 	
 	public static String selectAllCustomers() {		
 		return 	"SELECT * " +
@@ -185,15 +211,39 @@ public abstract class SystemDAOOracleImpl {
 	}
 	
 	// Inserts order into database.
-	public static String saveOrder(Order order) {
-		int ordId = order.getId();
-		int custId = order.getCustomerID();
-		String delivery = order.getDelivery();
+	public static String saveOrderTransaction(OrderTransaction orderTrans) {
+		int custId = orderTrans.getCustomerID();
+		String delivery = orderTrans.getDelivery();
 		DateFormat date = DateFormat.getDateInstance();
-		float total = order.getGrandTotal();
-		return	"INSERT INTO order_transaction " +
-				"VALUES ( " + ordId + "," + custId + ","
-							+ delivery + "," + date + ","
-							+ total;
+		float total = orderTrans.getGrandTotal();	
+
+		// replace date with current instance
+		return "INSERT INTO order_transaction " +
+				"VALUES(NULL, '" + custId + "', '" + delivery + "', " + 
+				"TO_DATE('" + "18/10/15" + "', 'dd/mm/yy'), " + total + ") " +
+				"RETURNING oid INTO :var1";
+	}
+	
+	// Inserts order items associated with order ID into database
+	public static String saveOrderItems(int orderId, ArrayList<OrderItem> orderItems) {
+		int orderItemCount = orderItems.size();
+		
+		String statement = 
+				"BEGIN " +
+					"SAVEPOINT start_tran; ";
+		for (int i = 0; i < orderItemCount; i++) {
+			statement += 
+					"INSERT INTO order_item " +
+					"VALUES('" + orderItems.get(i).getMenuItem().getId() + "', '" + orderId + "', '" 
+							+ orderItems.get(i).getQuantity() + "'); ";
+		}
+		statement += 
+				"EXCEPTION " +
+					"WHEN OTHERS THEN " +
+					"ROLLBACK TO start_tran; " +
+					"RAISE; " +
+				"END;";
+		
+		return statement;
 	}
 }

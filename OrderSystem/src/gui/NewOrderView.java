@@ -49,7 +49,7 @@ public class NewOrderView extends JFrame implements ActionListener {
     private ArrayList<MenuItem> menuItemList;
     private ArrayList<OrderItem> orderItemList = new ArrayList<OrderItem>();
     private float total = 0.00f;    	
-    private Order currentOrder = new Order(CustomerHandler.getCurrentCustomer().getId(), orderItemList, "Take away", total);
+    private Order currentOrder = new Order(CustomerHandler.getCurrentCustomer().getId(), orderItemList, "take-away", total);
 
 	public boolean RIGHT_TO_LEFT = false;
 	

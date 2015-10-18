@@ -1,5 +1,7 @@
 package system;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +18,15 @@ public class MainTester {
 //		System.out.println("Customer name is: " + cust.getName());
 		
 		
-		List<MenuItem> menuItemList = MenuItem.getMenuItemsFromDB();
+//		List<MenuItem> menuItemList = MenuItem.getMenuItemsFromDB();
 		
+		DateFormat currentDate = DateFormat.getDateInstance();
+		String pattern = ((SimpleDateFormat)currentDate).toPattern();
+		String localPattern = ((SimpleDateFormat)currentDate).toLocalizedPattern();
+		
+		System.out.println(currentDate);
+		System.out.println(pattern);
+		System.out.println(localPattern);
 	}
 
 }

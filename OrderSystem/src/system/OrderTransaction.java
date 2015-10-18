@@ -1,23 +1,32 @@
 package system;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class OrderTransaction extends Order {
 	
-	private int id;
-	private int saleDate;
+	private DateFormat saleDate;
 	private float amount;
 	private String paymentMethod;
 	
-	public OrderTransaction(int id, int customerId, int newSaleDate, 
-			ArrayList<OrderItem> orderItems, String delivery, float newAmount) {
-		super(id, customerId, orderItems, delivery, newAmount);
-		saleDate=newSaleDate;
-		amount=newAmount;
+	public OrderTransaction(Order currentOrder) {
+		super(currentOrder.getCustomerID(), currentOrder.getItemList(), currentOrder.getDelivery(), 
+				currentOrder.getGrandTotal());
+		saleDate = DateFormat.getDateInstance();
+		amount = currentOrder.getGrandTotal();
 	}
 	
 	public void processPayment(){
 		// place holder
+	}
+	
+	public static int addOrderTransactionToDB(OrderTransaction newOrderTransaction){		
+		return SystemDAOOracleImpl.writeTransactionToTable(SystemDAOOracleImpl.saveOrderTransaction(newOrderTransaction));
+	}
+	
+	public static void addOrderItemsToDB(int orderId, ArrayList<OrderItem> orderItems){		
+		SystemDAOOracleImpl.writeToTable(SystemDAOOracleImpl.saveOrderItems(orderId, orderItems));
 	}
 	
 }

@@ -22,4 +22,12 @@ public abstract class OrderHandler {
 		OrderHandler.currentOrder = currentOrder;
 	}
 	
+	public static int storeOrderTransaction(OrderTransaction newOrderTransaction){
+		return OrderTransaction.addOrderTransactionToDB(newOrderTransaction);
+	}
+	
+	public static void storeOrderItems(int orderId, ArrayList<OrderItem> orderItems) {	
+		OrderTransaction.addOrderItemsToDB(orderId, orderItems);
+	}
+	
 }
