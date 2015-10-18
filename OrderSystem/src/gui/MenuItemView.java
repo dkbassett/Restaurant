@@ -38,7 +38,7 @@ public class MenuItemView extends JFrame implements ActionListener {
     private JTable tblMenu, tblOrder;
     private JTextField txtItemNumber;
     private JLabel lblItemNumber, lblTotalTitle, lblTotalValue;
-    private JButton btnAddToOrder, btnview, btnConfirm, btnCancel;
+    private JButton btnAddToOrder, btnview, btnConfirm, btnCancel,btnUpdate;
     private JRadioButton rdoTakeAway, rdoHomeDelivery;
     private ButtonGroup deliveryOptions;
     private JScrollPane js, jsOrder;
@@ -106,6 +106,10 @@ public class MenuItemView extends JFrame implements ActionListener {
       	pnlMenu.add(btnAddToOrder).setBounds(20,280,120,20);
       	btnAddToOrder.addActionListener(this);
       
+      	btnUpdate = new JButton("Update");
+      	pnlMenu.add(btnUpdate).setBounds(160,280,80,20);
+      	btnUpdate.addActionListener(this);
+      	
       	contentPane.add(pnlMenu);
             
 
@@ -132,7 +136,7 @@ public class MenuItemView extends JFrame implements ActionListener {
     }
     
     public void createAndShowGUI() {
-        frame = new JFrame("New Order") {
+        frame = new JFrame("Menu Items") {
             public Dimension getMinimumSize() {
                 Dimension prefSize = getPreferredSize();
                 return new Dimension(100, prefSize.height);
@@ -153,13 +157,21 @@ public class MenuItemView extends JFrame implements ActionListener {
        if(e.getSource()==btnview){
            new CurrentOrderView();
        } else if (e.getSource()==btnConfirm) {
-
+    	   dispose();
     	   
        } else if (e.getSource().equals(btnCancel)) {
     	   frame.dispose();
     	   System.out.println("Cancel button fired");
        } else if (e.getSource().equals(btnAddToOrder)) { // acts as add to Menu button
     	 new AddItemView();
+       } else if (e.getSource()==btnUpdate) {
+    	   	menuItemList = MenuItem.getMenuItemsFromDB();
+         	tblMenu = new JTable(new MenuTableModel(menuItemList));
+          	tblMenu.setFillsViewportHeight(true);
+          	
+          	js = new JScrollPane(tblMenu);
+          	pnlMenu.add(js).setBounds(20,60,600,200);
+       }
 
     	//	   System.out.println("Order item in current order orderItem list: " + currentOrder.getItemList().get(i));
     	   
@@ -173,7 +185,7 @@ public class MenuItemView extends JFrame implements ActionListener {
     }
     
    
-}
+
 
 
 

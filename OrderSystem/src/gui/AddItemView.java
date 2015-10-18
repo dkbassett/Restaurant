@@ -84,7 +84,6 @@ public class AddItemView extends JFrame implements ActionListener{
 			
 			MenuItem item = new MenuItem(name, price);
 			MenuItem.addNewMenuItemToDB(item);
-		//	SystemDAOOracleImpl.updateMenuItem(item);
 			
 			
 			dispose();
