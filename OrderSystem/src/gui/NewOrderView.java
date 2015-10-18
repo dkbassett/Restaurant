@@ -22,6 +22,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import system.CustomerHandler;
@@ -31,7 +33,7 @@ import system.OrderHandler;
 import system.OrderItem;
 
 
-public class NewOrderView extends JFrame implements ActionListener {
+public class NewOrderView extends JFrame implements ActionListener, TableModelListener {
 	private JFrame frame;
 	private JPanel pnlCustomerDetails, pnlDelivery, pnlMenu, pnlOrder, pnlConfirmation;
     private DefaultTableModel dtm = new DefaultTableModel();
@@ -69,11 +71,6 @@ public class NewOrderView extends JFrame implements ActionListener {
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));
         
         menuItemList = MenuItem.getMenuItemsFromDB();
-        
-        String[] orderColumnNames = {"Name", "Price", "Quantity"};
-        Object[][] orderData = {
-        		{"test","",""}
-        };
 
         /** 
     	 * Delivery Panel and components
@@ -134,8 +131,8 @@ public class NewOrderView extends JFrame implements ActionListener {
 	  	
 	  	// Order item table
 	  	orderItemTableModel = new OrderItemTableModel(orderItemList);
-	  	tblOrder = new JTable(orderItemTableModel);	  	
-//	  	tblOrder = new JTable(orderData, orderColumnNames);
+	  	tblOrder = new JTable(orderItemTableModel);
+	  	tblOrder.getModel().addTableModelListener(this);
 	  	tblOrder.setFillsViewportHeight(true);
 	  	jsOrder = new JScrollPane(tblOrder);
 	  	pnlOrder.add(jsOrder).setBounds(20,40,600,200);
@@ -212,6 +209,16 @@ public class NewOrderView extends JFrame implements ActionListener {
        }
         
     }
+
+	@Override
+	public void tableChanged(TableModelEvent e) {
+		int row = e.getFirstRow();
+        int column = e.getColumn();
+        OrderItemTableModel model = (OrderItemTableModel)e.getSource();
+        String columnName = model.getColumnName(column);
+        Object data = model.getValueAt(row, column);
+		
+	} 
     
    
 }

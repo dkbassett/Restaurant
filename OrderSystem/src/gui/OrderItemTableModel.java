@@ -69,6 +69,7 @@ public class OrderItemTableModel extends AbstractTableModel {
 		
 		if (columnIndex == 2) {
 			orderItem.setQuantity((Integer.valueOf((String)value)));
+			fireTableCellUpdated(rowIndex, columnIndex);
 		}
 	}
 
