@@ -39,6 +39,7 @@ public class SearchCustomerView extends JFrame implements ActionListener{
     Customer selectedCustomer = new Customer();
     JScrollPane js;
     List<Customer> customerList;
+    private ListSelectionModel listSelectionModel;
 
     public SearchCustomerView(){
         setLayout(null);
@@ -46,6 +47,7 @@ public class SearchCustomerView extends JFrame implements ActionListener{
         customerList = Customer.getCustomersFromDB();
         tblCustomers = new JTable(new CustomerTableModel(customerList));
         tblCustomers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listSelectionModel = tblCustomers.getSelectionModel();
         js = new JScrollPane(tblCustomers);
       	add(js).setBounds(20,100,900,500);
         
@@ -79,10 +81,7 @@ public class SearchCustomerView extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()== btnSearch){
-//            String a = tbl.getValueAt(tbl.getSelectedRow(),0).toString();
-//            String b = tbl.getValueAt(tbl.getSelectedRow(),1).toString();
-//            String c = tbl.getValueAt(tbl.getSelectedRow(),2).toString();
-//            String d = tbl.getValueAt(tbl.getSelectedRow(),3).toString();
+        	textFieldChange();
         }
         if(e.getSource()== btnConfirm) {
         	int selectedRowIndex = tblCustomers.getSelectedRow();  
@@ -103,19 +102,29 @@ public class SearchCustomerView extends JFrame implements ActionListener{
     }
     
 
-//    private void getTableData() {
-//    	dtm.addColumn("Id");
-//    	dtm.addColumn("Name");
-//        dtm.addColumn("Address");
-//        dtm.addColumn("Phone");
-//        
-//        
-//        
-//        
-//       JScrollPane js = new JScrollPane(tbl);
-//       add(js).setBounds(20,100,900,500);
-//       
-// 
-//    }
+    private void textFieldChange() {
+    	System.out.println("textField change fired");
+		if (!txtSearch.getText().equals(null) && !txtSearch.getText().equals("")) {
+			System.out.println("in if statement");
+				String phoneNumber = txtSearch.getText();
+				int index = getRowByValue(phoneNumber);	
+				listSelectionModel.setSelectionInterval(index, index);
+		} else {
+			System.out.println("didn't work");
+		}
+	}
     
+    private int getRowByValue(String value) {
+    	int index = 0;
+
+    	for (int i = 0; i < tblCustomers.getRowCount(); i++) {
+            for (int j = 0; j < tblCustomers.getColumnCount(); j++) {
+                if (tblCustomers.getValueAt(i, j).equals(value)) {
+                	System.out.println("i is: " + i);
+                    return i;
+                }
+            }
+        }
+	    return index;
+    }
 }

@@ -37,7 +37,7 @@ public class PaymentView extends JFrame implements ActionListener{
 	JTable tbl = new JTable(dtm);
 	JTable tblOrder;
 	JLabel Title,Customer,Name,Address, DeliveryType, CCNumber, Order, OrderTotal,
-		lblCustomerName, lblCustomerAddress, lblDeliveryType, lblCreditCardNumber;
+		lblCustomerName, lblCustomerAddress, lblDeliveryType, lblCreditCardNumber, lblTotalValue;
     JButton btnCancel,btnSubmit;
     JPanel pnlOrder, pnlConfirmation;
     private OrderItemTableModel orderItemTableModel;
@@ -46,6 +46,7 @@ public class PaymentView extends JFrame implements ActionListener{
     private Order currentOrder = OrderHandler.getCurrentOrder();
     private Customer customer = CustomerHandler.getCurrentCustomer();
     private CreditCard creditCard = CreditCardHandler.getSelectedCreditCard();
+    private float total = 0.00f;
 	
 	public PaymentView(){
 		setLayout(null);
@@ -104,6 +105,10 @@ public class PaymentView extends JFrame implements ActionListener{
 	  	tblOrder.getColumnModel().getColumn(2).setPreferredWidth(80);
 	  	jsOrder = new JScrollPane(tblOrder);
 	  	pnlOrder.add(jsOrder).setBounds(20,20,400,180);
+	  	
+	  	total = currentOrder.calculateTotal();
+	  	String totalValue = String.format("$%.2f", total);
+	  	lblTotalValue.setText(totalValue);
 	  	
 	  	add(pnlOrder);
 	  	

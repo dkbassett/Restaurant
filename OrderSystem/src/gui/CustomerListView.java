@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -39,6 +40,7 @@ public class CustomerListView extends JFrame implements ActionListener{
     Customer selectedCustomer = new Customer();
     JScrollPane js;
     List<Customer> customerList;
+    private ListSelectionModel listSelectionModel;
 
     public CustomerListView(){
         setLayout(null);
@@ -46,6 +48,7 @@ public class CustomerListView extends JFrame implements ActionListener{
         customerList = Customer.getCustomersFromDB();
         tblCustomers = new JTable(new CustomerTableModel(customerList));
         tblCustomers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listSelectionModel = tblCustomers.getSelectionModel();
         js = new JScrollPane(tblCustomers);
       	add(js).setBounds(20,100,900,500);
         
@@ -92,6 +95,8 @@ public class CustomerListView extends JFrame implements ActionListener{
 //            String b = tbl.getValueAt(tbl.getSelectedRow(),1).toString();
 //            String c = tbl.getValueAt(tbl.getSelectedRow(),2).toString();
 //            String d = tbl.getValueAt(tbl.getSelectedRow(),3).toString();
+        	System.out.println("btnSearch pressed");
+        	
         }
         if(e.getSource()== btnConfirm) {
         	dispose();
@@ -112,5 +117,8 @@ public class CustomerListView extends JFrame implements ActionListener{
         }
         
     }
+    
+    
+    
     
 }
