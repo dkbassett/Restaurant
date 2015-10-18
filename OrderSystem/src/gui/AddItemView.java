@@ -29,8 +29,8 @@ public class AddItemView extends JFrame implements ActionListener{
        Title = new JLabel("Add Menu Item");
        add(Title).setBounds(20,20,120,20);
         
-       ItemID = new JLabel("Item ID");
-        add(ItemID).setBounds(20,65,120,20);
+      // ItemID = new JLabel("Item ID");
+     //   add(ItemID).setBounds(20,65,120,20);
        
         Itemname = new JLabel("Item Name");
         add(Itemname).setBounds(20,90,120,20);
@@ -38,8 +38,8 @@ public class AddItemView extends JFrame implements ActionListener{
         Itemprice = new JLabel("Itemprice:");
         add(Itemprice).setBounds(20,115,120,20);
         
-       txtId = new JTextField();
-       add(txtId).setBounds(130,65,120,20);
+      // txtId = new JTextField();
+       //add(txtId).setBounds(130,65,120,20);
         
        
        txtName = new JTextField();
