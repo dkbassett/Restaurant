@@ -89,10 +89,10 @@ public class MenuItemView extends JFrame implements ActionListener {
       	pnlMenu.setPreferredSize(new Dimension(800, 340));
            
       	// Item number label and text field
-      	lblItemNumber = new JLabel("Item Number:");
-      	pnlMenu.add(lblItemNumber).setBounds(20,20,100,20);      
-      	txtItemNumber = new JTextField();
-      	pnlMenu.add(txtItemNumber).setBounds(110,20,100,20);
+      	//lblItemNumber = new JLabel("Item Number:");
+      //	pnlMenu.add(lblItemNumber).setBounds(20,20,100,20);      
+      	//txtItemNumber = new JTextField();
+      //	pnlMenu.add(txtItemNumber).setBounds(110,20,100,20);
             
       	// Menu item table
       	tblMenu = new JTable(new MenuTableModel(menuItemList));
