@@ -15,14 +15,19 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import system.SystemDAOOracleImpl;
+
 
 public class MainwindowView extends JFrame implements ActionListener  {
 
     JMenuBar menu; // Declaring Jmenubar
     JMenu Staffmember,Customerhandler,Rmenu, AddCustomer;  // Declaring Jmenu for Jmenubar
     JMenuItem Menuitem,Orderitem,Customer,Customer_Details, Customerlist, Ordertransaction,Stafflist ; //Declaring Jmenuitem for Jmenu
-    JButton btnorder;
-     
+    JButton btnorder,btnUpdate;
+    JLabel lblTotalTitle,lblTotalValue ;
+    
+    private String total = "0.00";
+    
     public MainwindowView(){
         setLayout(null);
         menu = new JMenuBar();
@@ -44,6 +49,10 @@ public class MainwindowView extends JFrame implements ActionListener  {
         
         Customerlist = new JMenuItem("Customer list");
         Customerhandler.add(Customerlist).setBounds(20,40,40,40);
+        
+	    btnUpdate = new JButton("Update");
+	    add(btnUpdate).setBounds(200,285,80,20);
+	    btnUpdate.addActionListener(this);	   
         
         Customer.addActionListener(this);
         Customer_Details.addActionListener(this);
@@ -67,6 +76,13 @@ public class MainwindowView extends JFrame implements ActionListener  {
         btnorder = new JButton("Click to make Order");
         add(btnorder).setBounds(150,100,300,100);
         btnorder.addActionListener(this);
+        
+	  	lblTotalTitle = new JLabel("Day's Total Earnings:");
+	  	add(lblTotalTitle).setBounds(300, 280, 160, 30);
+	  	String Value = String.format("$%s", total);
+	  	lblTotalValue = new JLabel(Value);
+	  	add(lblTotalValue).setBounds(430, 280, 80, 30);
+	  	
         try {
           setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Images\\LOGO.jpg"))))); //setting background screen
         }
@@ -96,6 +112,14 @@ public class MainwindowView extends JFrame implements ActionListener  {
         }
        if(e.getSource()==Menuitem){
     	   new MenuItemView();
+       }       
+       if(e.getSource()==btnUpdate){
+    	   remove(lblTotalValue);
+    	   total=SystemDAOOracleImpl.getDaysTakings();
+    	   String Value = String.format("$%s", total);
+   	  		lblTotalValue = new JLabel(Value);
+   	  		add(lblTotalValue).setBounds(430, 280, 80, 30);
+    	   
        }
        if(e.getSource()==Ordertransaction){
     	   new OrderHistoryView();
