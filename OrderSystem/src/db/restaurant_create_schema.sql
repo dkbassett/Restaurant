@@ -21,7 +21,7 @@ CREATE TABLE customer (
 	id		varchar(7)	not null,	/* primary key */
 	name		varchar(100)	not null,
 	address		varchar(200)	not null,
-	phone_no	number(12)	not null,
+	phone_no	varchar(12)	not null,
 	PRIMARY KEY (id)	
 );
 
@@ -61,6 +61,18 @@ CREATE TABLE order_transaction (
 	CONSTRAINT	chk_delivery	CHECK (delivery_type='take-away' OR delivery_type='home delivery'), 
 	PRIMARY KEY (oid)	
 );
+
+CREATE SEQUENCE otrans_id_seq;
+
+CREATE TRIGGER trg_otrans_id
+	BEFORE INSERT ON order_transaction
+	FOR EACH ROW
+BEGIN
+	SELECT otrans_id_seq.NEXTVAL
+	INTO :new.oid
+	FROM dual;
+END;
+/
 
 ALTER TABLE order_transaction ADD CONSTRAINT order_customer
 	FOREIGN KEY (customer_id) REFERENCES customer(id);

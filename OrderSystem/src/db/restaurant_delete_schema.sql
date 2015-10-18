@@ -13,6 +13,5 @@ DROP TABLE customer;
 DROP TABLE menu_item;
 
 DROP SEQUENCE cust_id_seq;
-DROP TRIGGER trg_cust_id;
 DROP SEQUENCE mitem_id_seq;
-DROP TRIGGER trg_mitem_id;
+DROP SEQUENCE otrans_id_seq;

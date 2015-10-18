@@ -13,8 +13,9 @@ DELETE FROM order_transaction;
 DELETE FROM order_item;
 DELETE FROM uses_card;
 
-DELETE FROM mitem_id_seq;
-DELETE FROM cust_id_seq;
+DROP SEQUENCE cust_id_seq;
+DROP SEQUENCE mitem_id_seq;
+DROP SEQUENCE otrans_id_seq;
 
 ALTER TABLE order_transaction ADD CONSTRAINT order_customer
 	FOREIGN KEY (customer_id) REFERENCES customer(id);
@@ -30,3 +31,10 @@ ALTER TABLE uses_card ADD CONSTRAINT customer_uses_card
 
 ALTER TABLE uses_card ADD CONSTRAINT uses_card_number
 	FOREIGN KEY (cr_number,cr_exp) REFERENCES credit_card(cr_number,exp);
+
+
+CREATE SEQUENCE mitem_id_seq;
+
+CREATE SEQUENCE cust_id_seq;
+
+CREATE SEQUENCE otrans_id_seq;
