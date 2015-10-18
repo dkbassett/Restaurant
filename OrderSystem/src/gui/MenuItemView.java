@@ -165,12 +165,44 @@ public class MenuItemView extends JFrame implements ActionListener {
        } else if (e.getSource().equals(btnAddToOrder)) { // acts as add to Menu button
     	 new AddItemView();
        } else if (e.getSource()==btnUpdate) {
-    	   	menuItemList = MenuItem.getMenuItemsFromDB();
+
+    	// frame.setVisible(false);
+    	  // frame.getContentPane().remove(pnlMenu);
+    	   JPanel contentPane = (JPanel) frame.getContentPane();
+    	   frame.getContentPane().removeAll();
+    	   
+    	  menuItemList = MenuItem.getMenuItemsFromDB();
+    	   
+           String[] orderColumnNames = {"Name", "Price", "Quantity"};
+           Object[][] orderData = {
+          		{"test","",""}
+           };
+           	pnlMenu = new JPanel();
+           	pnlMenu.setLayout(null);
+          	pnlMenu.setBorder(BorderFactory.createTitledBorder("Menu"));
+         	pnlMenu.setPreferredSize(new Dimension(800, 340));
+    	  // 	
          	tblMenu = new JTable(new MenuTableModel(menuItemList));
           	tblMenu.setFillsViewportHeight(true);
           	
           	js = new JScrollPane(tblMenu);
-          	pnlMenu.add(js).setBounds(20,60,600,200);
+         	pnlMenu.add(js).setBounds(20,60,600,200);
+         	
+          	btnAddToOrder = new JButton("Add to Menu");
+          	pnlMenu.add(btnAddToOrder).setBounds(20,280,120,20);
+          	btnAddToOrder.addActionListener(this);
+          
+          	btnUpdate = new JButton("Update");
+          	pnlMenu.add(btnUpdate).setBounds(160,280,80,20);
+          	btnUpdate.addActionListener(this);
+          	
+          	frame.getContentPane().add(pnlMenu);
+          	frame.getContentPane().add(pnlConfirmation);
+          	
+          //	createAndShowGUI();
+         	frame.getContentPane().repaint();
+         	frame.getContentPane().revalidate();
+         	frame.getContentPane().repaint();
        }
 
     	//	   System.out.println("Order item in current order orderItem list: " + currentOrder.getItemList().get(i));
