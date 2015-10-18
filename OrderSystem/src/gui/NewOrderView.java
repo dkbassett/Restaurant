@@ -22,9 +22,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.plaf.basic.BasicTreeUI.SelectionModelPropertyChangeHandler;
 import javax.swing.table.DefaultTableModel;
 
 import system.CustomerHandler;
@@ -108,11 +111,39 @@ public class NewOrderView extends JFrame implements ActionListener, TableModelLi
       	lblItemNumber = new JLabel("Item Number:");
       	pnlMenu.add(lblItemNumber).setBounds(20,20,100,20);      
       	txtItemNumber = new JTextField();
+      	txtItemNumber.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				if (txtItemNumber.getText() != null) {
+					System.out.println("In if statement");
+					int itemNumber = Integer.parseInt(txtItemNumber.getText());
+					listSelectionModel.setSelectionInterval(itemNumber, itemNumber);
+				} else {
+					System.out.println("not working");
+				}
+				
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+      		
+      	});
       	pnlMenu.add(txtItemNumber).setBounds(110,20,100,20);
             
       	// Menu item table
       	tblMenu = new JTable(new MenuTableModel(menuItemList));
       	tblMenu.setFillsViewportHeight(true);
+      	listSelectionModel = tblMenu.getSelectionModel();
       	
       	js = new JScrollPane(tblMenu);
       	pnlMenu.add(js).setBounds(20,60,600,200);
