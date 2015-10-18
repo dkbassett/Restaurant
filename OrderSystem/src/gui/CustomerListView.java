@@ -36,7 +36,7 @@ public class CustomerListView extends JFrame implements ActionListener{
     JTable tblCustomers;
     JTextField txtSearch;
     JLabel lblPhone;
-    JButton btnSearch, btnCancel, btnConfirm,btnAddCustomer,btnUpdate;
+    JButton btnSearch, btnDone, btnAddCustomer, btnUpdate;
     Customer selectedCustomer = new Customer();
     JScrollPane js;
     List<Customer> customerList;
@@ -62,17 +62,13 @@ public class CustomerListView extends JFrame implements ActionListener{
         add(btnSearch).setBounds(230, 20, 100, 20);
         btnSearch.addActionListener(this);
         
-        btnConfirm = new JButton("Confirm");
-        add(btnConfirm).setBounds(20,660,80,20);
-        btnConfirm.addActionListener(this);
+        btnDone = new JButton("Done");
+        add(btnDone).setBounds(20,660,80,20);
+        btnDone.addActionListener(this);
         
         btnAddCustomer = new JButton("Add Customer");
         add(btnAddCustomer).setBounds(20,620,120,20);
         btnAddCustomer.addActionListener(this);
-        
-        btnCancel = new JButton("Cancel");
-        add(btnCancel).setBounds(120,660,80,20);
-        btnCancel.addActionListener(this);
         
 	    btnUpdate = new JButton("Update");
 	    add(btnUpdate).setBounds(160,620,80,20);
@@ -91,21 +87,13 @@ public class CustomerListView extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()== btnSearch){
-//            String a = tbl.getValueAt(tbl.getSelectedRow(),0).toString();
-//            String b = tbl.getValueAt(tbl.getSelectedRow(),1).toString();
-//            String c = tbl.getValueAt(tbl.getSelectedRow(),2).toString();
-//            String d = tbl.getValueAt(tbl.getSelectedRow(),3).toString();
-        	System.out.println("btnSearch pressed");
-        	
+        	textFieldChange();
         }
-        if(e.getSource()== btnConfirm) {
+        if(e.getSource()== btnDone) {
         	dispose();
         }
         if(e.getSource()== btnAddCustomer) {
         	new NewCustomerView();
-        }
-        if(e.getSource()== btnCancel) {
-    	dispose();
         }
         if(e.getSource()== btnUpdate) {
             customerList = Customer.getCustomersFromDB();
@@ -118,7 +106,31 @@ public class CustomerListView extends JFrame implements ActionListener{
         
     }
     
+    private void textFieldChange() {
+    	System.out.println("textField change fired");
+		if (!txtSearch.getText().equals(null) && !txtSearch.getText().equals("")) {
+			System.out.println("in if statement");
+				String phoneNumber = txtSearch.getText();
+				int index = getRowByValue(phoneNumber);	
+				listSelectionModel.setSelectionInterval(index, index);
+		} else {
+			System.out.println("didn't work");
+		}
+	}
     
+    private int getRowByValue(String value) {
+    	int index = 0;
+
+    	for (int i = 0; i < tblCustomers.getRowCount(); i++) {
+            for (int j = 0; j < tblCustomers.getColumnCount(); j++) {
+                if (tblCustomers.getValueAt(i, j).equals(value)) {
+                	System.out.println("i is: " + i);
+                    return i;
+                }
+            }
+        }
+	    return index;
+    }
     
     
 }
