@@ -15,6 +15,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import system.OrderHandler;
 import system.SystemDAOOracleImpl;
 
 
@@ -26,7 +27,7 @@ public class MainwindowView extends JFrame implements ActionListener  {
     JButton btnorder,btnUpdate;
     JLabel lblTotalTitle,lblTotalValue ;
     
-    private String total = "0.00";
+    private String total = Float.toString(OrderHandler.getDaysTakingsFromDB());
     
     public MainwindowView(){
         setLayout(null);
@@ -115,7 +116,7 @@ public class MainwindowView extends JFrame implements ActionListener  {
        }       
        if(e.getSource()==btnUpdate){
     	   remove(lblTotalValue);
-    	   total=SystemDAOOracleImpl.getDaysTakings();
+    	   total=Float.toString(OrderHandler.getDaysTakingsFromDB());
     	   String Value = String.format("$%s", total);
    	  		lblTotalValue = new JLabel(Value);
    	  		add(lblTotalValue).setBounds(430, 280, 80, 30);
