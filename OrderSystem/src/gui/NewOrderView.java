@@ -115,26 +115,17 @@ public class NewOrderView extends JFrame implements ActionListener, TableModelLi
 
 			@Override
 			public void changedUpdate(DocumentEvent arg0) {
-				if (txtItemNumber.getText() != null) {
-					System.out.println("In if statement");
-					int itemNumber = Integer.parseInt(txtItemNumber.getText());
-					listSelectionModel.setSelectionInterval(itemNumber, itemNumber);
-				} else {
-					System.out.println("not working");
-				}
-				
+				textFieldChange();
 			}
 
 			@Override
 			public void insertUpdate(DocumentEvent arg0) {
-				// TODO Auto-generated method stub
-				
+				textFieldChange();
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent arg0) {
-				// TODO Auto-generated method stub
-				
+				textFieldChange();
 			}
       		
       	});
@@ -262,7 +253,18 @@ public class NewOrderView extends JFrame implements ActionListener, TableModelLi
      		lblTotalValue.setText(totalValue);
         }
        
-	} 
+	}
+	
+	public void textFieldChange() {	
+		if (!txtItemNumber.getText().equals(null) && !txtItemNumber.getText().equals("")) {
+			try {
+				int itemNumber = Integer.parseInt(txtItemNumber.getText());
+				listSelectionModel.setSelectionInterval(itemNumber - 1, itemNumber - 1);
+			} catch (NumberFormatException e) {
+				System.out.println("number not in correct format");
+			}
+		}
+	}
     
    
 }
