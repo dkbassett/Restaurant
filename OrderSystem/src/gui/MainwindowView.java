@@ -40,11 +40,14 @@ public class MainwindowView extends JFrame implements ActionListener  {
         staffList = new JMenuItem("Staff Lists");
         staffMember.add(staffList).setBounds(20,30,40,40);
         staffList.addActionListener(this);
+        
+        addStaff = new JMenuItem("Add Staff");
+        staffMember.add(addStaff).setBounds(20,20,40,40);
 
         customers = new JMenu("Customers");
         menu.add(customers).setBounds(70,20,40,40);
-        addStaff = new JMenuItem("Add Staff");
-        customers.add(addStaff).setBounds(20,20,40,40);
+        
+
         
         Customer_Details = new JMenuItem("New Customer");
         customers.add(Customer_Details).setBounds(20,30,40,40);
