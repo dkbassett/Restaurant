@@ -22,6 +22,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import system.CustomerHandler;
@@ -31,26 +33,19 @@ import system.OrderHandler;
 import system.OrderItem;
 
 
-public class MenuItemView extends JFrame implements ActionListener {
+public class MenuItemView extends JFrame implements ActionListener, TableModelListener {
 	private JFrame frame;
 	private JPanel pnlCustomerDetails, pnlDelivery, pnlMenu, pnlOrder, pnlConfirmation;
     private DefaultTableModel dtm = new DefaultTableModel();
     private JTable tblMenu, tblOrder;
     private JTextField txtItemNumber;
     private JLabel lblItemNumber, lblTotalTitle, lblTotalValue;
-    private JButton btnAddToOrder, btnview, btnConfirm, btnCancel,btnUpdate;
-    private JRadioButton rdoTakeAway, rdoHomeDelivery;
-    private ButtonGroup deliveryOptions;
+    private JButton btnAddToOrder, btnview, btnSave, btnCancel,btnUpdate;
     private JScrollPane js, jsOrder;
     private ListSelectionModel listSelectionModel;
-    private OrderItemTableModel orderItemTableModel;
     
-    private FlowLayout experimentLayout = new FlowLayout();
     private ArrayList<MenuItem> menuItemList;
-    private ArrayList<OrderItem> orderItemList = new ArrayList<OrderItem>();
-    private float total = 0.00f;    	
-  //  private Order currentOrder = new Order(CustomerHandler.getCurrentCustomer().getId(), orderItemList, "Take away", total);
-
+    private MenuTableModel menuTableModel;
 	public boolean RIGHT_TO_LEFT = false;
 	
     public MenuItemView(){
@@ -74,11 +69,6 @@ public class MenuItemView extends JFrame implements ActionListener {
         Object[][] orderData = {
         		{"test","",""}
         };
-
-        /** 
-    	 * Delivery Panel and components
-    	 */
-
         
 	    /** 
 	     * Menu Panel and components
@@ -87,16 +77,15 @@ public class MenuItemView extends JFrame implements ActionListener {
         pnlMenu.setLayout(null);
         pnlMenu.setBorder(BorderFactory.createTitledBorder("Menu"));
       	pnlMenu.setPreferredSize(new Dimension(800, 340));
-           
-      	// Item number label and text field
-      	//lblItemNumber = new JLabel("Item Number:");
-      //	pnlMenu.add(lblItemNumber).setBounds(20,20,100,20);      
-      	//txtItemNumber = new JTextField();
-      //	pnlMenu.add(txtItemNumber).setBounds(110,20,100,20);
             
       	// Menu item table
-      	tblMenu = new JTable(new MenuTableModel(menuItemList));
+      	menuTableModel = new MenuTableModel(menuItemList);
+      	menuTableModel.setEditableColumn(1, true);
+      	menuTableModel.setEditableColumn(2, true);
+      	tblMenu = new JTable(menuTableModel);
+      	tblMenu.getModel().addTableModelListener(this);
       	tblMenu.setFillsViewportHeight(true);
+      	listSelectionModel = tblMenu.getSelectionModel();
       	
       	js = new JScrollPane(tblMenu);
       	pnlMenu.add(js).setBounds(20,60,600,200);
@@ -112,7 +101,6 @@ public class MenuItemView extends JFrame implements ActionListener {
       	
       	contentPane.add(pnlMenu);
             
-
    	  	
 	   /**
 	    * Confirmation Panel and components
@@ -121,10 +109,10 @@ public class MenuItemView extends JFrame implements ActionListener {
 	  	pnlConfirmation.setPreferredSize(new Dimension(300, 70));
 	  	
 	  	// Confirm button
-	  	btnConfirm = new JButton("Confirm");
-	  	btnConfirm.setPreferredSize(new Dimension(80, 20));
-	  	pnlConfirmation.add(btnConfirm);
-	  	btnConfirm.addActionListener(this);
+	  	btnSave = new JButton("Save");
+	  	btnSave.setPreferredSize(new Dimension(80, 20));
+	  	pnlConfirmation.add(btnSave);
+	  	btnSave.addActionListener(this);
 	  	
 	  	// Cancel button
 	  	btnCancel = new JButton("Cancel");
@@ -156,9 +144,8 @@ public class MenuItemView extends JFrame implements ActionListener {
         
        if(e.getSource()==btnview){
            new CurrentOrderView();
-       } else if (e.getSource()==btnConfirm) {
-    	   dispose();
-    	   
+       } else if (e.getSource()==btnSave) {
+    	   frame.dispose();  	   
        } else if (e.getSource().equals(btnCancel)) {
     	   frame.dispose();
     	   System.out.println("Cancel button fired");
@@ -181,7 +168,8 @@ public class MenuItemView extends JFrame implements ActionListener {
            	pnlMenu.setLayout(null);
           	pnlMenu.setBorder(BorderFactory.createTitledBorder("Menu"));
          	pnlMenu.setPreferredSize(new Dimension(800, 340));
-    	  // 	
+         	
+         	// menu item table
          	tblMenu = new JTable(new MenuTableModel(menuItemList));
           	tblMenu.setFillsViewportHeight(true);
           	
@@ -199,22 +187,37 @@ public class MenuItemView extends JFrame implements ActionListener {
           	frame.getContentPane().add(pnlMenu);
           	frame.getContentPane().add(pnlConfirmation);
           	
-          //	createAndShowGUI();
+          	// createAndShowGUI();
          	frame.getContentPane().repaint();
          	frame.getContentPane().revalidate();
          	frame.getContentPane().repaint();
        }
-
-    	//	   System.out.println("Order item in current order orderItem list: " + currentOrder.getItemList().get(i));
-    	   
-    	//   total = currentOrder.calculateTotal();
-    	//   String totalValue = String.format("$%.2f", total);
-//    	   lblTotalValue.setText(String.valueOf(total));
-    //	   lblTotalValue.setText(totalValue);
-    	//   System.out.println("First Order Item: " + orderItemList.get(0).getMenuItem().getName());
-       }
-        
     }
+    
+    
+    @Override
+	public void tableChanged(TableModelEvent e) {
+		int row = e.getFirstRow();
+        int column = e.getColumn();
+        String columnName = menuTableModel.getColumnName(column);
+        
+        if (columnName.equals("Name")) {     	
+        	Object data = menuTableModel.getValueAt(row, column);
+            String name = (String) data;
+            menuItemList.get(row).setName(name);
+        }
+        if (columnName.equals("Price")) {     	
+        	Object data = menuTableModel.getValueAt(row, column);
+            float price = (Float) data;
+            menuItemList.get(row).setPrice(price);
+        }
+       
+	}
+    
+        
+}
+
+
     
    
 
