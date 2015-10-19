@@ -37,7 +37,7 @@ public class PaymentView extends JFrame implements ActionListener{
 	JTable tbl = new JTable(dtm);
 	JTable tblOrder;
 	JLabel Title,Customer,Name,Address, DeliveryType, CCNumber, Order, OrderTotal,
-		lblCustomerName, lblCustomerAddress, lblDeliveryType, lblCreditCardNumber, lblTotalValue;
+		lblCustomerName, lblCustomerAddress, lblDeliveryType, lblCreditCardNumber, lblTotalTitle,lblTotalValue;
     JButton btnCancel,btnSubmit;
     JPanel pnlOrder, pnlConfirmation;
     private OrderItemTableModel orderItemTableModel;
@@ -89,6 +89,16 @@ public class PaymentView extends JFrame implements ActionListener{
 	    lblCreditCardNumber.setFont(lblCreditCardNumber.getFont().deriveFont(Font.PLAIN));
 	    add(lblCreditCardNumber).setBounds(110,150,220,20);
 	    
+		 lblTotalTitle = new JLabel("Total:");
+		 add(lblTotalTitle).setBounds(330, 680, 80, 30);
+		 lblTotalValue = new JLabel(String.valueOf(total));
+		 add(lblTotalValue).setBounds(370, 680, 80, 30);
+		 
+		  	total = currentOrder.calculateTotal();
+		  	String totalValue = String.format("$%.2f", total);
+		  	lblTotalValue.setText(totalValue);
+		  	lblTotalValue = new JLabel(String.valueOf(total));
+	    
 	    /**
 	     * Order Panel and components
 	     */
@@ -105,11 +115,9 @@ public class PaymentView extends JFrame implements ActionListener{
 	  	tblOrder.getColumnModel().getColumn(2).setPreferredWidth(80);
 	  	jsOrder = new JScrollPane(tblOrder);
 	  	pnlOrder.add(jsOrder).setBounds(20,20,400,180);
+	  	System.out.println(total);
 	  	
-//	  	total = currentOrder.calculateTotal();
-//	  	String totalValue = String.format("$%.2f", total);
-//	  	lblTotalValue.setText(totalValue);
-	  	
+
 	  	add(pnlOrder);
 	  	
 	  	/**
