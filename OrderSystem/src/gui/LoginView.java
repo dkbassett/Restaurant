@@ -26,7 +26,7 @@ public class LoginView extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
       if(e.getSource()==btnLogin){
           if(txtUserName.getText().toString().equals("Daniel")&& Password.getText().toString().equals("Daniel")|| txtUserName.getText().toString().equals("Uttam")&& Password.getText().toString().equals("Uttam")|| txtUserName.getText().toString().equals("David")&& Password.getText().toString().equals("David")) {
-             new StaffListView().show();
+             new MainwindowView();
              dispose();
           }else{
           JOptionPane.showMessageDialog(null,"Input correct userName and password");

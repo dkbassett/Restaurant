@@ -30,6 +30,7 @@ public class MainwindowView extends JFrame implements ActionListener  {
     private String total = Float.toString(OrderHandler.getDaysTakingsFromDB());
     
     public MainwindowView(){
+    	
         setLayout(null);
         menu = new JMenuBar();
         add(menu);
@@ -95,7 +96,7 @@ public class MainwindowView extends JFrame implements ActionListener  {
         setJMenuBar(menu);
     }
     public static void main(String args[]){
-    	new MainwindowView();
+    	new LoginView();
     }
     @Override
     public void actionPerformed(ActionEvent e) {
