@@ -106,9 +106,9 @@ public class PaymentView extends JFrame implements ActionListener{
 	  	jsOrder = new JScrollPane(tblOrder);
 	  	pnlOrder.add(jsOrder).setBounds(20,20,400,180);
 	  	
-	  	total = currentOrder.calculateTotal();
-	  	String totalValue = String.format("$%.2f", total);
-	  	lblTotalValue.setText(totalValue);
+//	  	total = currentOrder.calculateTotal();
+//	  	String totalValue = String.format("$%.2f", total);
+//	  	lblTotalValue.setText(totalValue);
 	  	
 	  	add(pnlOrder);
 	  	
