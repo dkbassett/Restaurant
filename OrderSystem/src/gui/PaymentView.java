@@ -15,6 +15,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -162,7 +163,8 @@ public class PaymentView extends JFrame implements ActionListener{
 	    	// get order items from current order and store items in database based on order Id
 	    	ArrayList<OrderItem> orderItems = currentOrder.getItemList();
 	    	OrderHandler.storeOrderItems(orderId, orderItems);
-   
+	    	JOptionPane.showMessageDialog(null, "Order added to database!");
+	    	dispose();
     	}
 
 	}	
