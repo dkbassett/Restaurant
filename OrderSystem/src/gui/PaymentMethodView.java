@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -69,9 +70,9 @@ public class PaymentMethodView extends JFrame implements ActionListener{
 		 lblTotalValue = new JLabel(String.valueOf(total));
 		 add(lblTotalValue).setBounds(370, 280, 80, 30);
 		 
-	 	 total = currentOrder.calculateTotal();
-	  	 String totalValue = String.format("$%.2f", total);
-	  	 lblTotalValue.setText(totalValue);
+	 //	 total = currentOrder.calculateTotal();
+	  //	 String totalValue = String.format("$%.2f", total);
+	 // 	 lblTotalValue.setText(totalValue);
 	     
 	     btnSelect = new JButton("Select Card");
 	     add(btnSelect).setBounds(20,275,110,20);
@@ -116,13 +117,16 @@ public class PaymentMethodView extends JFrame implements ActionListener{
         	CreditCardHandler.setSelectedCreditCard(selectedCreditCard);
         	new PaymentView();
         }else if (e.getSource()== btnUpdate){
+        remove(js);
+        currentCustomer = CustomerHandler.getCurrentCustomer();
         creditCardList = CreditCard.getCreditCardsFromDB(currentCustomer);
    	     tblCreditCards = new JTable(new CreditCardTableModel(creditCardList));
    	     tblCreditCards.setFillsViewportHeight(true);
 
    	     js = new JScrollPane(tblCreditCards);
    	     add(js).setBounds(20,100,400,100);
-        	
+   	     tblCreditCards.repaint();
+
         }
 
 
