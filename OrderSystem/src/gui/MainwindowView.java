@@ -134,7 +134,7 @@ public class MainwindowView extends JFrame implements ActionListener  {
        }
        if(e.getSource()==btnOrder){
 //        	   new OrderItemView();
-    	   new CustomerView();
+    	   new SearchCustomerView();
        }
           
     }
