@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -34,7 +35,7 @@ public class SearchCustomerView extends JFrame implements ActionListener{
 //    JTable tbl = new JTable(dtm);
     JTable tblCustomers;
     JTextField txtSearch;
-    JLabel lblPhone;
+    JLabel lblPhone, lblError;
     JButton btnSearch, btnCancel, btnConfirm;
     Customer selectedCustomer = new Customer();
     JScrollPane js;
@@ -61,6 +62,11 @@ public class SearchCustomerView extends JFrame implements ActionListener{
         add(btnSearch).setBounds(230, 20, 100, 20);
         btnSearch.addActionListener(this);
         
+        lblError = new JLabel("Please enter a valid phone number");
+        lblError.setForeground(Color.red);
+        add(lblError).setBounds(340, 20, 200, 20);
+        lblError.setVisible(false);
+        
         btnConfirm = new JButton("Confirm");
         add(btnConfirm).setBounds(20,620,80,20);
         btnConfirm.addActionListener(this);
@@ -81,7 +87,12 @@ public class SearchCustomerView extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()== btnSearch){
-        	textFieldChange();
+        	if (Validator.isType(txtSearch.getText(), "int")) {
+        		textFieldChange();
+        	} else {
+        		lblError.setVisible(true);
+        		System.out.println("incorrect input");
+        	}
         }
         if(e.getSource()== btnConfirm) {
         	int selectedRowIndex = tblCustomers.getSelectedRow();  
