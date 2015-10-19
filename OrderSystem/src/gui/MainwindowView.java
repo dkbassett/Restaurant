@@ -127,7 +127,7 @@ public class MainwindowView extends JFrame implements ActionListener  {
     	   new OrderHistoryView();
        }
        if(e.getSource()==staffList){
-    	   new LoginView();
+    	   new StaffListView();
        }
        if(e.getSource()==btnOrder){
 //        	   new OrderItemView();
