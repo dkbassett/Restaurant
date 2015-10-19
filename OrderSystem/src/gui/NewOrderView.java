@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -43,7 +44,7 @@ public class NewOrderView extends JFrame implements ActionListener, TableModelLi
     private DefaultTableModel dtm = new DefaultTableModel();
     private JTable tblMenu, tblOrder;
     private JTextField txtItemNumber;
-    private JLabel lblItemNumber, lblTotalTitle, lblTotalValue;
+    private JLabel lblItemNumber, lblTotalTitle, lblTotalValue, lblError;
     private JButton btnAddToOrder, btnview, btnConfirm, btnCancel;
     private JRadioButton rdoTakeAway, rdoHomeDelivery;
     private ButtonGroup deliveryOptions;
@@ -129,8 +130,13 @@ public class NewOrderView extends JFrame implements ActionListener, TableModelLi
 			}
       		
       	});
+
       	pnlMenu.add(txtItemNumber).setBounds(110,20,100,20);
-            
+      	lblError = new JLabel("Please enter a valid menu item number");
+      	lblError.setForeground(Color.red);
+      	lblError.setVisible(false);
+        pnlMenu.add(lblError).setBounds(220, 20, 250, 20); 
+      	
       	// Menu item table
       	tblMenu = new JTable(new MenuTableModel(menuItemList));
       	tblMenu.setFillsViewportHeight(true);
@@ -255,14 +261,19 @@ public class NewOrderView extends JFrame implements ActionListener, TableModelLi
        
 	}
 	
-	public void textFieldChange() {	
+	public void textFieldChange() {
+		lblError.setVisible(false);
 		if (!txtItemNumber.getText().equals(null) && !txtItemNumber.getText().equals("")) {
-			try {
-				int itemNumber = Integer.parseInt(txtItemNumber.getText());
-				listSelectionModel.setSelectionInterval(itemNumber - 1, itemNumber - 1);
-			} catch (NumberFormatException e) {
-				System.out.println("number not in correct format");
-			}
+			if(Validator.isType(txtItemNumber.getText(), "int")) {
+				try {
+					int itemNumber = Integer.parseInt(txtItemNumber.getText());
+					listSelectionModel.setSelectionInterval(itemNumber - 1, itemNumber - 1);
+				} catch (NumberFormatException e) {
+					System.out.println("number not in correct format");
+				}
+			} else {
+				lblError.setVisible(true);
+			}	
 		}
 	}
     
